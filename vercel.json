@@ -1,29 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist",
-        "buildCommand": "chmod +x build.sh && ./build.sh"
-      }
-    }
-  ],
-  "routes": [
-    { 
-      "src": "/assets/(.*)\\.js$", 
-      "headers": { "content-type": "application/javascript" },
-      "continue": true
-    },
-    { 
-      "src": "/assets/(.*)\\.css$", 
-      "headers": { "content-type": "text/css" },
-      "continue": true
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 } 
