@@ -1,0 +1,173 @@
+.contactSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+}
+
+.contactInfo h3 {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.contactInfo p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contactList {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.contactItem {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contactItem:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: white;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.socialLink:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.contactForm {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-left: 5px solid var(--accent-color);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-family: var(--font-main);
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+.formTextarea {
+  resize: vertical;
+}
+
+.submitButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  width: 100%;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Aggiorniamo la sezione titolo */
+.section-title {
+  color: white;
+}
+
+.section-title:after {
+  background-color: white;
+}
+
+/* Aggiunta nuova classe per il contenitore del form */
+.formContainer {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+  .contactContent {
+    grid-template-columns: 1fr;
+  }
+  
+  .contactInfo {
+    text-align: center;
+  }
+  
+  .contactItem {
+    padding-left: 0;
+    padding-top: 1.5rem;
+  }
+  
+  .contactItem:before {
+    display: none;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+} 

@@ -1,0 +1,52 @@
+.aboutSection {
+  padding: 5rem 0;
+  background-color: var(--light-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.aboutContent {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.aboutImage {
+  flex: 1;
+}
+
+.aboutImage img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.aboutText {
+  flex: 2;
+}
+
+.aboutTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.aboutParagraph {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutContent {
+    flex-direction: column;
+  }
+  
+  .aboutImage, 
+  .aboutText {
+    width: 100%;
+  }
+} 

@@ -1,0 +1,65 @@
+.caseStudySection {
+  padding: 6rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.caseStudyContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.caseStudyText {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.caseStudyStats {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.statDesc {
+  font-size: 1rem;
+  color: var(--dark-color);
+}
+
+.caseStudyLink {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--dark-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.caseStudyLink:hover {
+  background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 576px) {
+  .caseStudyStats {
+    flex-direction: column;
+    gap: 2rem;
+  }
+} 

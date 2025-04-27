@@ -1,0 +1,161 @@
+.articleContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: rgb(0, 99, 41);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.content h2 {
+  font-size: 1.8rem;
+  color: rgb(0, 99, 41);
+  margin: 2rem 0 1rem;
+}
+
+.content h3 {
+  font-size: 1.4rem;
+  color: rgb(16, 113, 56);
+  margin: 1.5rem 0 1rem;
+}
+
+.content ul, .content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}
+
+.featuredImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(0, 99, 41);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: rgb(16, 113, 56);
+  text-decoration: underline;
+}
+
+.backToArticles {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: rgb(0, 99, 41);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.backToArticles:hover {
+  text-decoration: underline;
+}
+
+.relatedArticles {
+  margin-top: 4rem;
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.relatedTitle {
+  font-size: 1.5rem;
+  color: rgb(0, 99, 41);
+  margin-bottom: 1.5rem;
+}
+
+.relatedList {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.relatedArticle {
+  flex: 0 0 300px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.relatedArticle:hover {
+  transform: translateY(-5px);
+}
+
+.relatedArticleTitle {
+  font-size: 1.2rem;
+  color: rgb(0, 99, 41);
+  margin-bottom: 0.5rem;
+}
+
+.relatedArticleDate {
+  color: #777;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.relatedArticleLink {
+  color: rgb(0, 99, 41);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.relatedArticleLink:hover {
+  text-decoration: underline;
+} 
