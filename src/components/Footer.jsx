@@ -22,30 +22,6 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className={styles.footerTitle}>Navigazione</h3>
-            <ul className={styles.linksList}>
-              <li className={styles.linkItem}>
-                <Link to="home" className={styles.footerLink} smooth={true} duration={500}>Home</Link>
-              </li>
-              <li className={styles.linkItem}>
-                <Link to="chi-sono" className={styles.footerLink} smooth={true} duration={500}>Chi Sono</Link>
-              </li>
-              <li className={styles.linkItem}>
-                <Link to="guide" className={styles.footerLink} smooth={true} duration={500}>Guide</Link>
-              </li>
-              <li className={styles.linkItem}>
-                <Link to="video" className={styles.footerLink} smooth={true} duration={500}>Video</Link>
-              </li>
-              <li className={styles.linkItem}>
-                <Link to="consigli" className={styles.footerLink} smooth={true} duration={500}>Consigli</Link>
-              </li>
-              <li className={styles.linkItem}>
-                <Link to="contatti" className={styles.footerLink} smooth={true} duration={500}>Contatti</Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
             <h3 className={styles.footerTitle}>Newsletter</h3>
             <p className={styles.newsletterText}>Iscriviti per ricevere aggiornamenti e consigli</p>
             <form onSubmit={handleNewsletterSubmit} className={styles.newsletterForm}>

@@ -161,5 +161,20 @@
   .contactForm {
     margin: 0 auto;
     max-width: 100%;
+    padding: 1rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  .formInput,
+  .formSelect,
+  .formTextarea {
+    padding: 0.8rem;
+  }
+
+  .section-title {
+    color: white;
   }
 } 

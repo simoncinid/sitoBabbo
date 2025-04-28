@@ -97,7 +97,7 @@
   }
   
   .navMenu {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 100%;
     position: absolute;
@@ -112,6 +112,7 @@
   }
   
   .navMenuActive {
+    display: flex;
     left: 0;
   }
   

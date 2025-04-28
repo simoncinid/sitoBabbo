@@ -231,9 +231,10 @@
   }
 
   .tipCard {
-    flex: 0 0 85%;
+    flex: 0 0 45%;
     scroll-snap-align: start;
     margin: 0;
+    padding: 1rem;
   }
 
   .tipCard:last-child {
@@ -242,5 +243,15 @@
 
   .tipCard:first-child {
     margin-left: 1rem;
+  }
+
+  .tipDesc {
+    display: none;
+  }
+
+  .tipTitle {
+    cursor: pointer;
+    color: var(--primary-color);
+    text-decoration: underline;
   }
 } 

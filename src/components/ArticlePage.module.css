@@ -158,4 +158,40 @@
 
 .relatedArticleLink:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .articleContainer {
+    padding: 1rem;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .content p {
+    text-align: center;
+  }
+
+  .content h2 {
+    text-align: center;
+  }
+
+  .content h3 {
+    text-align: center;
+  }
+
+  .content ul, .content ol {
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto;
+  }
 } 
