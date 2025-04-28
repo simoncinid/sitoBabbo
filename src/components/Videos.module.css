@@ -98,6 +98,25 @@
 
 @media screen and (max-width: 768px) {
   .videoGrid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .videoCard {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    margin: 0;
+  }
+
+  .videoCard:last-child {
+    margin-right: 1rem;
+  }
+
+  .videoCard:first-child {
+    margin-left: 1rem;
   }
 } 

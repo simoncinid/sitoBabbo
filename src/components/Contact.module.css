@@ -153,21 +153,13 @@
   .contactContent {
     grid-template-columns: 1fr;
   }
-  
+
   .contactInfo {
-    text-align: center;
-  }
-  
-  .contactItem {
-    padding-left: 0;
-    padding-top: 1.5rem;
-  }
-  
-  .contactItem:before {
     display: none;
   }
-  
-  .socialLinks {
-    justify-content: center;
+
+  .contactForm {
+    margin: 0 auto;
+    max-width: 100%;
   }
 } 

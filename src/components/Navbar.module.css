@@ -100,13 +100,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
     position: absolute;
     top: 80px;
     left: -100%;
     transition: all 0.5s ease;
-    background-color: var(--dark-color);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     z-index: 999;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 15px 15px;
   }
   
   .navMenuActive {
@@ -116,15 +118,15 @@
   .navItem {
     width: 100%;
     height: auto;
-    padding: 2rem 0;
+    padding: 0.5rem 0;
   }
   
   .navLink {
-    color: #fff;
+    color: var(--dark-color);
     width: 100%;
     display: block;
-    padding: 1rem 0;
-    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
   }
   
   .navLink:hover,

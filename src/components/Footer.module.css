@@ -110,6 +110,21 @@
 @media screen and (max-width: 768px) {
   .footerContent {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footerLogo {
+    margin-bottom: 2rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .footerLogo img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
   }
 }
 

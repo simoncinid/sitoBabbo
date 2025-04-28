@@ -218,4 +218,29 @@
   margin-top: 1rem;
   color: #777;
   font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+  .tipsGrid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tipCard {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    margin: 0;
+  }
+
+  .tipCard:last-child {
+    margin-right: 1rem;
+  }
+
+  .tipCard:first-child {
+    margin-left: 1rem;
+  }
 } 

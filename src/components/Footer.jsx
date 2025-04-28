@@ -16,7 +16,7 @@ const Footer = () => {
         <div className={styles.footerContent}>
           <div>
             <div className={styles.footerLogo}>
-              <div className={styles.logo}>MS</div>
+              <img src="/assets/logo.png" alt="Logo Mauro Simoncini" />
               <p>Mauro Simoncini - Esperto di Impermeabilizzanti</p>
             </div>
           </div>
@@ -46,40 +46,22 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className={styles.footerTitle}>Resta Aggiornato</h3>
-            <p className={styles.newsletterText}>Iscriviti alla newsletter per ricevere consigli e novità</p>
-            <form className={styles.newsletterForm} onSubmit={handleNewsletterSubmit}>
-              <input 
-                className={styles.newsletterInput} 
-                type="email" 
-                placeholder="La tua email" 
-                required 
-              />
-              <button 
-                className={styles.newsletterButton} 
-                type="submit"
-              >
-                Iscriviti
-              </button>
+            <h3 className={styles.footerTitle}>Newsletter</h3>
+            <p className={styles.newsletterText}>Iscriviti per ricevere aggiornamenti e consigli</p>
+            <form onSubmit={handleNewsletterSubmit} className={styles.newsletterForm}>
+              <input type="email" placeholder="La tua email" className={styles.newsletterInput} required />
+              <button type="submit" className={styles.newsletterButton}>Iscriviti</button>
             </form>
           </div>
         </div>
         
         <div className={styles.footerBottom}>
-          <p className={styles.copyright}>&copy; {new Date().getFullYear()} Mauro Simoncini. Tutti i diritti riservati.</p>
+          <p className={styles.copyright}>© 2024 Mauro Simoncini. Tutti i diritti riservati.</p>
           <div className={styles.footerSocial}>
-            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
-              <FaLinkedin />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="YouTube">
-              <FaYoutube />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="TikTok">
-              <FaTiktok />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">
-              <FaInstagram />
-            </a>
+            <a href="#" className={styles.socialLink}><FaLinkedin /></a>
+            <a href="#" className={styles.socialLink}><FaYoutube /></a>
+            <a href="#" className={styles.socialLink}><FaTiktok /></a>
+            <a href="#" className={styles.socialLink}><FaInstagram /></a>
           </div>
         </div>
       </div>

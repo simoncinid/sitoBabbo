@@ -43,10 +43,19 @@
 @media screen and (max-width: 768px) {
   .aboutContent {
     flex-direction: column;
+    text-align: center;
   }
   
   .aboutImage, 
   .aboutText {
     width: 100%;
+  }
+
+  .aboutTitle {
+    text-align: center;
+  }
+
+  .aboutParagraph {
+    text-align: center;
   }
 } 
