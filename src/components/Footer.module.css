@@ -107,10 +107,53 @@
   color: white;
 }
 
+.contactForm {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: var(--secondary-color);
+}
+
 @media screen and (max-width: 768px) {
   .footerContent {
     grid-template-columns: 1fr;
-    text-align: center;
+    gap: 2rem;
+  }
+
+  .contactForm {
+    margin-top: 1rem;
   }
 
   .footerLogo {

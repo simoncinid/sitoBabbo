@@ -9,6 +9,12 @@ const Footer = () => {
     alert('Iscrizione alla newsletter completata! (Simulazione)');
     e.target.reset();
   };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    alert('Messaggio inviato! (Simulazione)');
+    e.target.reset();
+  };
   
   return (
     <footer className={styles.footerContainer}>
@@ -27,6 +33,22 @@ const Footer = () => {
             <form onSubmit={handleNewsletterSubmit} className={styles.newsletterForm}>
               <input type="email" placeholder="La tua email" className={styles.newsletterInput} required />
               <button type="submit" className={styles.newsletterButton}>Iscriviti</button>
+            </form>
+          </div>
+
+          <div>
+            <h3 className={styles.footerTitle}>Contattaci</h3>
+            <form onSubmit={handleContactSubmit} className={styles.contactForm}>
+              <div className={styles.formGroup}>
+                <input type="text" placeholder="Nome" className={styles.formInput} required />
+              </div>
+              <div className={styles.formGroup}>
+                <input type="email" placeholder="Email" className={styles.formInput} required />
+              </div>
+              <div className={styles.formGroup}>
+                <textarea placeholder="Messaggio" className={styles.formTextarea} required></textarea>
+              </div>
+              <button type="submit" className={styles.submitButton}>Invia</button>
             </form>
           </div>
         </div>

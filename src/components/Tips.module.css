@@ -253,5 +253,12 @@
     cursor: pointer;
     color: var(--primary-color);
     text-decoration: underline;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tipDate {
+    font-size: 0.8rem;
+    color: #666;
   }
 } 

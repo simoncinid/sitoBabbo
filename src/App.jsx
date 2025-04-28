@@ -6,7 +6,6 @@ import About from './components/About';
 import Guides from './components/Guides';
 import Videos from './components/Videos';
 import Tips from './components/Tips';
-import Contact from './components/Contact';
 import CaseStudy from './components/CaseStudy';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
@@ -23,9 +22,8 @@ function App() {
             <About />
             <Guides />
             <Videos />
-            <Tips />
-            <Contact />
             <CaseStudy />
+            <Tips />
             <Footer />
           </div>
         } />
