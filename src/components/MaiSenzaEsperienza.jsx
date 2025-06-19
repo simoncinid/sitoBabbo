@@ -4,6 +4,7 @@ import styles from './MaiSenzaEsperienza.module.css';
 
 const MaiSenzaEsperienza = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +60,14 @@ const MaiSenzaEsperienza = () => {
     }
   ];
 
+  const nextCase = () => {
+    setCurrentCaseIndex((prev) => (prev + 1) % caseStudies.length);
+  };
+
+  const prevCase = () => {
+    setCurrentCaseIndex((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -93,7 +102,7 @@ const MaiSenzaEsperienza = () => {
           </div>
         </div>
 
-        {/* Case Studies */}
+        {/* Case Studies - Desktop */}
         <div className={styles.caseStudiesSection}>
           <h3 className={styles.caseStudiesTitle}>Casi di Successo</h3>
           <div className={styles.caseStudiesGrid}>
@@ -130,6 +139,74 @@ const MaiSenzaEsperienza = () => {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Case Studies Gallery - Mobile */}
+        <div className={styles.caseGallery}>
+          <h3 className={styles.caseStudiesTitle}>Casi di Successo</h3>
+          <div className={styles.galleryContainer}>
+            <button 
+              className={styles.galleryNav + ' ' + styles.navPrev}
+              onClick={prevCase}
+              aria-label="Caso precedente"
+            >
+              ‹
+            </button>
+            
+            <div className={styles.gallerySlide}>
+              <div className={styles.caseCard}>
+                <div className={styles.caseImage}>
+                  <img 
+                    src={caseStudies[currentCaseIndex].image} 
+                    alt={caseStudies[currentCaseIndex].title}
+                    className={styles.casePhoto}
+                  />
+                  <div className={styles.caseOverlay}>
+                    <span className={styles.caseDuration}>{caseStudies[currentCaseIndex].duration}</span>
+                  </div>
+                </div>
+                <div className={styles.caseContent}>
+                  <h4 className={styles.caseTitle}>{caseStudies[currentCaseIndex].title}</h4>
+                  <p className={styles.caseDescription}>{caseStudies[currentCaseIndex].description}</p>
+                  
+                  <div className={styles.caseDetails}>
+                    <div className={styles.caseDetail}>
+                      <strong>Sfida:</strong> {caseStudies[currentCaseIndex].challenge}
+                    </div>
+                    <div className={styles.caseDetail}>
+                      <strong>Soluzione:</strong> {caseStudies[currentCaseIndex].solution}
+                    </div>
+                    <div className={styles.caseDetail}>
+                      <strong>Risultato:</strong> {caseStudies[currentCaseIndex].result}
+                    </div>
+                  </div>
+
+                  <div className={styles.caseFooter}>
+                    <span className={styles.caseInvestment}>{caseStudies[currentCaseIndex].investment}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button 
+              className={styles.galleryNav + ' ' + styles.navNext}
+              onClick={nextCase}
+              aria-label="Caso successivo"
+            >
+              ›
+            </button>
+          </div>
+          
+          <div className={styles.galleryDots}>
+            {caseStudies.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.galleryDot} ${index === currentCaseIndex ? styles.active : ''}`}
+                onClick={() => setCurrentCaseIndex(index)}
+                aria-label={`Vai al caso ${index + 1}`}
+              />
             ))}
           </div>
         </div>

@@ -3,6 +3,7 @@ import styles from './MaiSenzaConsigli.module.css';
 
 const MaiSenzaConsigli = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -43,6 +44,14 @@ const MaiSenzaConsigli = () => {
     }
   ];
 
+  const nextVideo = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+  };
+
+  const prevVideo = () => {
+    setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -59,7 +68,7 @@ const MaiSenzaConsigli = () => {
           </p>
         </div>
 
-        {/* Videos Grid */}
+        {/* Videos Grid - Desktop */}
         <div className={styles.videosGrid}>
           {videos.map((video) => (
             <div key={video.id} className={styles.videoCard}>
@@ -79,6 +88,57 @@ const MaiSenzaConsigli = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Video Gallery - Mobile */}
+        <div className={styles.videoGallery}>
+          <div className={styles.galleryContainer}>
+            <button 
+              className={styles.galleryNav + ' ' + styles.navPrev}
+              onClick={prevVideo}
+              aria-label="Video precedente"
+            >
+              ‹
+            </button>
+            
+            <div className={styles.gallerySlide}>
+              <div className={styles.videoCard}>
+                <div className={styles.videoThumbnail}>
+                  <img 
+                    src={videos[currentVideoIndex].thumbnail} 
+                    alt={videos[currentVideoIndex].title}
+                    className={styles.thumbnailImage}
+                  />
+                  <div className={styles.playButton}>
+                    <span className={styles.playIcon}>▶</span>
+                  </div>
+                  <div className={styles.videoDuration}>{videos[currentVideoIndex].duration}</div>
+                </div>
+                <div className={styles.videoInfo}>
+                  <h3 className={styles.videoTitle}>{videos[currentVideoIndex].title}</h3>
+                </div>
+              </div>
+            </div>
+            
+            <button 
+              className={styles.galleryNav + ' ' + styles.navNext}
+              onClick={nextVideo}
+              aria-label="Video successivo"
+            >
+              ›
+            </button>
+          </div>
+          
+          <div className={styles.galleryDots}>
+            {videos.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.galleryDot} ${index === currentVideoIndex ? styles.active : ''}`}
+                onClick={() => setCurrentVideoIndex(index)}
+                aria-label={`Vai al video ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

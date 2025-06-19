@@ -240,7 +240,11 @@
   }
   
   .mainContent {
-    gap: 3rem;
+    gap: 2rem;
+  }
+  
+  .photoSection {
+    margin-bottom: 1rem;
   }
   
   .photoContainer {
@@ -248,8 +252,12 @@
     height: 200px;
   }
   
+  /* Mobile: Centra il testo con spazi uguali */
   .aboutText {
     font-size: 1.1rem;
+    margin-right: 0;
+    text-align: center;
+    padding: 0 1rem;
   }
   
   .ctaButton {
@@ -266,5 +274,6 @@
   
   .aboutText {
     font-size: 1rem;
+    padding: 0 0.5rem;
   }
 } 
