@@ -1,0 +1,7 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#1a5f3f"/>
+  <rect x="50" y="50" width="200" height="200" fill="#43a047" opacity="0.8"/>
+  <circle cx="150" cy="120" r="30" fill="#ffffff" opacity="0.9"/>
+  <rect x="120" y="160" width="60" height="80" fill="#ffffff" opacity="0.7"/>
+  <text x="150" y="270" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">IMPERMEABILIZZAZIONE</text>
+</svg> 

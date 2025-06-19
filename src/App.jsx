@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Guides from './components/Guides';
-import Videos from './components/Videos';
-import Tips from './components/Tips';
-import CaseStudy from './components/CaseStudy';
+import MaiSenzaConsigli from './components/MaiSenzaConsigli';
+import MaiSenzaManutenzione from './components/MaiSenzaManutenzione';
+import MaiSenzaEsperienza from './components/MaiSenzaEsperienza';
+import FAQ from './components/FAQ';
+import Consulenza from './components/Consulenza';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import './App.css';
@@ -20,10 +21,11 @@ function App() {
             <Navbar />
             <Hero />
             <About />
-            <Guides />
-            <Videos />
-            <CaseStudy />
-            <Tips />
+            <MaiSenzaConsigli />
+            <MaiSenzaManutenzione />
+            <MaiSenzaEsperienza />
+            <FAQ />
+            <Consulenza />
             <Footer />
           </div>
         } />

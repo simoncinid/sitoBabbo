@@ -1,0 +1,7 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#388e3c"/>
+  <rect x="70" y="70" width="160" height="160" fill="#81c784" opacity="0.8"/>
+  <polygon points="150,100 165,135 135,135" fill="#ffffff" opacity="0.9"/>
+  <polygon points="120,150 140,170 180,130 190,140 140,190 110,160" fill="#ffffff" opacity="0.9"/>
+  <text x="150" y="270" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">GARANZIA</text>
+</svg> 
