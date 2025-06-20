@@ -8,9 +8,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom', 'react-scroll'],
+          ui: ['framer-motion', 'react-icons', 'styled-components']
+        },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]'
@@ -26,5 +33,9 @@ export default defineConfig({
         '.js': 'jsx'
       }
     }
+  },
+  server: {
+    port: 5173,
+    host: true
   }
 }) 
