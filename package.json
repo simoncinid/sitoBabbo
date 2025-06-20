@@ -11,8 +11,7 @@
     "dev": "vite",
     "build": "npx vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "chmod +x node_modules/.bin/vite"
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^10.16.4",
@@ -32,6 +31,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "terser": "^5.43.1",
     "vite": "^4.4.5"
   }
 }
