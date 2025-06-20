@@ -60,7 +60,7 @@ const Hero = () => {
           {/* Left Column - Typography Masterpiece */}
           <div className={styles.leftColumn}>
             
-            {/* Luxury Name System */}
+            {/* DESKTOP: Luxury Name System */}
             <div className={styles.nameSystem}>
               <div className={styles.nameBlock}>
                 <div className={styles.letterGroup}>
@@ -81,9 +81,7 @@ const Hero = () => {
               <div className={styles.nameSeparator}></div>
             </div>
 
-            
-
-            {/* Luxury Pillars */}
+            {/* DESKTOP: Luxury Pillars */}
             <div className={styles.pillarsSystem}>
               <div className={styles.pillarItem}>
                 <div className={styles.pillarNumber}>01</div>
@@ -104,6 +102,63 @@ const Hero = () => {
                 <div className={styles.pillarContent}>
                   <h3>Mai senza <span className={styles.pillarHighlight}>garanzie</span></h3>
                 </div>
+              </div>
+            </div>
+
+            {/* MOBILE ONLY: Sezione a due colonne */}
+            <div className={styles.mobileTopSection}>
+              {/* Colonna Sinistra: Mai Senza + Pillars */}
+              <div className={styles.mobileLeft}>
+                {/* Luxury Name System */}
+                <div className={styles.nameBlock}>
+                  <div className={styles.letterGroup}>
+                    <span className={styles.bigLetter}>M</span>
+                    <div className={styles.wordStack}>
+                      <span className={styles.topWord}>ai</span>
+                      <span className={styles.bottomWord}>auro</span>
+                    </div>
+                  </div>
+                  <div className={styles.letterGroup}>
+                    <span className={styles.bigLetter}>S</span>
+                    <div className={styles.wordStack}>
+                      <span className={styles.topWord}>enza</span>
+                      <span className={styles.bottomWord}>imoncini</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Pillars sotto Mai Senza */}
+                <div className={styles.pillarsSystem}>
+                  <div className={styles.pillarItem}>
+                    <div className={styles.pillarNumber}>01</div>
+                    <div className={styles.pillarContent}>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>consulenza</span></h3>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.pillarItem}>
+                    <div className={styles.pillarNumber}>02</div>
+                    <div className={styles.pillarContent}>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>assistenza</span></h3>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.pillarItem}>
+                    <div className={styles.pillarNumber}>03</div>
+                    <div className={styles.pillarContent}>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>garanzie</span></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Colonna Destra: Foto */}
+              <div className={styles.mobileRight}>
+                <img 
+                  src="/assets/hero.png"
+                  alt="Mauro Simoncini"
+                  className={styles.mobilePhoto}
+                />
               </div>
             </div>
 

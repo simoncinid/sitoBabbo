@@ -276,7 +276,7 @@
 
   /* Mobile: Card con margini specifici 5%-2%-5% */
   .comparisonSection {
-    padding: 0 5%;
+    padding: 0;
   }
 
   .comparisonGrid {
@@ -364,15 +364,27 @@
 
   .cardTitle {
     font-size: 0.9rem;
+    text-align: center;
   }
 
   .costBadge {
     font-size: 0.7rem;
+    align-self: center;
+  }
+
+  .imageOverlay{
+    text-align: center;
+  }
+
+  .ctaSection{
+    width: 100%;
+    padding: 0;
   }
 
   .benefitsList li,
   .damagesList li {
-    font-size: 0.7rem;
+    font-size: 0.55rem;
+    text-align: center;
   }
 
   .offerCard {
