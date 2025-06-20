@@ -922,11 +922,11 @@
   .mobilePhoto {
     display: block !important;
     width: 140%;
-    height: 190%;
+    height: 230%;
     border-radius: 10px;
     object-fit: cover;
     position: relative;
-    margin-top: 10%;
+    margin-top: 15%;
     right: 30%;
   }
   

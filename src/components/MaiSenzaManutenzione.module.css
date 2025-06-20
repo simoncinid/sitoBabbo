@@ -223,7 +223,7 @@
 .ctaButton {
   display: inline-block;
   background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
-  color: #1a5f3f;
+  color: black;
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;

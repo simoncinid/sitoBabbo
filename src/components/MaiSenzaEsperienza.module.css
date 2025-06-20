@@ -183,7 +183,7 @@
 
 .caseFooter {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .caseInvestment {
@@ -309,6 +309,10 @@
 @media (max-width: 768px) {
   .esperienzaContainer {
     padding: 2rem 0;
+  }
+
+  .caseDetail{
+    text-align: center;
   }
 
   .container {
