@@ -51,4 +51,34 @@
   section {
     padding: 3rem 0;
   }
+}
+
+/* Cursor Follower - Solo Desktop */
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background: rgba(67, 160, 71, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backdrop-filter: blur(2px);
+  
+}
+
+/* Effetto hover su elementi interattivi */
+a:hover ~ .cursor-follower,
+button:hover ~ .cursor-follower,
+.cursor-follower:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  background: rgba(67, 160, 71, 0.5);
+}
+
+/* Reset di base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 } 

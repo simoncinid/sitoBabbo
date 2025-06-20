@@ -6,12 +6,17 @@ const Consulenza = () => {
     nome: '',
     email: '',
     telefono: '',
+    tipoCliente: 'privato',
+    nomeAzienda: '',
+    partitaIva: '',
+    settoreAttivita: '',
     tipoProgetto: '',
     descrizione: '',
     urgenza: 'normale',
     budget: '',
     citta: '',
-    privacy: false
+    privacy: false,
+    newsletter: true
   });
 
   const handleChange = (e) => {
@@ -92,6 +97,67 @@ const Consulenza = () => {
               </div>
             </div>
 
+            <div className={styles.formGroup}>
+              <label htmlFor="tipoCliente">Tipo Cliente *</label>
+              <select
+                id="tipoCliente"
+                name="tipoCliente"
+                value={formData.tipoCliente}
+                onChange={handleChange}
+                required
+              >
+                <option value="privato">Privato</option>
+                <option value="rivenditore">Rivenditore/Applicatore</option>
+              </select>
+            </div>
+
+            {formData.tipoCliente === 'rivenditore' && (
+              <>
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="nomeAzienda">Nome Azienda *</label>
+                    <input
+                      type="text"
+                      id="nomeAzienda"
+                      name="nomeAzienda"
+                      value={formData.nomeAzienda}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="partitaIva">Partita IVA *</label>
+                    <input
+                      type="text"
+                      id="partitaIva"
+                      name="partitaIva"
+                      value={formData.partitaIva}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label htmlFor="settoreAttivita">Settore di Attività *</label>
+                  <select
+                    id="settoreAttivita"
+                    name="settoreAttivita"
+                    value={formData.settoreAttivita}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Seleziona...</option>
+                    <option value="rivenditore-materiali">Rivenditore Materiali Edili</option>
+                    <option value="applicatore-impermeabilizzazioni">Applicatore Impermeabilizzazioni</option>
+                    <option value="impresa-edile">Impresa Edile</option>
+                    <option value="architetto-progettista">Architetto/Progettista</option>
+                    <option value="altro">Altro</option>
+                  </select>
+                </div>
+              </>
+            )}
+
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="tipoProgetto">Tipo di Progetto *</label>
@@ -167,6 +233,19 @@ const Consulenza = () => {
                 />
                 <span className={styles.checkmark}></span>
                 Accetto il trattamento dei dati personali secondo la privacy policy *
+              </label>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                  checked={formData.newsletter}
+                  onChange={handleChange}
+                />
+                <span className={styles.checkmark}></span>
+                Iscrivimi alla newsletter
               </label>
             </div>
 

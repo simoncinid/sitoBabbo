@@ -35,7 +35,7 @@
 
 .sectionDescription {
   font-size: 1.2rem;
-  color: #475569;
+  color: var(--black);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.7;

@@ -48,9 +48,7 @@ const MaiSenzaManutenzione = () => {
                   alt="Manutenzione preventiva professionale"
                   className={styles.comparisonImage}
                 />
-                <div className={styles.imageOverlay}>
-                  <span className={styles.overlayText}>Manutenzione Preventiva</span>
-                </div>
+                
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
@@ -73,13 +71,11 @@ const MaiSenzaManutenzione = () => {
                   alt="Danni da infiltrazioni non trattate"
                   className={styles.comparisonImage}
                 />
-                <div className={styles.imageOverlay}>
-                  <span className={styles.overlayText}>Riparazione d'Emergenza</span>
-                </div>
+                
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Riparazione Strutturale</h3>
+                  <h3 className={styles.cardTitle}>Riparazione Totale</h3>
                   <div className={styles.costBadge}>€15.000</div>
                 </div>
                 <ul className={styles.damagesList}>
@@ -100,10 +96,7 @@ const MaiSenzaManutenzione = () => {
               <strong>La differenza è evidente:</strong> un piccolo investimento oggi ti protegge da costi enormi domani.
             </p>
             
-            <h3 className={styles.offerTitle}>Ispezione Gratuita Entro 48h</h3>
-            <p className={styles.offerDescription}>
-              Sopralluogo completo, report fotografico dettagliato e piano di manutenzione personalizzato.
-            </p>
+            
             
             <Link
               to="consulenza"
@@ -114,10 +107,7 @@ const MaiSenzaManutenzione = () => {
               Richiedi Consulenza Gratuita
             </Link>
             
-            <p className={styles.guarantee}>
-              <strong>Garanzia 100%:</strong> Se non troviamo almeno 3 punti di miglioramento, 
-              l'ispezione è completamente gratuita.
-            </p>
+            
           </div>
         </div>
       </div>

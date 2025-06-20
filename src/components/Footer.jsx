@@ -16,39 +16,6 @@ const Footer = () => {
   return (
     <footer className={styles.footerContainer} id="contatti">
       <div className={styles.container}>
-        {/* Newsletter Section */}
-        <div className={styles.newsletterSection}>
-          <div className={styles.newsletterContent}>
-            <h2 className={styles.newsletterTitle}>Newsletter "Mai Senza Consigli"</h2>
-            <p className={styles.newsletterDescription}>
-              Ricevi ogni mese consigli pratici, guide stagionali e soluzioni per mantenere 
-              perfette le tue impermeabilizzazioni. Unisciti a oltre 1000 proprietari di casa.
-            </p>
-            
-            <div className={styles.newsletterBenefits}>
-              <div className={styles.benefit}>✓ Consigli mensili di manutenzione</div>
-              <div className={styles.benefit}>✓ Guide stagionali gratuite</div>
-              <div className={styles.benefit}>✓ Offerte esclusive per iscritti</div>
-            </div>
-            
-            <form onSubmit={handleNewsletterSubmit} className={styles.newsletterForm}>
-              <div className={styles.newsletterInputs}>
-                <input 
-                  type="email" 
-                  placeholder="La tua email" 
-                  className={styles.newsletterInput}
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
-                <button type="submit" className={styles.newsletterButton}>
-                  Iscriviti Gratis
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
         {/* Footer Main Content */}
         <div className={styles.footerContent}>
           {/* Brand Section */}
@@ -75,56 +42,6 @@ const Footer = () => {
                 <span>Italia</span>
               </div>
             </div>
-          </div>
-          
-          {/* Navigation Links */}
-          <div className={styles.footerLinks}>
-            <h4 className={styles.footerTitle}>Navigazione</h4>
-            <ul className={styles.footerNavList}>
-              <li>
-                <Link to="about" smooth={true} duration={500} className={styles.footerNavLink}>
-                  Chi Sono
-                </Link>
-              </li>
-              <li>
-                <Link to="mai-senza-consigli" smooth={true} duration={500} className={styles.footerNavLink}>
-                  Consigli
-                </Link>
-              </li>
-              <li>
-                <Link to="mai-senza-manutenzione" smooth={true} duration={500} className={styles.footerNavLink}>
-                  Manutenzione
-                </Link>
-              </li>
-              <li>
-                <Link to="mai-senza-esperienza" smooth={true} duration={500} className={styles.footerNavLink}>
-                  Esperienza
-                </Link>
-              </li>
-              <li>
-                <Link to="faq" smooth={true} duration={500} className={styles.footerNavLink}>
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="consulenza" smooth={true} duration={500} className={styles.footerNavLink}>
-                  Consulenza
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className={styles.footerServices}>
-            <h4 className={styles.footerTitle}>Servizi</h4>
-            <ul className={styles.servicesList}>
-              <li>Impermeabilizzazione Terrazzi</li>
-              <li>Riparazione Infiltrazioni</li>
-              <li>Consulenza Tecnica</li>
-              <li>Ispezioni Diagnostiche</li>
-              <li>Manutenzione Preventiva</li>
-              <li>Supporto Post-Intervento</li>
-            </ul>
           </div>
 
           {/* Social & Legal */}

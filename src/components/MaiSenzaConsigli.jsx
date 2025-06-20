@@ -4,13 +4,34 @@ import styles from './MaiSenzaConsigli.module.css';
 const MaiSenzaConsigli = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [fullscreenVideoIndex, setFullscreenVideoIndex] = useState(0);
   const sectionRef = useRef(null);
+  const videoRefs = useRef([]);
+  const fullscreenVideoRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Avvia autoplay dei video quando la sezione è visibile
+          if (!isFullscreen) {
+            videoRefs.current.forEach(video => {
+              if (video) {
+                video.play().catch(e => console.log('Autoplay prevented:', e));
+              }
+            });
+          }
+        } else {
+          // Pausa i video quando la sezione non è visibile
+          if (!isFullscreen) {
+            videoRefs.current.forEach(video => {
+              if (video) {
+                video.pause();
+              }
+            });
+          }
         }
       },
       { threshold: 0.3 }
@@ -21,26 +42,64 @@ const MaiSenzaConsigli = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isFullscreen]);
+
+  const openFullscreen = (videoIndex) => {
+    setFullscreenVideoIndex(videoIndex);
+    setIsFullscreen(true);
+    // Pausa tutti i video normali
+    videoRefs.current.forEach(video => {
+      if (video) video.pause();
+    });
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    if (fullscreenVideoRef.current) {
+      fullscreenVideoRef.current.pause();
+    }
+  };
+
+  const nextFullscreenVideo = () => {
+    setFullscreenVideoIndex((prev) => (prev + 1) % videos.length);
+  };
+
+  const prevFullscreenVideo = () => {
+    setFullscreenVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+  };
+
+  // Gestione tasti freccia per fullscreen
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (isFullscreen) {
+        if (e.key === 'ArrowRight') nextFullscreenVideo();
+        if (e.key === 'ArrowLeft') prevFullscreenVideo();
+        if (e.key === 'Escape') closeFullscreen();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isFullscreen]);
 
   const videos = [
     {
       id: 1,
       title: 'Impermeabilizzazione Terrazzo',
       duration: '12:45',
-      thumbnail: '/assets/video-placeholder-1.svg'
+      videoSrc: '/assets/video1.mp4'
     },
     {
       id: 2,
       title: 'Tecniche di Applicazione',
       duration: '18:30',
-      thumbnail: '/assets/video-placeholder-2.svg'
+      videoSrc: '/assets/video2.mp4'
     },
     {
       id: 3,
       title: 'Manutenzione Preventiva',
       duration: '15:20',
-      thumbnail: '/assets/video-placeholder-3.svg'
+      videoSrc: '/assets/video3.mp4'
     }
   ];
 
@@ -70,18 +129,29 @@ const MaiSenzaConsigli = () => {
 
         {/* Videos Grid - Desktop */}
         <div className={styles.videosGrid}>
-          {videos.map((video) => (
+          {videos.map((video, index) => (
             <div key={video.id} className={styles.videoCard}>
               <div className={styles.videoThumbnail}>
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.title}
+                <video 
+                  ref={(el) => {
+                    videoRefs.current[index] = el;
+                  }}
+                  src={video.videoSrc}
                   className={styles.thumbnailImage}
-                />
-                <div className={styles.playButton}>
-                  <span className={styles.playIcon}>▶</span>
-                </div>
-                <div className={styles.videoDuration}>{video.duration}</div>
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <button 
+                  className={styles.fullscreenButton}
+                  onClick={() => openFullscreen(index)}
+                  aria-label="Visualizza a schermo intero"
+                >
+                  ⛶
+                </button>
               </div>
               <div className={styles.videoInfo}>
                 <h3 className={styles.videoTitle}>{video.title}</h3>
@@ -104,15 +174,26 @@ const MaiSenzaConsigli = () => {
             <div className={styles.gallerySlide}>
               <div className={styles.videoCard}>
                 <div className={styles.videoThumbnail}>
-                  <img 
-                    src={videos[currentVideoIndex].thumbnail} 
-                    alt={videos[currentVideoIndex].title}
+                  <video 
+                    ref={(el) => {
+                      videoRefs.current[currentVideoIndex] = el;
+                    }}
+                    src={videos[currentVideoIndex].videoSrc}
                     className={styles.thumbnailImage}
-                  />
-                  <div className={styles.playButton}>
-                    <span className={styles.playIcon}>▶</span>
-                  </div>
-                  <div className={styles.videoDuration}>{videos[currentVideoIndex].duration}</div>
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                  <button 
+                    className={styles.fullscreenButton}
+                    onClick={() => openFullscreen(currentVideoIndex)}
+                    aria-label="Visualizza a schermo intero"
+                  >
+                    ⛶
+                  </button>
                 </div>
                 <div className={styles.videoInfo}>
                   <h3 className={styles.videoTitle}>{videos[currentVideoIndex].title}</h3>
@@ -141,6 +222,54 @@ const MaiSenzaConsigli = () => {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Video Modal */}
+      {isFullscreen && (
+        <div className={styles.fullscreenModal}>
+          <div className={styles.fullscreenContent}>
+            <button 
+              className={styles.closeButton}
+              onClick={closeFullscreen}
+              aria-label="Chiudi"
+            >
+              ✕
+            </button>
+            
+            <button 
+              className={styles.fullscreenNav + ' ' + styles.prevButton}
+              onClick={prevFullscreenVideo}
+              aria-label="Video precedente"
+            >
+              ‹
+            </button>
+            
+            <video 
+              ref={fullscreenVideoRef}
+              src={videos[fullscreenVideoIndex].videoSrc}
+              className={styles.fullscreenVideo}
+              controls
+              autoPlay
+            >
+              Your browser does not support the video tag.
+            </video>
+            
+            <button 
+              className={styles.fullscreenNav + ' ' + styles.nextButton}
+              onClick={nextFullscreenVideo}
+              aria-label="Video successivo"
+            >
+              ›
+            </button>
+            
+            <div className={styles.fullscreenInfo}>
+              <h3 className={styles.fullscreenTitle}>{videos[fullscreenVideoIndex].title}</h3>
+              <div className={styles.videoCounter}>
+                {fullscreenVideoIndex + 1} / {videos.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

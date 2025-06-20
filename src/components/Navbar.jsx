@@ -86,6 +86,12 @@ const Navbar = () => {
             ))}
           </div>
 
+          {/* Mobile Navbar Text */}
+          <div className={styles.mobileNavbarText}>
+            <span className={styles.mobileNavbarTitle}>Mai Senza</span>
+            <span className={styles.mobileNavbarSubtitle}>Impermeabilizzazione</span>
+          </div>
+
           {/* CTA Button - Consulenza */}
           <div className={styles.navCta}>
             <Link
@@ -143,6 +149,31 @@ const Navbar = () => {
                   <span className={styles.mobileNavArrow}>→</span>
                 </Link>
               ))}
+              
+              {/* Additional mobile menu items */}
+              <Link
+                to="consulenza"
+                smooth={true}
+                duration={500}
+                className={styles.mobileNavLink}
+                onClick={closeMobileMenu}
+                style={{ animationDelay: `${navItems.length * 0.1}s` }}
+              >
+                <span className={styles.mobileNavText}>Consulenza Gratuita</span>
+                <span className={styles.mobileNavArrow}>→</span>
+              </Link>
+              
+              <Link
+                to="mai-senza-esperienza"
+                smooth={true}
+                duration={500}
+                className={styles.mobileNavLink}
+                onClick={closeMobileMenu}
+                style={{ animationDelay: `${(navItems.length + 1) * 0.1}s` }}
+              >
+                <span className={styles.mobileNavText}>Portfolio Progetti</span>
+                <span className={styles.mobileNavArrow}>→</span>
+              </Link>
             </div>
 
             <div className={styles.mobileMenuFooter}>

@@ -58,6 +58,14 @@
   flex-direction: column;
 }
 
+.formGroup:has(#budget) {
+  margin-top: 1.5rem;
+}
+
+.formGroup:has(input[type="checkbox"]) {
+  margin-top: 1.5rem;
+}
+
 .formGroup label {
   font-weight: 600;
   color: #374151;

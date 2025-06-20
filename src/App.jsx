@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,19 +13,61 @@ import ArticlePage from './components/ArticlePage';
 import './App.css';
 
 function App() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Controlla se è desktop
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+
+    // Traccia posizione mouse solo su desktop
+    const handleMouseMove = (e) => {
+      if (isDesktop) {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      }
+    };
+
+    if (isDesktop) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      window.removeEventListener('resize', checkIsDesktop);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isDesktop]);
+
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route path="/" element={
           <div className="App">
+            {/* Cerchio che segue il cursore - solo desktop */}
+            {isDesktop && (
+              <div 
+                className="cursor-follower"
+                style={{
+                  left: mousePosition.x,
+                  top: mousePosition.y,
+                }}
+              />
+            )}
+            
             <Navbar />
-            <Hero />
-            <About />
-            <MaiSenzaConsigli />
-            <MaiSenzaManutenzione />
-            <MaiSenzaEsperienza />
-            <FAQ />
-            <Consulenza />
+            <main>
+              <Hero />
+              <About />
+              <MaiSenzaConsigli />
+              <MaiSenzaManutenzione />
+              <MaiSenzaEsperienza />
+              <FAQ />
+              <Consulenza />
+            </main>
             <Footer />
           </div>
         } />

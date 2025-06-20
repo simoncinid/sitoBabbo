@@ -83,26 +83,41 @@ const Hero = () => {
 
             {/* DESKTOP: Luxury Pillars */}
             <div className={styles.pillarsSystem}>
-              <div className={styles.pillarItem}>
+              <Link
+                to="mai-senza-consigli"
+                smooth={true}
+                duration={1000}
+                className={styles.pillarItem}
+              >
                 <div className={styles.pillarNumber}>01</div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>consulenza</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>consigli</span></h3>
                 </div>
-              </div>
+              </Link>
               
-              <div className={styles.pillarItem}>
+              <Link
+                to="mai-senza-manutenzione"
+                smooth={true}
+                duration={1000}
+                className={styles.pillarItem}
+              >
                 <div className={styles.pillarNumber}>02</div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>assistenza</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>manutenzione</span></h3>
                 </div>
-              </div>
+              </Link>
               
-              <div className={styles.pillarItem}>
+              <Link
+                to="mai-senza-esperienza"
+                smooth={true}
+                duration={1000}
+                className={styles.pillarItem}
+              >
                 <div className={styles.pillarNumber}>03</div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>garanzie</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>esperienza</span></h3>
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* MOBILE ONLY: Sezione a due colonne */}
@@ -129,26 +144,41 @@ const Hero = () => {
                 
                 {/* Pillars sotto Mai Senza */}
                 <div className={styles.pillarsSystem}>
-                  <div className={styles.pillarItem}>
+                  <Link
+                    to="mai-senza-consigli"
+                    smooth={true}
+                    duration={1000}
+                    className={styles.pillarItem}
+                  >
                     <div className={styles.pillarNumber}>01</div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>consulenza</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>consigli</span></h3>
                     </div>
-                  </div>
+                  </Link>
                   
-                  <div className={styles.pillarItem}>
+                  <Link
+                    to="mai-senza-manutenzione"
+                    smooth={true}
+                    duration={1000}
+                    className={styles.pillarItem}
+                  >
                     <div className={styles.pillarNumber}>02</div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>assistenza</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>manutenzione</span></h3>
                     </div>
-                  </div>
+                  </Link>
                   
-                  <div className={styles.pillarItem}>
+                  <Link
+                    to="mai-senza-esperienza"
+                    smooth={true}
+                    duration={1000}
+                    className={styles.pillarItem}
+                  >
                     <div className={styles.pillarNumber}>03</div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>garanzie</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>esperienza</span></h3>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               </div>
               
@@ -164,16 +194,18 @@ const Hero = () => {
 
             {/* Premium Actions */}
             <div className={styles.actionsSystem}>
-              <button 
-                onClick={handleShowChatbot} 
+              <Link 
+                to="consulenza" 
+                smooth={true} 
+                duration={1000}
                 className={styles.primaryAction}
               >
                 <span className={styles.actionText}>Consulenza Gratuita</span>
                 <span className={styles.actionArrow}>→</span>
-              </button>
+              </Link>
               
               <Link 
-                to="mai-senza-consigli" 
+                to="mai-senza-esperienza" 
                 smooth={true} 
                 duration={1000}
                 className={styles.secondaryAction}
@@ -190,13 +222,28 @@ const Hero = () => {
             {/* Single Large Image - Desktop */}
             <div className={styles.singleImageContainer}>
               <div className={styles.mainImageFrame}>
-                <div className={styles.imageContainer}>
-                  <img 
-                    src="/assets/hero.png"
-                    alt="Impermeabilizzazione professionale"
-                    className={styles.mainImageContent}
-                  />
-                  <div className={styles.imageOverlay}></div>
+                <div className={styles.imageFlipContainer}>
+                  {/* Front - Immagine */}
+                  <div className={styles.imageContainer}>
+                    <img 
+                      src="/assets/hero.png"
+                      alt="Impermeabilizzazione professionale"
+                      className={styles.mainImageContent}
+                    />
+                    <div className={styles.imageOverlay}></div>
+                  </div>
+                  
+                  {/* Back - Slogan */}
+                  <div className={styles.imageSloganContainer}>
+                    <div className={styles.sloganContent}>
+                      <h3 className={styles.sloganTitle}>La Manutenzione</h3>
+                      <h3 className={styles.sloganTitle}>È Tutto</h3>
+                      <p className={styles.sloganText}>
+                        Prevenire è meglio che riparare. Una manutenzione costante 
+                        protegge il tuo investimento e ti risparmia costi futuri.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className={styles.imageLabel}>Esperienza Professionale</div>
               </div>
