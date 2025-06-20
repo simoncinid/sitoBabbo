@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://maisenza.it/sitemap.xml
+
+# Crawl-delay per essere gentili con i server
+Crawl-delay: 1
+
+# Blocca directory non necessarie
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.json
+Disallow: /*.config.js
+
+# Consenti file importanti
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.mp4 

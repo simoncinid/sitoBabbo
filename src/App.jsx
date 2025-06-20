@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,6 +10,7 @@ import MaiSenzaEsperienza from './components/MaiSenzaEsperienza';
 import FAQ from './components/FAQ';
 import Consulenza from './components/Consulenza';
 import Footer from './components/Footer';
+import SEOHead from './components/SEOHead';
 import ArticlePage from './components/ArticlePage';
 import './App.css';
 
@@ -43,37 +45,36 @@ function App() {
   }, [isDesktop]);
 
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <Routes>
-        <Route path="/" element={
-          <div className="App">
-            {/* Cerchio che segue il cursore - solo desktop */}
-            {isDesktop && (
-              <div 
-                className="cursor-follower"
-                style={{
-                  left: mousePosition.x,
-                  top: mousePosition.y,
-                }}
-              />
-            )}
-            
-            <Navbar />
-            <main>
-              <Hero />
-              <About />
-              <MaiSenzaConsigli />
-              <MaiSenzaManutenzione />
-              <MaiSenzaEsperienza />
-              <FAQ />
-              <Consulenza />
-            </main>
-            <Footer />
-          </div>
-        } />
-        <Route path="/articolo/:id" element={<ArticlePage />} />
-      </Routes>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="App">
+          <SEOHead />
+          
+          {/* Cerchio che segue il cursore - solo desktop */}
+          {isDesktop && (
+            <div 
+              className="cursor-follower"
+              style={{
+                left: mousePosition.x,
+                top: mousePosition.y,
+              }}
+            />
+          )}
+          
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <MaiSenzaConsigli />
+            <MaiSenzaManutenzione />
+            <MaiSenzaEsperienza />
+            <FAQ />
+            <Consulenza />
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

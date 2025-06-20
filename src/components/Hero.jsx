@@ -4,7 +4,6 @@ import styles from './Hero.module.css';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showChatbot, setShowChatbot] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
 
@@ -24,16 +23,6 @@ const Hero = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-  
-  const handleShowChatbot = () => {
-    setShowChatbot(true);
-    setTimeout(() => {
-      const chatbotSection = document.getElementById('chatbot-section');
-      if (chatbotSection) {
-        chatbotSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
 
   return (
     <>
@@ -264,46 +253,6 @@ const Hero = () => {
         <div className={styles.backgroundAccent}></div>
 
       </section>
-      
-      {/* Premium Chatbot Interface */}
-      {showChatbot && (
-        <section id="chatbot-section" className={styles.chatbotSection}>
-          <div className={styles.chatbotContainer}>
-            <div className={styles.chatbotHeader}>
-              <div className={styles.chatbotBrand}>
-                <div className={styles.chatbotIcon}>◆</div>
-                <div className={styles.chatbotInfo}>
-                  <h2 className={styles.chatbotTitle}>Assistente Tecnico Specializzato</h2>
-                  <p className={styles.chatbotSubtitle}>Consulenza immediata per le tue esigenze</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className={styles.chatbotInterface}>
-              <div className={styles.chatbotLoading}>
-                <div className={styles.loadingSystem}>
-                  <div className={styles.loadingIndicator}></div>
-                  <p>Connessione in corso...</p>
-                </div>
-              </div>
-              
-              <iframe
-                id="chatbot-widget-window-iframe"
-                src="https://app.gpt-trainer.com/widget/3d05d31a4b584ff2bbf56c35f78b59f2"
-                width="100%"
-                height="600px"
-                frameBorder="0"
-                allow="clipboard-read; clipboard-write"
-                className={styles.chatbotFrame}
-                onLoad={() => {
-                  const loading = document.querySelector(`.${styles.chatbotLoading}`);
-                  if (loading) loading.style.display = 'none';
-                }}
-              />
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 };
