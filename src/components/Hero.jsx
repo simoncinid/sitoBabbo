@@ -6,7 +6,6 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -19,15 +18,9 @@ const Hero = () => {
       });
     };
 
-    // Rotazione immagini ogni 3 secondi
-    const imageRotationTimer = setInterval(() => {
-      setActiveImageIndex((prev) => (prev + 1) % 3);
-    }, 3000);
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       clearTimeout(timer);
-      clearInterval(imageRotationTimer);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
@@ -41,24 +34,6 @@ const Hero = () => {
       }
     }, 100);
   };
-
-  const images = [
-    {
-      src: "/assets/1.png",
-      alt: "Impermeabilizzazione di precisione",
-      label: "Tecnologie Avanzate"
-    },
-    {
-      src: "/assets/hero.png", 
-      alt: "Progetti di prestigio",
-      label: "Progetti Premium"
-    },
-    {
-      src: "/assets/icon3.png",
-      alt: "Risultati certificati", 
-      label: "Risultati Certificati"
-    }
-  ];
 
   return (
     <>
@@ -157,35 +132,19 @@ const Hero = () => {
           {/* Right Column - Visual Excellence */}
           <div className={styles.rightColumn}>
             
-            {/* Rotating Images Composition */}
-            <div className={styles.rotatingImages}>
-              {images.map((image, index) => {
-                let position = 'side';
-                if (index === activeImageIndex) {
-                  position = 'center';
-                } else if (index === (activeImageIndex + 1) % 3) {
-                  position = 'right';
-                } else {
-                  position = 'left';
-                }
-
-                return (
-                  <div 
-                    key={index}
-                    className={`${styles.imageFrame} ${styles[position]}`}
-                  >
-                    <div className={styles.imageContainer}>
-                      <img 
-                        src={image.src}
-                        alt={image.alt}
-                        className={styles.imageContent}
-                      />
-                      <div className={styles.imageOverlay}></div>
-                    </div>
-                    <div className={styles.imageLabel}>{image.label}</div>
-                  </div>
-                );
-              })}
+            {/* Single Large Image - Desktop */}
+            <div className={styles.singleImageContainer}>
+              <div className={styles.mainImageFrame}>
+                <div className={styles.imageContainer}>
+                  <img 
+                    src="/assets/hero.png"
+                    alt="Impermeabilizzazione professionale"
+                    className={styles.mainImageContent}
+                  />
+                  <div className={styles.imageOverlay}></div>
+                </div>
+                <div className={styles.imageLabel}>Esperienza Professionale</div>
+              </div>
             </div>
 
           </div>

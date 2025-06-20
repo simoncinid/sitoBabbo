@@ -257,11 +257,12 @@
   }
 
   .container {
-    padding: 0 1rem;
+    padding: 0;
   }
 
   .headerSection {
     margin-bottom: 3rem;
+    padding: 0 1rem;
   }
 
   .sectionTitle {
@@ -273,10 +274,15 @@
     font-size: 1.1rem;
   }
 
-  /* Mobile: Card in riga una accanto all'altra */
+  /* Mobile: Card con margini specifici 5%-2%-5% */
+  .comparisonSection {
+    padding: 0 5%;
+  }
+
   .comparisonGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 2%;
+    width: 100%;
   }
 
   .cardImage {
@@ -310,6 +316,10 @@
   }
 
   /* Mobile: CTA semplificata */
+  .ctaSection {
+    padding: 0 1rem;
+  }
+
   .offerCard {
     background: transparent;
     backdrop-filter: none;
