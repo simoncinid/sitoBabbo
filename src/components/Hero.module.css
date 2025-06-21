@@ -843,7 +843,9 @@
     padding: 0.9rem 1.5rem;
     font-size: 0.9rem;
   }
-  
+  .nameSeparator{
+    display: none;
+  }
   /* Mobile: Nascondi le linee scorrevoli */
   .scrollSystem {
     display: none;
@@ -938,11 +940,15 @@
     text-align: center;
     width: 100%;
   }
+  .nameSeparator{
+    display: none;
+  }
   
   .leftColumn > .pillarsSystem {
     display: flex !important;
     flex-direction: column;
-    align-items: center;
+    align-items: self-start;
+    margin-left: 17%;
     width: 100%;
     gap: 1.2rem;
     margin-top: 1.5rem;
