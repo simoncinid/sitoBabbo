@@ -687,7 +687,42 @@
   .heroContainer {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    height: 80vh;
+    padding-top: 100px !important;
+    height: 100vh;
+  }
+
+  /* Aggiungo l'immagine come sfondo per mobile */
+  .heroContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  /* Sovrapposizione verde per mitigare l'immagine - opacità molto ridotta */
+  .heroContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 28, 20, 0.2) 0%,
+      rgba(26, 63, 46, 0.15) 28%,
+      rgba(45, 90, 63, 0.1) 55%,
+      rgba(74, 124, 89, 0.05) 82%,
+      rgba(107, 155, 122, 0.0) 100%
+    );
+    z-index: 2;
   }
   
   .contentGrid {
@@ -701,6 +736,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
   }
   
   .leftColumn {
@@ -712,127 +751,88 @@
     box-sizing: border-box;
     height: auto;
     transform: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
   }
   
-  /* MOBILE: Nascondi elementi desktop */
+  /* MOBILE: Mostra nameSystem centrato e ingrandito */
   .nameSystem {
-    display: none !important;
+    display: block !important;
+    text-align: center;
+    width: 100%;
   }
   
   .leftColumn > .pillarsSystem {
+    display: flex !important;
+    flex-direction: column;
+    align-items: self-start;
+    margin-left: 17%;
+    width: 100%;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  /* MOBILE: Nascondi sezione a due colonne */
+  .mobileTopSection {
     display: none !important;
   }
   
-  /* MOBILE: Mostra sezione a due colonne */
-  .mobileTopSection {
-    display: flex !important;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-  
-  /* Colonna sinistra mobile */
+  /* Nascondi elementi mobile non necessari */
   .mobileLeft {
-    display: flex !important;
-    flex-direction: column;
-    gap: 1.5rem;
-    flex: 1;
+    display: none !important;
   }
   
-  /* Colonna destra mobile */
   .mobileRight {
-    display: block !important;
-    width: 120px;
-    height: 160px;
-    flex-shrink: 0;
+    display: none !important;
   }
   
   .mobilePhoto {
-    display: block !important;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    object-fit: cover;
+    display: none !important;
   }
   
-  .mobileLeft .nameBlock {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-    width: 100%;
+  /* Stili per nameBlock su mobile - centrato e ingrandito */
+  .nameBlock {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    text-align: center !important;
   }
   
-  .mobileLeft .letterGroup {
-    align-items: flex-start;
-    width: 100%;
-    gap: 0.5rem;
+  /* Stili per letterGroup su mobile - centrato e ingrandito */
+  .letterGroup {
+    align-items: center !important;
+    width: 100% !important;
+    gap: 1rem !important;
+    justify-content: center !important;
   }
   
-  .mobileLeft .bigLetter {
-    font-size: clamp(3.5rem, 9vw, 5rem);
+  .bigLetter {
+    font-size: clamp(9.6rem, 24vw, 14.4rem) !important;
   }
   
-  .mobileLeft .topWord {
-    font-size: clamp(2rem, 5.5vw, 3rem);
+  .topWord {
+    font-size: clamp(6.4rem, 16vw, 9.6rem) !important;
   }
   
-  .mobileLeft .bottomWord {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  .bottomWord {
+    font-size: clamp(4rem, 9.6vw, 6.4rem) !important;
   }
-  
-  /* Pillars nella colonna sinistra mobile */
-  .mobileLeft .pillarsSystem {
-    display: flex !important;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 0.8rem;
-  }
-  
-  .mobileLeft .pillarItem {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    border-left: none;
-    padding-left: 0;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-  
-  .mobileLeft .pillarItem:hover {
-    text-decoration: none;
-    color: inherit;
-    transform: translateX(4px);
-  }
-  
-  .mobileLeft .pillarNumber {
-    font-size: 0.9rem;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-  }
-  
-  .mobileLeft .pillarContent h3 {
-    font-size: 0.9rem;
-    margin: 0;
-  }
-  
-  .mobileLeft .pillarContent p {
-    font-size: 0.8rem;
-    margin: 0;
-  }
+
+
   
   /* Mobile: Buttons centrati sotto */
   .actionsSystem {
     flex-direction: column;
     width: 100%;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
   
   .primaryAction,
@@ -861,7 +861,42 @@
   .heroContainer {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    height: auto;
+    padding-top: 100px !important;
+    height: 100vh;
+  }
+
+  /* Aggiungo l'immagine come sfondo per mobile */
+  .heroContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  /* Sovrapposizione verde per mitigare l'immagine - opacità molto ridotta */
+  .heroContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 28, 20, 0.2) 0%,
+      rgba(26, 63, 46, 0.15) 28%,
+      rgba(45, 90, 63, 0.1) 55%,
+      rgba(74, 124, 89, 0.05) 82%,
+      rgba(107, 155, 122, 0.0) 100%
+    );
+    z-index: 2;
   }
   
   .contentGrid {
@@ -874,6 +909,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
   }
   
   .leftColumn {
@@ -885,99 +924,85 @@
     box-sizing: border-box;
     height: auto;
     transform: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
   }
   
-  /* MOBILE: Nascondi elementi desktop */
+  /* MOBILE: Mostra nameSystem centrato e ingrandito */
   .nameSystem {
-    display: none !important;
+    display: block !important;
+    text-align: center;
+    width: 100%;
   }
   
   .leftColumn > .pillarsSystem {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* MOBILE: Nascondi sezione a due colonne */
+  .mobileTopSection {
     display: none !important;
   }
   
-  /* MOBILE: Mostra sezione a due colonne */
-  .mobileTopSection {
-    display: flex !important;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0rem;
-    width: 100%;
-  }
-  
   .mobileLeft {
-    display: flex !important;
-    flex-direction: column;
-    gap: 1.2rem;
-    flex: 1;
+    display: none !important;
   }
   
   .mobileRight {
-    display: block !important;
-    width: 100px;
-    height: 130px;
-    flex-shrink: 0;
+    display: none !important;
   }
   
   .mobilePhoto {
-    display: block !important;
-    width: 140%;
-    height: 230%;
-    border-radius: 10px;
-    object-fit: cover;
-    position: relative;
-    margin-top: 15%;
-    right: 30%;
+    display: none !important;
   }
   
-  .mobileLeft .nameBlock {
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
+  /* Stili per nameBlock su mobile - centrato e ingrandito */
+  .nameBlock {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  /* Stili per letterGroup su mobile - centrato e ingrandito */
+  .letterGroup {
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.8rem !important;
+    justify-content: center !important;
+  }
+  
+  .bigLetter {
+    font-size: clamp(8rem, 19.2vw, 11.2rem) !important;
+  }
+  
+  .topWord {
+    font-size: clamp(4.8rem, 12.8vw, 7.2rem) !important;
+  }
+  
+  .bottomWord {
+    font-size: clamp(3.2rem, 8vw, 4.8rem) !important;
+  }
 
-  }
-  
-  .mobileLeft .bigLetter {
-    font-size: clamp(6rem, 8vw, 4.5rem);
-  }
-  
-  .mobileLeft .topWord {
-    font-size: clamp(3.6rem, 5vw, 2.5rem);
-  }
-  
-  .mobileLeft .bottomWord {
-    font-size: clamp(2rem, 3.5vw, 2rem);
-  }
-  
-  .mobileLeft .pillarsSystem {
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-    gap: 0.6rem;
-  }
-  
-  .mobileLeft .pillarNumber {
-    font-size: 0.8rem;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-  }
-  
-  .mobileLeft .pillarContent h3 {
-    font-size: 0.8rem;
-  }
-  
-  .mobileLeft .pillarContent p {
-    font-size: 0.7rem;
-  }
+
   
   .actionsSystem {
     flex-direction: column;
     width: 100%;
-    gap: 0.8rem;
+    gap: 1.2rem;
     align-items: center;
     justify-content: center;
-    margin-top: 0.5rem;
+    margin-top: 2.5rem;
   }
   
   .primaryAction,
