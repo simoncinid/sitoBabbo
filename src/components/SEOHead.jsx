@@ -5,7 +5,7 @@ const SEOHead = () => {
   const siteUrl = 'https://maisenza.it';
   const siteName = 'Mai Senza Impermeabilizzazioni';
   const title = 'Mai Senza Impermeabilizzazioni | Mauro Simoncini - Esperti dal 2004';
-  const description = 'Mai senza consigli, manutenzione ed esperienza. Mauro Simoncini, esperto in impermeabilizzazioni dal 2004. Consulenza gratuita, soluzioni professionali per terrazzi, bagni, cantine e piscine.';
+  const description = 'Mai senza conoscenza, cura e il prodotto giusto. Mauro Simoncini, esperto in impermeabilizzazioni dal 2004. Consulenza gratuita, soluzioni professionali per terrazzi, bagni, cantine e piscine.';
   const image = `${siteUrl}/assets/hero.png`;
   const keywords = 'impermeabilizzazione, terrazzo, bagno, cantina, piscina, infiltrazioni, manutenzione, consulenza, Mauro Simoncini, riparazione, prevenzione';
 

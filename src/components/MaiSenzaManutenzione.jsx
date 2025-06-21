@@ -32,9 +32,12 @@ const MaiSenzaManutenzione = () => {
       <div className={styles.container}>
         {/* Header Section */}
         <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Mai Senza Manutenzione</h2>
+          <h2 className={styles.sectionTitle}>Mai Senza Cura</h2>
+          <h4 className={styles.sectionSubtitle}>
+            Perchè l'impermeabilizzazione non finisce con l'applicazione
+          </h4>
           <p className={styles.sectionDescription}>
-            Il 73% dei danni strutturali poteva essere evitato con una semplice manutenzione preventiva.
+            Il 73% dei danni strutturali poteva essere evitato con una semplice cura preventiva.
           </p>
         </div>
 
@@ -45,7 +48,7 @@ const MaiSenzaManutenzione = () => {
               <div className={styles.cardImage}>
                 <img 
                   src="/assets/icon2.png" 
-                  alt="Manutenzione preventiva professionale"
+                  alt="Cura preventiva professionale"
                   className={styles.comparisonImage}
                 />
                 
@@ -98,14 +101,14 @@ const MaiSenzaManutenzione = () => {
             
             
             
-            <Link
-              to="consulenza"
-              smooth={true}
-              duration={800}
+            <a
+              href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButton}
             >
               Richiedi Consulenza Gratuita
-            </Link>
+            </a>
             
           </div>
         </div>

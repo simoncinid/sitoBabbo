@@ -320,8 +320,33 @@
   width: 24px;
 }
 
+.pillarIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pillarIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.pillarItem:hover .pillarIcon img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .pillarContent {
   flex: 1;
+  position: relative;
+  top: 20%;
 }
 
 .pillarContent h3 {
@@ -457,10 +482,41 @@
 /* Right Column - Visual Excellence */
 .rightColumn {
   position: relative;
+  height: 130%;
+  display: flex;
+  align-items: center;
+  width: 200%;
+  background-image: url('/assets/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.rightColumn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(26, 95, 63, 0.99) 0%,
+    rgba(26, 95, 63, 0.6) 10%,
+    rgba(26, 95, 63, 0.3) 40%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.rightColumnContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  
+  justify-content: center;
 }
 
 /* Single Large Image Container */
@@ -665,6 +721,10 @@
   .rightColumn {
     height: 400px;
     margin: 0 auto;
+    background-image: url('/assets/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   .singleImageContainer {
@@ -853,7 +913,7 @@
   
   /* Mobile: Nascondi completamente le immagini desktop */
   .rightColumn {
-    display: none;
+    display: none !important;
   }
   
 
@@ -1024,7 +1084,7 @@
   }
   
   .rightColumn {
-    display: none;
+    display: none !important;
   }
   
 

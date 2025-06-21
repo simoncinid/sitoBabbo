@@ -77,7 +77,10 @@ const MaiSenzaEsperienza = () => {
       <div className={styles.container}>
         {/* Header Section */}
         <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Mai Senza Esperienza</h2>
+          <h2 className={styles.sectionTitle}>Mai Senza Il Prodotto Giusto</h2>
+          <h4 className={styles.sectionSubtitle}>
+            Perchè non tutti i supporti sono uguali, e nemmeno le soluzioni
+          </h4>
           <p className={styles.sectionDescription}>
             Oltre 20 anni di esperienza nella risoluzione di problemi complessi. 
             Ogni progetto è una sfida vinta con competenza e innovazione.

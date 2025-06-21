@@ -58,21 +58,33 @@ const About = () => {
 
           <div className={styles.textSection}>
             <p className={styles.aboutText}>
+            ❓️“Posso farlo anche da solo?”
+
+In casa ti  dicono di NO. Il vicino ci ha provato. Tu ci stai pensando.😉
+
+Ma davvero l’impermeabilizzazione non è per tutti?
+
+Sono del parere che con gli strumenti giusti, anche chi non è del mestiere possa farcela.
+
+Qui trovi  uno spazio dove imparare... senza paura di sbagliare.
+Facendo domande e ricevendo risposte chiare e funzionali e soprattutto IMMEDIATE ‼️✌️
+            </p>
+            <p className={styles.aboutText}>
               Da oltre 20 anni mi occupo di impermeabilizzazione con passione e competenza. Ho trasformato migliaia di spazi, risolto problemi complessi e accompagnato i miei clienti verso soluzioni durature e affidabili.
               <br /><br />
               La mia filosofia è semplice: ogni problema ha una soluzione, e io sono qui per trovarla insieme a te. Dalla consulenza iniziale alla realizzazione finale, ti guido in ogni fase del processo con trasparenza e professionalità.
             </p>
 
             <div className={styles.ctaSection}>
-              <Link
-                to="consulenza"
-                smooth={true}
-                duration={800}
+              <a
+                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.ctaButton}
               >
                 <span className={styles.ctaIcon}>🚀</span>
                 <span className={styles.ctaText}>Consulenza Gratuita</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

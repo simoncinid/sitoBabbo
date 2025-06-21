@@ -78,9 +78,11 @@ const Hero = () => {
                 duration={1000}
                 className={styles.pillarItem}
               >
-                <div className={styles.pillarNumber}>01</div>
+                <div className={styles.pillarIcon}>
+                  <img src="/assets/icon11.png" alt="Conoscenza" />
+                </div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>consigli</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>conoscenza</span></h3>
                 </div>
               </Link>
               
@@ -90,9 +92,11 @@ const Hero = () => {
                 duration={1000}
                 className={styles.pillarItem}
               >
-                <div className={styles.pillarNumber}>02</div>
+                <div className={styles.pillarIcon}>
+                  <img src="/assets/icon22.png" alt="Cura" />
+                </div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>manutenzione</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>cura</span></h3>
                 </div>
               </Link>
               
@@ -102,9 +106,11 @@ const Hero = () => {
                 duration={1000}
                 className={styles.pillarItem}
               >
-                <div className={styles.pillarNumber}>03</div>
+                <div className={styles.pillarIcon}>
+                  <img src="/assets/icon33.png" alt="Il Prodotto Giusto" />
+                </div>
                 <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>esperienza</span></h3>
+                  <h3>Mai senza <span className={styles.pillarHighlight}>il prodotto giusto</span></h3>
                 </div>
               </Link>
             </div>
@@ -139,9 +145,11 @@ const Hero = () => {
                     duration={1000}
                     className={styles.pillarItem}
                   >
-                    <div className={styles.pillarNumber}>01</div>
+                    <div className={styles.pillarIcon}>
+                      <img src="/assets/icon11.png" alt="Conoscenza" />
+                    </div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>consigli</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>conoscenza</span></h3>
                     </div>
                   </Link>
                   
@@ -151,9 +159,11 @@ const Hero = () => {
                     duration={1000}
                     className={styles.pillarItem}
                   >
-                    <div className={styles.pillarNumber}>02</div>
+                    <div className={styles.pillarIcon}>
+                      <img src="/assets/icon22.png" alt="Cura" />
+                    </div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>manutenzione</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>cura</span></h3>
                     </div>
                   </Link>
                   
@@ -163,9 +173,11 @@ const Hero = () => {
                     duration={1000}
                     className={styles.pillarItem}
                   >
-                    <div className={styles.pillarNumber}>03</div>
+                    <div className={styles.pillarIcon}>
+                      <img src="/assets/icon33.png" alt="Il Prodotto Giusto" />
+                    </div>
                     <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>esperienza</span></h3>
+                      <h3>Mai senza <span className={styles.pillarHighlight}>il prodotto giusto</span></h3>
                     </div>
                   </Link>
                 </div>
@@ -183,15 +195,15 @@ const Hero = () => {
 
             {/* Premium Actions */}
             <div className={styles.actionsSystem}>
-              <Link 
-                to="consulenza" 
-                smooth={true} 
-                duration={1000}
+              <a 
+                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.primaryAction}
               >
                 <span className={styles.actionText}>Consulenza Gratuita</span>
                 <span className={styles.actionArrow}>→</span>
-              </Link>
+              </a>
               
               <Link 
                 to="mai-senza-esperienza" 
@@ -207,37 +219,10 @@ const Hero = () => {
 
           {/* Right Column - Visual Excellence */}
           <div className={styles.rightColumn}>
-            
-            {/* Single Large Image - Desktop */}
-            <div className={styles.singleImageContainer}>
-              <div className={styles.mainImageFrame}>
-                <div className={styles.imageFlipContainer}>
-                  {/* Front - Immagine */}
-                  <div className={styles.imageContainer}>
-                    <img 
-                      src="/assets/hero.png"
-                      alt="Impermeabilizzazione professionale"
-                      className={styles.mainImageContent}
-                    />
-                    <div className={styles.imageOverlay}></div>
-                  </div>
-                  
-                  {/* Back - Slogan */}
-                  <div className={styles.imageSloganContainer}>
-                    <div className={styles.sloganContent}>
-                      <h3 className={styles.sloganTitle}>La Manutenzione</h3>
-                      <h3 className={styles.sloganTitle}>È Tutto</h3>
-                      <p className={styles.sloganText}>
-                        Prevenire è meglio che riparare. Una manutenzione costante 
-                        protegge il tuo investimento e ti risparmia costi futuri.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.imageLabel}>Esperienza Professionale</div>
-              </div>
+            {/* Content overlay per eventuale testo futuro */}
+            <div className={styles.rightColumnContent}>
+              {/* Spazio per contenuto futuro */}
             </div>
-
           </div>
 
         </div>

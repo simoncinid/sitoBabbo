@@ -35,7 +35,7 @@
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   color: var(--gray-900);
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .sectionDescription {
@@ -85,6 +85,13 @@
 
 .videoCard:hover .thumbnailImage {
   transform: scale(1.05);
+}
+
+.sectionSubtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 2.5rem;
 }
 
 .playButton {

@@ -13,7 +13,7 @@ const Navbar = () => {
       setIsScrolled(scrollPosition > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'faq', 'consulenza'];
+      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'faq'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
@@ -41,9 +41,9 @@ const Navbar = () => {
 
   const navItems = [
     { id: 'about', label: 'Chi Sono' },
-    { id: 'mai-senza-consigli', label: 'Consigli' },
-    { id: 'mai-senza-manutenzione', label: 'Manutenzione' },
-    { id: 'mai-senza-esperienza', label: 'Esperienza' },
+    { id: 'mai-senza-consigli', label: 'Conoscenza' },
+    { id: 'mai-senza-manutenzione', label: 'Cura' },
+    { id: 'mai-senza-esperienza', label: 'Il Prodotto Giusto' },
     { id: 'faq', label: 'FAQ' }
   ];
 
@@ -64,7 +64,9 @@ const Navbar = () => {
             </div>
             <div className={styles.logoText}>
               <span className={styles.logoTitle}>Mai Senza</span>
-              <span className={styles.logoSubtitle}>Impermeabilizzazione</span>
+              <span className={styles.logoSubtitle}>prodotti e consigli</span>
+              <span className={styles.logoSubtitle}>per impermeabilizzare al top</span>
+
             </div>
           </Link>
 
@@ -88,21 +90,21 @@ const Navbar = () => {
 
           {/* Mobile Navbar Text */}
           <div className={styles.mobileNavbarText}>
-            <span className={styles.mobileNavbarTitle}>Mai Senza</span>
-            <span className={styles.mobileNavbarSubtitle}>Impermeabilizzazione</span>
+            <span className={styles.mobileNavbarTitle}>mai senza</span>
+            <span className={styles.mobileNavbarSubtitle}>mauro simoncini</span>
           </div>
 
           {/* CTA Button - Consulenza */}
           <div className={styles.navCta}>
-            <Link
-              to="consulenza"
-              smooth={true}
-              duration={500}
+            <a
+              href="https://wa.me/393938675606?text=Ciao! Vorrei informazioni sui vostri prodotti per impermeabilizzazione"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButton}
               onClick={closeMobileMenu}
             >
-              <span className={styles.ctaText}>Consulenza</span>
-            </Link>
+              <span className={styles.ctaText}>Whatsapp</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -123,7 +125,7 @@ const Navbar = () => {
             <div className={styles.mobileMenuHeader}>
               <div className={styles.mobileMenuLogo}>
                 <img src="/assets/logo.png" alt="Logo" className={styles.mobileLogoImage} />
-                <span className={styles.mobileLogoText}>Mai Senza</span>
+                <span className={styles.mobileLogoText}>mai senza</span>
               </div>
               <button
                 className={styles.mobileMenuClose}
@@ -151,17 +153,17 @@ const Navbar = () => {
               ))}
               
               {/* Additional mobile menu items */}
-              <Link
-                to="consulenza"
-                smooth={true}
-                duration={500}
+              <a
+                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.mobileNavLink}
                 onClick={closeMobileMenu}
                 style={{ animationDelay: `${navItems.length * 0.1}s` }}
               >
                 <span className={styles.mobileNavText}>Consulenza Gratuita</span>
                 <span className={styles.mobileNavArrow}>→</span>
-              </Link>
+              </a>
               
               <Link
                 to="mai-senza-esperienza"
@@ -177,15 +179,15 @@ const Navbar = () => {
             </div>
 
             <div className={styles.mobileMenuFooter}>
-              <Link
-                to="consulenza"
-                smooth={true}
-                duration={500}
+              <a
+                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.mobileCtaButton}
                 onClick={closeMobileMenu}
               >
                 <span className={styles.mobileCtaText}>Consulenza</span>
-              </Link>
+              </a>
               
               <div className={styles.mobileMenuInfo}>
                 <p>Esperti dal 2004</p>

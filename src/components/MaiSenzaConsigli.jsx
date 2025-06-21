@@ -97,7 +97,7 @@ const MaiSenzaConsigli = () => {
     },
     {
       id: 3,
-      title: 'Manutenzione Preventiva',
+      title: 'Cura Preventiva',
       duration: '15:20',
       videoSrc: '/assets/video3.mp4'
     }
@@ -120,7 +120,10 @@ const MaiSenzaConsigli = () => {
       <div className={styles.container}>
         {/* Header Section */}
         <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Mai Senza Consigli</h2>
+          <h2 className={styles.sectionTitle}>Mai Senza Conoscenza</h2>
+          <h4 className={styles.sectionSubtitle}>
+            Perchè chi sa, sceglie meglio
+          </h4>
           <p className={styles.sectionDescription}>
             Guide pratiche e video tutorial per trasformare ogni progetto di impermeabilizzazione 
             in un successo garantito. Scopri le tecniche professionali che fanno la differenza.
