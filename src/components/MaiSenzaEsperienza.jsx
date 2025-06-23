@@ -82,8 +82,19 @@ const MaiSenzaEsperienza = () => {
             Perchè non tutti i supporti sono uguali, e nemmeno le soluzioni
           </h4>
           <p className={styles.sectionDescription}>
-            Oltre 20 anni di esperienza nella risoluzione di problemi complessi. 
+            Il tuo bisogno è impermeabilizzare?
+            <br /><br />
+            Il tuo sogno è farlo da solo?<br />
+            Il mio lavoro è rendertelo possibile!
+            <br /><br />
+            Oltre 15 anni di esperienza nella risoluzione di problematiche impermeabilizzative.<br />
             Ogni progetto è una sfida vinta con competenza e innovazione.
+            <br /><br />
+            📌 Vecchie Guaine Bituminose<br />
+            📌 Pannelli in lamiera Coibentati<br />
+            📌 Terrazze e Lastrici Solari
+            <br /><br />
+            Niente più tentativi a vuoto.
           </p>
         </div>
 

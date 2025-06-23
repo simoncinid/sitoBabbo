@@ -47,7 +47,7 @@ const MaiSenzaManutenzione = () => {
             <div className={styles.preventionCard}>
               <div className={styles.cardImage}>
                 <img 
-                  src="/assets/icon2.png" 
+                  src="/assets/1.webp" 
                   alt="Cura preventiva professionale"
                   className={styles.comparisonImage}
                 />
@@ -70,7 +70,7 @@ const MaiSenzaManutenzione = () => {
             <div className={styles.emergencyCard}>
               <div className={styles.cardImage}>
                 <img 
-                  src="/assets/icon1.png" 
+                  src="/assets/2.png" 
                   alt="Danni da infiltrazioni non trattate"
                   className={styles.comparisonImage}
                 />

@@ -125,8 +125,35 @@ const MaiSenzaConsigli = () => {
             Perchè chi sa, sceglie meglio
           </h4>
           <p className={styles.sectionDescription}>
-            Guide pratiche e video tutorial per trasformare ogni progetto di impermeabilizzazione 
-            in un successo garantito. Scopri le tecniche professionali che fanno la differenza.
+            Ogni superficie ha le sue regole, ogni prodotto ha i suoi limiti e ogni lavoro ha bisogno di una preparazione precisa.
+            <br /><br />
+            🎯 Qui comprenderai il perché, prima di acquistare, è opportuno conoscere:
+            <br /><br />
+            • Come leggere una scheda tecnica<br />
+            • Cosa significano i valori come SRI, elasticità, consumo<br />
+            • Come si prepara una superficie davvero pronta all'applicazione<br />
+            • Quando, se e come usare un primer<br />
+            • Come evitare gli errori più frequenti
+            <br /><br />
+            📽️ Video pratici, guide passo-passo e spiegazioni chiare: così anche un appassionato può fare un lavoro da vero professionista.
+            <br /><br />
+            ---
+            <br /><br />
+            👉 <strong>Hai un dubbio?</strong>
+            <br /><br />
+            🔘 Prima di acquistare Se non sai, <a
+              href="https://wa.me/393938675606?text=Ciao! Ho un dubbio prima di acquistare"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#4CAF50',
+                fontWeight: 'bold',
+                textDecoration: 'underline',
+                cursor: 'pointer'
+              }}
+            >
+              chiedi qua
+            </a>
           </p>
         </div>
 

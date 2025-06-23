@@ -27,33 +27,28 @@ const FAQ = () => {
   const faqData = [
     {
       id: 1,
-      question: "Quanto dura un'impermeabilizzazione ben fatta?",
-      answer: "Un'impermeabilizzazione eseguita correttamente può durare dai 10 ai 25 anni, a seconda del tipo di prodotto utilizzato, della qualità dell'applicazione e della manutenzione."
+      question: "Posso impermeabilizzare una guaina ardesiata?",
+      answer: "Certamente,con le membrane impermeabilizzanti Fibrogum si può impermeabilizzare qualsiasi tipo di guaina ardesiata."
     },
     {
       id: 2,
-      question: "Quali sono i segni che indicano la necessità di impermeabilizzare?",
-      answer: "I segnali principali sono: macchie di umidità sui soffitti, muffa negli angoli, distacchi di intonaco, cattivi odori, efflorescenze saline sui muri."
+      question: "Quanto dura un'impermeabilizzazione liquida ben fatta?",
+      answer: "Un'impermeabilizzazione eseguita correttamente può durare oltre i 10 anni a seconda del tipo di prodotto utilizzato, della qualità dell'applicazione e della manutenzione."
     },
     {
       id: 3,
-      question: "Qual è la differenza tra membrane liquide e guaine?",
-      answer: "Le membrane liquide si applicano a pennello e creano un film continuo senza giunti. Le guaine sono fogli prefabbricati più adatte per grandi superfici piane."
+      question: "Qual è la differenza principale tra le membrane liquide impermeabilizzanti e le guaine prefabbricate?",
+      answer: "Le membrane liquide rappresentano il futuro  dell'impermeabilizzazione  moderna, si applicano a rullo, pennello o airless ,senza bisogno  di fiamme  libere e creano un film continuo senza giunti."
     },
     {
       id: 4,
-      question: "Posso fare da solo l'impermeabilizzazione?",
-      answer: "Per piccole superfici è possibile, ma serve conoscenza tecnica. Per superfici importanti è sempre consigliabile affidarsi a professionisti per evitare errori costosi."
+      question: "Posso fare da solo l'impermeabilizzazione della mia copertura?",
+      answer: "Con le membrane impermeabilizzanti Fibrogum ed il mio aiuto potrai riuscire ad avere un risultato da professionista"
     },
     {
       id: 5,
-      question: "Quanto costa un intervento di impermeabilizzazione?",
-      answer: "I costi variano da €15-30/mq per interventi semplici fino a €50-80/mq per soluzioni complesse. Ogni progetto è unico e richiede un sopralluogo per un preventivo preciso."
-    },
-    {
-      id: 6,
-      question: "Ogni quanto controllare l'impermeabilizzazione?",
-      answer: "Controllo visivo ogni 3 mesi, controllo approfondito ogni 6 mesi, manutenzione professionale ogni 2-3 anni. La prevenzione costa molto meno delle riparazioni."
+      question: "Ogni quanto controllare l'impermeabilizzazione eseguita?",
+      answer: "Mediamente ogni 3 anni deve essere fatto un controllo sulla copertura, se hai utilizzato la tecnica del colore spia,avrai immediatamente l'avviso di una eventuale manutenzione"
     }
   ];
 
