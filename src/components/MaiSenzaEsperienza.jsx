@@ -56,7 +56,7 @@ const MaiSenzaEsperienza = () => {
       result: "Risparmio idrico del 90%, zero perdite",
       image: "/assets/icon2.png",
       investment: "€15.000",
-      duration: "7 giorni"
+      duration: "7 giornii"
     }
   ];
 
