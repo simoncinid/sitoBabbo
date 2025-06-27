@@ -53,41 +53,19 @@ const MaiSenzaManutenzione = () => {
                 />
                 
               </div>
-              <div className={styles.cardContent}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Intervento Preventivo</h3>
-                  <div className={styles.costBadge}>€200</div>
-                </div>
-                <ul className={styles.benefitsList}>
-                  <li>Ispezione completa</li>
-                  <li>Piccole riparazioni</li>
-                  <li>Sigillature preventive</li>
-                  <li>Report dettagliato</li>
-                </ul>
-              </div>
+              
             </div>
 
             <div className={styles.emergencyCard}>
               <div className={styles.cardImage}>
                 <img 
-                  src="/assets/2.png" 
+                  src="/assets/3.png" 
                   alt="Danni da infiltrazioni non trattate"
                   className={styles.comparisonImage}
                 />
                 
               </div>
-              <div className={styles.cardContent}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Riparazione Totale</h3>
-                  <div className={styles.costBadge}>€15.000</div>
-                </div>
-                <ul className={styles.damagesList}>
-                  <li>Rifacimento completo</li>
-                  <li>Rimozione materiali</li>
-                  <li>Ripristino strutturale</li>
-                  <li>Tempo e disagi</li>
-                </ul>
-              </div>
+              
             </div>
           </div>
         </div>

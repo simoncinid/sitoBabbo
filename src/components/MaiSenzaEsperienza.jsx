@@ -82,43 +82,24 @@ const MaiSenzaEsperienza = () => {
             Perchè non tutti i supporti sono uguali, e nemmeno le soluzioni
           </h4>
           <p className={styles.sectionDescription}>
-            Il tuo bisogno è impermeabilizzare?
-            <br /><br />
+            Il tuo bisogno è impermeabilizzare?<br />
             Il tuo sogno è farlo da solo?<br />
-            Il mio lavoro è rendertelo possibile!
+            <strong>Il mio lavoro è rendertelo possibile!</strong>
             <br /><br />
             Oltre 15 anni di esperienza nella risoluzione di problematiche impermeabilizzative.<br />
             Ogni progetto è una sfida vinta con competenza e innovazione.
             <br /><br />
-            📌 Vecchie Guaine Bituminose<br />
-            📌 Pannelli in lamiera Coibentati<br />
-            📌 Terrazze e Lastrici Solari
-            <br /><br />
-            Niente più tentativi a vuoto.
+            
+            
+            
           </p>
         </div>
 
-        {/* Experience Stats */}
-        <div className={styles.statsSection}>
-          <div className={styles.statsGrid}>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>20+</div>
-              <div className={styles.statLabel}>Anni di Esperienza</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>500+</div>
-              <div className={styles.statLabel}>Progetti Completati</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>98%</div>
-              <div className={styles.statLabel}>Problemi Risolti</div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Case Studies - Desktop */}
         <div className={styles.caseStudiesSection}>
-          <h3 className={styles.caseStudiesTitle}>Casi di Successo</h3>
+         
           <div className={styles.caseStudiesGrid}>
             {caseStudies.map((caseStudy) => (
               <div key={caseStudy.id} className={styles.caseCard}>
