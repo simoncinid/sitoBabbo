@@ -61,6 +61,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid rgba(26, 95, 63, 0.1);
+  height: 600px;
 }
 
 .videoCard:hover {
@@ -72,7 +73,7 @@
 .videoThumbnail {
   position: relative;
   width: 100%;
-  height: 220px;
+  
   overflow: hidden;
 }
 

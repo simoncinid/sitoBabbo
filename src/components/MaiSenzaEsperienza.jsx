@@ -27,36 +27,39 @@ const MaiSenzaEsperienza = () => {
   const caseStudies = [
     {
       id: 1,
-      title: "Terrazzo Impossibile",
-      description: "200mq con infiltrazioni multiple risolte in 5 giorni",
-      challenge: "Infiltrazioni su tre lati con pendenza critica",
-      solution: "Sistema a doppia membrana nanotecnologica",
-      result: "Zero infiltrazioni da 3 anni consecutivi",
-      image: "/assets/icon2.png",
-      investment: "€8.500",
-      duration: "5 giorni"
+      title: "Lastrico Solare",
+      description: "Lastrico Solare con evidenti infiltrazioni.",
+      challenge: "Reimpermeabilizzare senza demolire.",
+      solution: "Applicazione di un ciclo impermeabilizzante idoneo.",
+      result: "Superficie impermeabilizzata e pedonabile",
+      image: "/assets/materiale2.jpg",
+      investment: "E' il tuo caso? Clicca qua!",
+      duration: "4 giorni",
+      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20un%20lastrico%20solare%20con%20infiltrazioni%20e%20vorrei%20reimpermeabilizzarlo%20senza%20demolire.%20Potresti%20aiutarmi%20con%20una%20consulenza%20sui%20prodotti%20giusti?"
     },
     {
       id: 2,
-      title: "Cantina Allagata",
-      description: "Dalla risalita critica alla sicurezza totale",
-      challenge: "3 tentativi falliti con altre ditte",
-      solution: "Diagnosi termografica e pressione negativa",
-      result: "Asciutta anche con temporali di 100mm/h",
-      image: "/assets/icon2.png",
-      investment: "€3.800",
-      duration: "3 giorni"
+      title: "Lamiere Coibentate",
+      description: "Lamiere Coibentate con segni di usura.",
+      challenge: "Impermeabilizzare e proteggere.",
+      solution: "Spalmatura di membrana impermeabilizzante fibrata.",
+      result: "Superficie rinnovata e resistente alla grandine.",
+      image: "/assets/materiale3.jpg",
+      investment: "E' il tuo caso? Clicca qua!",
+      duration: "2 giorni",
+      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20delle%20lamiere%20coibentate%20con%20segni%20di%20usura%20che%20devo%20impermeabilizzare%20e%20proteggere.%20Potresti%20consigliarmi%20la%20soluzione%20migliore?"
     },
     {
       id: 3,
-      title: "Piscina Complessa",
-      description: "Perdite invisibili risolte definitivamente",
-      challenge: "Perdite non localizzabili in struttura esistente",
-      solution: "Membrane liquide speciali con rinforzi mirati",
-      result: "Risparmio idrico del 90%, zero perdite",
-      image: "/assets/icon2.png",
-      investment: "€15.000",
-      duration: "7 giornii"
+      title: "Guine Bituminose o Ardesiate",
+      description: "Vecchie guaine coccodrillate o usurate.",
+      challenge: "Impermeabilizzare senza demolire.",
+      solution: "Applicazione di ciclo impermeabilizzante liquido.",
+      result: "Superficie pedonabile, impermeabilizzata e termoriflettente.",
+      image: "/assets/materiale1.png",
+      investment: "E' il tuo caso? Clicca qua!",
+      duration: "5 giorni",
+      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20delle%20vecchie%20guaine%20bituminose%20coccodrillate%20che%20vorrei%20impermeabilizzare%20senza%20demolire.%20Potresti%20aiutarmi%20con%20il%20ciclo%20impermeabilizzante%20liquido?"
     }
   ];
 
@@ -130,7 +133,14 @@ const MaiSenzaEsperienza = () => {
                   </div>
 
                   <div className={styles.caseFooter}>
-                    <span className={styles.caseInvestment}>{caseStudy.investment}</span>
+                    <a 
+                      href={caseStudy.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.caseInvestment}
+                    >
+                      {caseStudy.investment}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -179,7 +189,14 @@ const MaiSenzaEsperienza = () => {
                   </div>
 
                   <div className={styles.caseFooter}>
-                    <span className={styles.caseInvestment}>{caseStudies[currentCaseIndex].investment}</span>
+                    <a 
+                      href={caseStudies[currentCaseIndex].whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.caseInvestment}
+                    >
+                      {caseStudies[currentCaseIndex].investment}
+                    </a>
                   </div>
                 </div>
               </div>

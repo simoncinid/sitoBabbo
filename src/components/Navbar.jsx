@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,7 +15,7 @@ const Navbar = () => {
       setIsScrolled(scrollPosition > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'faq'];
+      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'novita', 'faq'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
@@ -44,12 +46,13 @@ const Navbar = () => {
     { id: 'mai-senza-consigli', label: 'Conoscenza' },
     { id: 'mai-senza-manutenzione', label: 'Cura' },
     { id: 'mai-senza-esperienza', label: 'Il Prodotto Giusto' },
+    { id: 'novita', label: 'Novità' },
     { id: 'faq', label: 'FAQ' }
   ];
 
   return (
     <>
-      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
+      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${location.pathname.startsWith('/novita') && !isScrolled ? styles.greenBg : ''}`}>
         <div className={styles.navContainer}>
           {/* Logo */}
           <Link
@@ -73,18 +76,40 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className={styles.navLinks}>
             {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.id}
-                smooth={true}
-                duration={500}
-                spy={true}
-                className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
-                onClick={closeMobileMenu}
-              >
-                <span className={styles.navText}>{item.label}</span>
-                <div className={styles.navIndicator}></div>
-              </Link>
+              item.id === 'novita' ? (
+                <RouterLink
+                  key={item.id}
+                  to="/novita"
+                  className={`${styles.navLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
+                  onClick={closeMobileMenu}
+                >
+                  <span className={styles.navText}>{item.label}</span>
+                  <div className={styles.navIndicator}></div>
+                </RouterLink>
+              ) : location.pathname === '/' ? (
+                <Link
+                  key={item.id}
+                  to={item.id}
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
+                  onClick={closeMobileMenu}
+                >
+                  <span className={styles.navText}>{item.label}</span>
+                  <div className={styles.navIndicator}></div>
+                </Link>
+              ) : (
+                <RouterLink
+                  key={item.id}
+                  to={`/#${item.id}`}
+                  className={styles.navLink}
+                  onClick={closeMobileMenu}
+                >
+                  <span className={styles.navText}>{item.label}</span>
+                  <div className={styles.navIndicator}></div>
+                </RouterLink>
+              )
             ))}
           </div>
 
@@ -138,18 +163,42 @@ const Navbar = () => {
 
             <div className={styles.mobileNavLinks}>
               {navItems.map((item, index) => (
-                <Link
-                  key={item.id}
-                  to={item.id}
-                  smooth={true}
-                  duration={500}
-                  className={`${styles.mobileNavLink} ${activeSection === item.id ? styles.active : ''}`}
-                  onClick={closeMobileMenu}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <span className={styles.mobileNavText}>{item.label}</span>
-                  <span className={styles.mobileNavArrow}>→</span>
-                </Link>
+                item.id === 'novita' ? (
+                  <RouterLink
+                    key={item.id}
+                    to="/novita"
+                    className={`${styles.mobileNavLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
+                    onClick={closeMobileMenu}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <span className={styles.mobileNavText}>{item.label}</span>
+                    <span className={styles.mobileNavArrow}>→</span>
+                  </RouterLink>
+                ) : location.pathname === '/' ? (
+                  <Link
+                    key={item.id}
+                    to={item.id}
+                    smooth={true}
+                    duration={500}
+                    className={`${styles.mobileNavLink} ${activeSection === item.id ? styles.active : ''}`}
+                    onClick={closeMobileMenu}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <span className={styles.mobileNavText}>{item.label}</span>
+                    <span className={styles.mobileNavArrow}>→</span>
+                  </Link>
+                ) : (
+                  <RouterLink
+                    key={item.id}
+                    to={`/#${item.id}`}
+                    className={styles.mobileNavLink}
+                    onClick={closeMobileMenu}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <span className={styles.mobileNavText}>{item.label}</span>
+                    <span className={styles.mobileNavArrow}>→</span>
+                  </RouterLink>
+                )
               ))}
               
               {/* Additional mobile menu items */}

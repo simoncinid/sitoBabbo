@@ -58,10 +58,14 @@ const MaiSenzaManutenzione = () => {
 
             <div className={styles.emergencyCard}>
               <div className={styles.cardImage}>
-                <img 
-                  src="/assets/3.png" 
-                  alt="Danni da infiltrazioni non trattate"
-                  className={styles.comparisonImage}
+                <video 
+                  src="/assets/video3.mp4" 
+                  alt="Video danni da infiltrazioni non trattate"
+                  className={styles.comparisonVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
                 
               </div>

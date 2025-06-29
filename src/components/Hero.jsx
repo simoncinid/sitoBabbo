@@ -67,7 +67,7 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.nameSeparator}></div>
+              <div className={styles.tagline}>Prodotti e consigli per impermeabilizzare al Top</div>
             </div>
 
             {/* DESKTOP: Luxury Pillars */}
@@ -186,7 +186,7 @@ const Hero = () => {
               {/* Colonna Destra: Foto */}
               <div className={styles.mobileRight}>
                 <img 
-                  src="/assets/hero.png"
+                  src="/assets/babbonobg.png"
                   alt="Mauro Simoncini"
                   className={styles.mobilePhoto}
                 />

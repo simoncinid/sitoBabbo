@@ -12,6 +12,8 @@ import Consulenza from './components/Consulenza';
 import Footer from './components/Footer';
 import SEOHead from './components/SEOHead';
 import ArticlePage from './components/ArticlePage';
+import Novita from './components/Novita';
+import ArticleDetail from './components/ArticleDetail';
 import './App.css';
 
 function App() {
@@ -61,17 +63,25 @@ function App() {
             />
           )}
           
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <MaiSenzaConsigli />
-            <MaiSenzaManutenzione />
-            <MaiSenzaEsperienza />
-            <FAQ />
-            <Consulenza />
-          </main>
-          <Footer />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Navbar />
+                <main>
+                  <Hero />
+                  <About />
+                  <MaiSenzaConsigli />
+                  <MaiSenzaManutenzione />
+                  <MaiSenzaEsperienza />
+                  <FAQ />
+                  <Consulenza />
+                </main>
+                <Footer />
+              </>
+            } />
+            <Route path="/novita" element={<Novita />} />
+            <Route path="/novita/:slug" element={<ArticleDetail />} />
+          </Routes>
         </div>
       </Router>
     </HelmetProvider>

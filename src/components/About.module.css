@@ -237,46 +237,62 @@
 }
 
 /* Social Media Section */
-.socialSection {
+/* Bottom Grid Section - Full Width */
+.bottomGridSection {
+  width: 100%;
+
+  margin: 3rem 0 0 0;
+  padding: 0;
+}
+
+.bottomGrid {
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+  align-items: flex-start;
+  padding: 0 3.33%;
+}
+
+.socialGridSection,
+.pdfSection,
+.contactSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(26, 95, 63, 0.1);
+  gap: 0.8rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(26, 95, 63, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 100%;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  transition: all 0.3s ease;
+  min-height: 120px;
+  width: 31%;
 }
 
-.socialTitle {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1a5f3f;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-family: var(--font-primary);
+.socialGridSection:hover,
+.pdfSection:hover,
+.contactSection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(26, 95, 63, 0.15);
 }
 
-.socialIcons {
+.socialGridIcons {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.6rem;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.socialIcon {
+.socialGridIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  gap: 0;
+  padding: 0.8rem;
   border-radius: 50%;
   background: linear-gradient(135deg, #1a5f3f, #43a047);
   color: white;
@@ -285,6 +301,91 @@
   box-shadow: 0 4px 15px rgba(26, 95, 63, 0.2);
   position: relative;
   overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 500;
+  width: 45px;
+  height: 45px;
+}
+
+.socialGridIcon:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(26, 95, 63, 0.3);
+}
+
+.socialGridIcon:nth-child(1):hover {
+  background: linear-gradient(135deg, #ff0050, #ff4081);
+}
+
+.socialGridIcon:nth-child(2):hover {
+  background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+
+.socialGridIcon:nth-child(3):hover {
+  background: linear-gradient(135deg, #e4405f, #fd5949);
+}
+
+.socialTitle,
+.pdfTitle,
+.contactTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a5f3f;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-primary);
+}
+
+.socialIcons,
+.pdfLinks,
+.contactLinks {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.socialIcon,
+.pdfLink,
+.contactLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1a5f3f, #43a047);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(26, 95, 63, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 500;
+  flex: 1;
+  max-width: 200px;
+}
+
+.socialIcon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+  gap: 0;
+  max-width: 45px;
+}
+
+.pdfLink {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+}
+
+.contactLink {
+  background: linear-gradient(135deg, #0077b5, #0a66c2);
+  box-shadow: 0 4px 15px rgba(0, 119, 181, 0.2);
 }
 
 .socialIcon::before {
@@ -302,9 +403,19 @@
   left: 100%;
 }
 
-.socialIcon:hover {
-  transform: translateY(-3px) scale(1.1);
+.socialIcon:hover,
+.pdfLink:hover,
+.contactLink:hover {
+  transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(26, 95, 63, 0.3);
+}
+
+.pdfLink:hover {
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+.contactLink:hover {
+  box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3);
 }
 
 .socialIcon:nth-child(1):hover {
@@ -320,8 +431,8 @@
 }
 
 .iconSvg {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
   transition: transform 0.3s ease;
 }
@@ -334,7 +445,7 @@
 .textSection {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 0.5rem;
 }
 
 .aboutText {
@@ -426,9 +537,28 @@
     max-width: 400px;
   }
 
-  .socialSection {
+  .bottomGrid {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0;
+  }
+  
+  .socialGridSection,
+  .pdfSection,
+  .contactSection {
+    width: 100%;
+  }
+
+  .bottomGridSection {
+    margin: 2rem auto 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .socialGridSection,
+  .pdfSection,
+  .contactSection {
     max-width: 400px;
-    padding: 1.2rem;
+    padding: 1.5rem;
   }
 
   .socialIcons {
@@ -489,10 +619,23 @@
     font-size: 0.85rem;
   }
 
-  .socialSection {
+  .bottomGrid {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .socialGridSection,
+  .pdfSection,
+  .contactSection {
+    width: 100%;
+  }
+
+  .socialSection,
+  .pdfSection,
+  .contactSection {
     max-width: 100%;
     padding: 1rem;
-    margin-top: 1.5rem;
   }
 
   .socialTitle {

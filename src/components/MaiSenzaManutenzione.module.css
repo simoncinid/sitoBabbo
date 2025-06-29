@@ -80,15 +80,18 @@
   overflow: hidden;
 }
 
-.comparisonImage {
+.comparisonImage,
+.comparisonVideo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
 .preventionCard:hover .comparisonImage,
-.emergencyCard:hover .comparisonImage {
+.emergencyCard:hover .comparisonImage,
+.preventionCard:hover .comparisonVideo,
+.emergencyCard:hover .comparisonVideo {
   transform: scale(1.05);
 }
 

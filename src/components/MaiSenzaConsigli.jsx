@@ -99,7 +99,7 @@ const MaiSenzaConsigli = () => {
       id: 3,
       title: 'Cura Preventiva',
       duration: '15:20',
-      videoSrc: '/assets/video3.mp4'
+      videoSrc: '/assets/video4.mp4'
     }
   ];
 

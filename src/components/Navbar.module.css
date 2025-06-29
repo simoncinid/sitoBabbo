@@ -21,6 +21,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+.navbar.greenBg {
+  background: linear-gradient(135deg, rgb(0, 99, 41) 0%, rgb(0, 120, 50) 100%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .navContainer {
   max-width: 1400px;
   margin: 0 auto;
