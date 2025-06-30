@@ -298,8 +298,24 @@
     width: 100%;
   }
 
+  /* Card in formato 9:16 verticale */
+  .preventionCard,
+  .emergencyCard {
+    height: auto !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+
   .cardImage {
-    height: 350px;
+    height: auto !important;
+    aspect-ratio: 9/16 !important;
+    max-height: 400px !important;
+  }
+
+  .comparisonImage,
+  .comparisonVideo {
+    aspect-ratio: 9/16 !important;
+    object-fit: cover !important;
   }
 
   .cardContent {
@@ -367,8 +383,24 @@
     gap: 0.8rem;
   }
 
+  /* Card in formato 9:16 verticale per mobile piccolo */
+  .preventionCard,
+  .emergencyCard {
+    height: auto !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+
   .cardImage {
-    height: 280px;
+    height: auto !important;
+    aspect-ratio: 9/16 !important;
+    max-height: 350px !important;
+  }
+
+  .comparisonImage,
+  .comparisonVideo {
+    aspect-ratio: 9/16 !important;
+    object-fit: cover !important;
   }
 
   .cardContent {

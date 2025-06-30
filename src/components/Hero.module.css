@@ -745,7 +745,7 @@
   .heroContainer {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    padding-top: 100px !important;
+    padding-top: 140px !important;
     height: 100vh;
   }
 
@@ -902,7 +902,13 @@
     font-size: 0.9rem;
   }
   .tagline{
-    display: none;
+    display: block !important;
+    text-align: center !important;
+    font-size: clamp(1.2rem, 3vw, 1.8rem) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-top: 1.5rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
   }
   /* Mobile: Nascondi le linee scorrevoli */
   .scrollSystem {
@@ -921,7 +927,7 @@
   .heroContainer {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    padding-top: 100px !important;
+    padding-top: 140px !important;
     height: 100vh;
   }
 
@@ -999,7 +1005,13 @@
     width: 100%;
   }
   .tagline{
-    display: none;
+    display: block !important;
+    text-align: center !important;
+    font-size: clamp(1rem, 2.5vw, 1.5rem) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-top: 1.2rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
   }
   
   .leftColumn > .pillarsSystem {

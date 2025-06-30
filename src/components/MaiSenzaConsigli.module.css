@@ -369,8 +369,22 @@
     display: block;
   }
   
+  /* Video in formato 9:16 verticale */
   .videoThumbnail {
-    height: 200px;
+    height: auto !important;
+    aspect-ratio: 9/16 !important;
+    max-height: 400px !important;
+  }
+
+  .videoCard {
+    height: auto !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+
+  .thumbnailImage {
+    aspect-ratio: 9/16 !important;
+    object-fit: cover !important;
   }
   
   .playButton {
@@ -392,8 +406,22 @@
     font-size: 1rem;
   }
   
+  /* Video in formato 9:16 verticale per mobile piccolo */
   .videoThumbnail {
-    height: 180px;
+    height: auto !important;
+    aspect-ratio: 9/16 !important;
+    max-height: 350px !important;
+  }
+
+  .videoCard {
+    height: auto !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+
+  .thumbnailImage {
+    aspect-ratio: 9/16 !important;
+    object-fit: cover !important;
   }
   
   

@@ -398,8 +398,40 @@
     height: 180px;
   }
 
+  /* Centramento migliore del contenuto delle card */
   .caseContent {
     padding: 1.2rem;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .caseTitle {
+    text-align: center !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .caseDescription {
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .caseDetails {
+    text-align: left !important;
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+
+  .caseDetail {
+    text-align: left !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .caseFooter {
+    text-align: center !important;
+    margin-top: 1rem !important;
   }
 
   .ctaCard {
@@ -445,8 +477,41 @@
     height: 160px;
   }
 
+  /* Centramento migliore del contenuto delle card per mobile piccolo */
   .caseContent {
     padding: 1rem;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .caseTitle {
+    text-align: center !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .caseDescription {
+    text-align: center !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .caseDetails {
+    text-align: left !important;
+    width: 100% !important;
+    max-width: 250px !important;
+  }
+
+  .caseDetail {
+    text-align: left !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .caseFooter {
+    text-align: center !important;
+    margin-top: 0.8rem !important;
   }
 
   .ctaCard {

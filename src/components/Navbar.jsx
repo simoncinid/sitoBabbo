@@ -115,8 +115,9 @@ const Navbar = () => {
 
           {/* Mobile Navbar Text */}
           <div className={styles.mobileNavbarText}>
-            <span className={styles.mobileNavbarTitle}>mai senza</span>
-            <span className={styles.mobileNavbarSubtitle}>mauro simoncini</span>
+            <span className={styles.mobileNavbarTitle}>Mai Senza</span>
+            <span className={styles.mobileNavbarSubtitle}>prodotti e consigli</span>
+            <span className={styles.mobileNavbarSubtitle}>per impermeabilizzare al top</span>
           </div>
 
           {/* CTA Button - Consulenza */}
