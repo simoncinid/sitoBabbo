@@ -382,18 +382,14 @@ Una diagnosi precisa è la chiave per una riparazione efficace e duratura.`,
       
       <main className={styles.articleMain}>
         <div className={styles.container}>
-          {/* Breadcrumb */}
-          <nav className={styles.breadcrumb}>
-            <RouterLink to="/">Home</RouterLink>
-            <span>/</span>
-            <RouterLink to="/novita">Blog</RouterLink>
-            <span>/</span>
-            <span>{article.title}</span>
-          </nav>
-
           {/* Article Header */}
           <header className={styles.articleHeader}>
-            <div className={styles.categoryBadge}>{article.category}</div>
+            <div className={styles.headerTop}>
+              <RouterLink to="/novita" className={styles.backButton}>
+                <FaArrowLeft />
+              </RouterLink>
+              <div className={styles.categoryBadge}>{article.category}</div>
+            </div>
             <h1 className={styles.articleTitle}>{article.title}</h1>
             <p className={styles.articleExcerpt}>{article.excerpt}</p>
             
@@ -402,10 +398,12 @@ Una diagnosi precisa è la chiave per una riparazione efficace e duratura.`,
                 <FaCalendar className={styles.metaIcon} />
                 {article.date}
               </span>
+              <span className={styles.metaSeparator}>•</span>
               <span className={styles.metaItem}>
                 <FaUser className={styles.metaIcon} />
                 {article.author}
               </span>
+              <span className={styles.metaSeparator}>•</span>
               <span className={styles.metaItem}>
                 <FaClock className={styles.metaIcon} />
                 {article.readTime}

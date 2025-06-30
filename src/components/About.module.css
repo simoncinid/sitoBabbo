@@ -596,16 +596,13 @@
 
   .mainContent {
     gap: 3rem;
+    display: block !important;
   }
 
-  .leftColumn {
-    gap: 1.5rem;
-  }
-
-  /* Foto senza card - width 100% senza bordi */
+  /* Foto direttamente sotto il titolo */
   .photoContainer {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
     height: auto !important;
     border-radius: 0 !important;
     overflow: visible !important;
@@ -613,7 +610,11 @@
     border: none !important;
     backdrop-filter: none !important;
     margin: 0 !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
     background: none !important;
+    order: -1 !important;
+    margin-bottom: 2rem !important;
   }
 
   .profilePhoto {
@@ -622,79 +623,108 @@
     object-fit: cover !important;
     border-radius: 0 !important;
     aspect-ratio: 16/9 !important;
+    display: block !important;
   }
 
-  /* Testimonial in 3 card quadrate orizzontali */
+  .leftColumn {
+    gap: 1.5rem;
+    order: 2 !important;
+  }
+
+  .textSection {
+    order: 1 !important;
+  }
+
+  /* Testimonial riorganizzati professionalmente */
   .testimonialsSection {
     max-width: 100% !important;
-    display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr !important;
-    gap: 0.8rem !important;
-    margin-top: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    margin-top: 2rem !important;
   }
 
   .testimonialCard {
-    min-height: 120px !important;
-    aspect-ratio: 1/1 !important;
+    min-height: auto !important;
+    aspect-ratio: unset !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
-    padding: 0.8rem !important;
+    justify-content: flex-start !important;
+    padding: 1rem !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 4px 15px rgba(26, 95, 63, 0.1) !important;
+  }
+
+  .rating {
+    display: flex !important;
+    gap: 0.3rem !important;
+    margin-bottom: 0.8rem !important;
+    justify-content: flex-start !important;
+  }
+
+  .star {
+    font-size: 1rem !important;
+    color: #ffd700 !important;
   }
 
   .testimonialText {
-    font-size: 0.7rem !important;
-    line-height: 1.3 !important;
-    flex: 1 !important;
-    display: flex !important;
-    align-items: center !important;
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.8rem !important;
+    color: #555 !important;
+    font-style: italic !important;
   }
 
   .testimonialAuthor {
     margin-top: auto !important;
-  }
-
-  .authorName {
-    font-size: 0.7rem !important;
-  }
-
-  .authorRole {
-    font-size: 0.6rem !important;
-  }
-
-  .rating {
+    display: flex !important;
+    flex-direction: column !important;
     gap: 0.2rem !important;
   }
 
-  .star {
-    font-size: 0.7rem !important;
+  .authorName {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
   }
 
-  /* Grid 2x2 più compatta e leggibile */
+  .authorRole {
+    font-size: 0.7rem !important;
+    color: #666 !important;
+  }
+
+  /* Grid riorganizzata per mobile - layout verticale compatto */
   .bottomGrid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: auto auto !important;
-    gap: 1rem !important;
-    align-items: start !important;
-    padding: 0;
-    max-width: 400px !important;
-    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+    margin: 2rem auto 0 auto !important;
   }
   
   .socialGridSection {
-    grid-column: 1 / -1 !important; /* Occupa tutta la prima riga */
-    width: 100%;
-    padding: 1rem !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    padding: 1.2rem !important;
     text-align: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(26, 95, 63, 0.1) !important;
   }
 
   .pdfSection,
   .contactSection {
-    width: 100%;
-    padding: 0.9rem !important;
-    font-size: 0.85rem !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    padding: 1.2rem !important;
+    font-size: 0.9rem !important;
     text-align: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(26, 95, 63, 0.1) !important;
   }
 
   .socialSection,
@@ -705,27 +735,31 @@
   }
 
   .socialTitle {
-    font-size: 1rem !important;
-    margin-bottom: 0.8rem !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 1rem !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
   }
 
   .socialIcons {
-    gap: 0.8rem !important;
+    gap: 1rem !important;
   }
 
   .socialGridIcons {
-    gap: 0.8rem !important;
+    gap: 1rem !important;
     justify-content: center !important;
   }
 
   .socialGridIcon {
-    width: 32px !important;
-    height: 32px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
   }
 
   .iconSvg {
-    width: 16px !important;
-    height: 16px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .aboutText {
