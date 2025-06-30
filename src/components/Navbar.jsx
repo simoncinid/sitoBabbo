@@ -123,7 +123,7 @@ const Navbar = () => {
           {/* CTA Button - Consulenza */}
           <div className={styles.navCta}>
             <a
-              href="https://wa.me/393938675606?text=Ciao! Vorrei informazioni sui vostri prodotti per impermeabilizzazione"
+              href="https://wa.me/393938657606?text=Ciao! Vorrei informazioni sui vostri prodotti per impermeabilizzazione"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaButton}
@@ -151,7 +151,10 @@ const Navbar = () => {
             <div className={styles.mobileMenuHeader}>
               <div className={styles.mobileMenuLogo}>
                 <img src="/assets/logo.png" alt="Logo" className={styles.mobileLogoImage} />
-                <span className={styles.mobileLogoText}>mai senza</span>
+                <div className={styles.mobileLogoTextContainer}>
+                  <span className={styles.mobileLogoTitle}>Mai Senza</span>
+                  <span className={styles.mobileLogoSubtitle}>consigli e prodotti per impermeabilizzare al top</span>
+                </div>
               </div>
               <button
                 className={styles.mobileMenuClose}
@@ -204,7 +207,7 @@ const Navbar = () => {
               
               {/* Additional mobile menu items */}
               <a
-                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+                href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mobileNavLink}
@@ -230,7 +233,7 @@ const Navbar = () => {
 
             <div className={styles.mobileMenuFooter}>
               <a
-                href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita"
+                href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mobileCtaButton}
