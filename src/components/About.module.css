@@ -624,64 +624,108 @@
     aspect-ratio: 16/9 !important;
   }
 
+  /* Testimonial in 3 card quadrate orizzontali */
   .testimonialsSection {
-    max-width: 100%;
-  }
-
-  .testimonialCard {
-    padding: 1.2rem;
-  }
-
-  .testimonialText {
-    font-size: 0.85rem;
-  }
-
-  /* Grid orizzontale in una riga */
-  .bottomGrid {
+    max-width: 100% !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr !important;
     gap: 0.8rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .testimonialCard {
+    min-height: 120px !important;
+    aspect-ratio: 1/1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 0.8rem !important;
+  }
+
+  .testimonialText {
+    font-size: 0.7rem !important;
+    line-height: 1.3 !important;
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .testimonialAuthor {
+    margin-top: auto !important;
+  }
+
+  .authorName {
+    font-size: 0.7rem !important;
+  }
+
+  .authorRole {
+    font-size: 0.6rem !important;
+  }
+
+  .rating {
+    gap: 0.2rem !important;
+  }
+
+  .star {
+    font-size: 0.7rem !important;
+  }
+
+  /* Grid 2x2 più compatta e leggibile */
+  .bottomGrid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 1rem !important;
     align-items: start !important;
     padding: 0;
+    max-width: 400px !important;
+    margin: 0 auto !important;
   }
   
-  .socialGridSection,
+  .socialGridSection {
+    grid-column: 1 / -1 !important; /* Occupa tutta la prima riga */
+    width: 100%;
+    padding: 1rem !important;
+    text-align: center !important;
+  }
+
   .pdfSection,
   .contactSection {
     width: 100%;
-    padding: 0.8rem !important;
-    font-size: 0.8rem !important;
+    padding: 0.9rem !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
   }
 
   .socialSection,
   .pdfSection,
   .contactSection {
     max-width: 100%;
-    padding: 0.8rem !important;
     text-align: center !important;
-    font-size: 0.8rem !important;
   }
 
   .socialTitle {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
+    margin-bottom: 0.8rem !important;
   }
 
   .socialIcons {
-    gap: 0.5rem !important;
+    gap: 0.8rem !important;
   }
 
   .socialGridIcons {
-    gap: 0.5rem !important;
+    gap: 0.8rem !important;
+    justify-content: center !important;
   }
 
   .socialGridIcon {
-    width: 28px !important;
-    height: 28px !important;
+    width: 32px !important;
+    height: 32px !important;
   }
 
   .iconSvg {
-    width: 14px !important;
-    height: 14px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 
   .aboutText {
