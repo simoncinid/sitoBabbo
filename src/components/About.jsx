@@ -28,19 +28,19 @@ const About = () => {
     {
       name: "Marco Rossi",
       role: "Proprietario di Casa",
-      text: "Grazie ai consigli di Mauro ho risolto l'infiltrazione sul terrazzo senza demolire. Risparmio incredibile!",
+      text: "Problema risolto senza demolire. Grazie Mauro!",
       rating: 5
     },
     {
       name: "Giulia Bianchi", 
       role: "Architetto",
-      text: "Consulenza precisa e professionale. Mauro mi ha guidato nella scelta dei prodotti migliori per il progetto.",
+      text: "Consulenza precisa e prodotti perfetti.",
       rating: 5
     },
     {
       name: "Roberto Verdi",
       role: "Impresa Edile", 
-      text: "Collaborazione fantastica! Le sue competenze tecniche hanno fatto la differenza nei nostri lavori.",
+      text: "Competenze tecniche eccezionali.",
       rating: 5
     }
   ];
@@ -77,8 +77,8 @@ const About = () => {
               />
             </div>
             
-            {/* Testimonials Section */}
-            <div className={styles.testimonialsSection}>
+            {/* Testimonials Section - Desktop only */}
+            <div className={styles.testimonialsDesktop}>
               {testimonials.map((testimonial, index) => (
                 <div key={index} className={styles.testimonialCard}>
                   <div className={styles.testimonialContent}>
@@ -100,8 +100,6 @@ const About = () => {
                 </div>
               ))}
             </div>
-            
-            
           </div>
 
           <div className={styles.textSection}>
@@ -149,6 +147,26 @@ const About = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Testimonials Section - Separate from main content */}
+        <div className={styles.testimonialsSection}>
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className={styles.testimonialCard}>
+              <div className={styles.rating}>
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <span key={i} className={styles.star}>⭐</span>
+                ))}
+              </div>
+              <div className={styles.testimonialText}>
+                "{testimonial.text}"
+              </div>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.authorName}>{testimonial.name}</div>
+                <div className={styles.authorRole}>{testimonial.role}</div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Bottom Grid Section - Full Width */}
