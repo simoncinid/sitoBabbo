@@ -35,7 +35,7 @@ const MaiSenzaEsperienza = () => {
       image: "/assets/materiale2.jpg",
       investment: "E' il tuo caso? Clicca qua!",
       duration: "4 giorni",
-      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20un%20lastrico%20solare%20con%20infiltrazioni%20e%20vorrei%20reimpermeabilizzarlo%20senza%20demolire.%20Potresti%20aiutarmi%20con%20una%20consulenza%20sui%20prodotti%20giusti?"
+      whatsappUrl: "https://wa.me/393938657606?text=Ciao%20Mauro!%20Ho%20un%20lastrico%20solare%20con%20infiltrazioni%20e%20vorrei%20reimpermeabilizzarlo%20senza%20demolire.%20Potresti%20aiutarmi%20con%20una%20consulenza%20sui%20prodotti%20giusti?"
     },
     {
       id: 2,
@@ -47,7 +47,7 @@ const MaiSenzaEsperienza = () => {
       image: "/assets/materiale3.jpg",
       investment: "E' il tuo caso? Clicca qua!",
       duration: "2 giorni",
-      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20delle%20lamiere%20coibentate%20con%20segni%20di%20usura%20che%20devo%20impermeabilizzare%20e%20proteggere.%20Potresti%20consigliarmi%20la%20soluzione%20migliore?"
+      whatsappUrl: "https://wa.me/393938657606?text=Ciao%20Mauro!%20Ho%20delle%20lamiere%20coibentate%20con%20segni%20di%20usura%20che%20devo%20impermeabilizzare%20e%20proteggere.%20Potresti%20consigliarmi%20la%20soluzione%20migliore?"
     },
     {
       id: 3,
@@ -59,7 +59,7 @@ const MaiSenzaEsperienza = () => {
       image: "/assets/materiale1.png",
       investment: "E' il tuo caso? Clicca qua!",
       duration: "5 giorni",
-      whatsappUrl: "https://wa.me/393938675606?text=Ciao%20Mauro!%20Ho%20delle%20vecchie%20guaine%20bituminose%20coccodrillate%20che%20vorrei%20impermeabilizzare%20senza%20demolire.%20Potresti%20aiutarmi%20con%20il%20ciclo%20impermeabilizzante%20liquido?"
+      whatsappUrl: "https://wa.me/393938657606?text=Ciao%20Mauro!%20Ho%20delle%20vecchie%20guaine%20bituminose%20coccodrillate%20che%20vorrei%20impermeabilizzare%20senza%20demolire.%20Potresti%20aiutarmi%20con%20il%20ciclo%20impermeabilizzante%20liquido?"
     }
   ];
 

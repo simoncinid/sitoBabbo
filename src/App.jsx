@@ -14,11 +14,13 @@ import SEOHead from './components/SEOHead';
 import ArticlePage from './components/ArticlePage';
 import Novita from './components/Novita';
 import ArticleDetail from './components/ArticleDetail';
+import AnimationLoader from './components/AnimationLoader';
 import './App.css';
 
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Controlla se è desktop
@@ -46,14 +48,21 @@ function App() {
     };
   }, [isDesktop]);
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
     <HelmetProvider>
       <Router>
         <div className="App">
           <SEOHead />
           
+          {/* Animation Loader - Effetto WOW Professionale */}
+          {isLoading && <AnimationLoader onComplete={handleLoadingComplete} />}
+          
           {/* Cerchio che segue il cursore - solo desktop */}
-          {isDesktop && (
+          {isDesktop && !isLoading && (
             <div 
               className="cursor-follower"
               style={{

@@ -84,7 +84,7 @@ const MaiSenzaManutenzione = () => {
             
             
             <a
-              href="https://wa.me/393938675606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+              href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaButton}

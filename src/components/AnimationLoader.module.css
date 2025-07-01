@@ -1,0 +1,24 @@
+/* Container principale del loader */
+.animationLoader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #c7f6ff;
+  opacity: 1;
+  transition: opacity 2s ease-out;
+  pointer-events: none;
+}
+
+.animationLoader.fadeOut {
+  opacity: 0;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fullscreenAnimation {
+    animation: none !important;
+  }
+}

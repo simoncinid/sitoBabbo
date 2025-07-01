@@ -136,7 +136,7 @@ const MaiSenzaConsigli = () => {
             • Come evitare gli errori più frequenti
             <br></br><br></br>
             <strong>Prima di acquistare Se non sai, <a
-              href="https://wa.me/393938675606?text=Ciao! Ho un dubbio prima di acquistare"
+              href="https://wa.me/393938657606?text=Ciao! Ho un dubbio prima di acquistare"
               target="_blank"
               rel="noopener noreferrer"
               style={{

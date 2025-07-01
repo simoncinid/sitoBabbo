@@ -460,7 +460,7 @@ Una diagnosi precisa è la chiave per una riparazione efficace e duratura.`,
               Con oltre 20 anni di esperienza, posso aiutarti a trovare la soluzione perfetta.
             </p>
             <a
-              href={`https://wa.me/393938675606?text=Ciao! Ho letto il tuo articolo su: ${article.title} e vorrei una consulenza`}
+              href={`https://wa.me/393938657606?text=Ciao! Ho letto il tuo articolo su: ${article.title} e vorrei una consulenza`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whatsappButton}

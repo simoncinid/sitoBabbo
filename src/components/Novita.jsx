@@ -349,7 +349,7 @@ const Novita = () => {
             </p>
             <div className={styles.ctaButtons}>
               <a
-                href="https://wa.me/393938675606?text=Ciao! Ho letto i tuoi articoli e vorrei una consulenza"
+                href="https://wa.me/393938657606?text=Ciao! Ho letto i tuoi articoli e vorrei una consulenza"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.ctaButtonPrimary}
