@@ -112,6 +112,7 @@ const MaiSenzaConsigli = () => {
   };
 
   return (
+    <>
     <section 
       ref={sectionRef}
       className={`${styles.consigliContainer} ${isVisible ? styles.visible : ''}`} 
@@ -128,14 +129,13 @@ const MaiSenzaConsigli = () => {
             Ogni superficie ha <strong>le sue regole</strong>, ogni prodotto ha <strong>i suoi limiti</strong> e ogni lavoro ha bisogno di una <strong>preparazione precisa</strong>.
             <br /><br />
             Qui comprenderai il perché, prima di acquistare, è opportuno conoscere: <br></br>
-            
             • Come leggere una scheda tecnica<br />
             • Cosa significano i valori come SRI, elasticità, consumo<br />
             • Come si prepara una superficie davvero pronta all'applicazione<br />
             • Quando, se e come usare un primer<br />
             • Come evitare gli errori più frequenti
             <br></br><br></br>
-            <strong>Prima di acquistare Se non sai, <a
+            <strong>Prima di acquistare<br></br>Se non sai, <a
               href="https://wa.me/393938657606?text=Ciao! Ho un dubbio prima di acquistare"
               target="_blank"
               rel="noopener noreferrer"
@@ -166,6 +166,8 @@ const MaiSenzaConsigli = () => {
                   loop
                   muted
                   playsInline
+                  onClick={() => openFullscreen(index)}
+                  style={{ cursor: 'pointer' }}
                 >
                   Your browser does not support the video tag.
                 </video>
@@ -206,6 +208,8 @@ const MaiSenzaConsigli = () => {
                     loop
                     muted
                     playsInline
+                    onClick={() => openFullscreen(currentVideoIndex)}
+                    style={{ cursor: 'pointer' }}
                   >
                     Your browser does not support the video tag.
                   </video>
@@ -242,55 +246,56 @@ const MaiSenzaConsigli = () => {
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Fullscreen Video Modal */}
-      {isFullscreen && (
-        <div className={styles.fullscreenModal}>
-          <div className={styles.fullscreenContent}>
-            <button 
-              className={styles.closeButton}
-              onClick={closeFullscreen}
-              aria-label="Chiudi"
-            >
-              ✕
-            </button>
-            
-            <button 
-              className={styles.fullscreenNav + ' ' + styles.prevButton}
-              onClick={prevFullscreenVideo}
-              aria-label="Video precedente"
-            >
-              ‹
-            </button>
-            
-            <video 
-              ref={fullscreenVideoRef}
-              src={videos[fullscreenVideoIndex].videoSrc}
-              className={styles.fullscreenVideo}
-              controls
-              autoPlay
-            >
-              Your browser does not support the video tag.
-            </video>
-            
-            <button 
-              className={styles.fullscreenNav + ' ' + styles.nextButton}
-              onClick={nextFullscreenVideo}
-              aria-label="Video successivo"
-            >
-              ›
-            </button>
-            
-            <div className={styles.fullscreenInfo}>
-              <h3 className={styles.fullscreenTitle}>{videos[fullscreenVideoIndex].title}</h3>
-              <div className={styles.videoCounter}>
-                {fullscreenVideoIndex + 1} / {videos.length}
-              </div>
+    {/* POPUP FUORI DAL CONTAINER - SI POSIZIONA RELATIVO AL VIEWPORT */}
+    {isFullscreen && (
+      <div className={styles.fullscreenModal} onClick={closeFullscreen}>
+        <div className={styles.fullscreenContent} onClick={(e) => e.stopPropagation()}>
+          <button 
+            className={styles.closeButton}
+            onClick={closeFullscreen}
+            aria-label="Chiudi"
+          >
+            ✕
+          </button>
+          
+          <video 
+            ref={fullscreenVideoRef}
+            src={videos[fullscreenVideoIndex].videoSrc}
+            className={styles.fullscreenVideo}
+            controls
+            autoPlay
+          >
+            Your browser does not support the video tag.
+          </video>
+          
+          <button 
+            className={styles.fullscreenNav + ' ' + styles.prevButton}
+            onClick={prevFullscreenVideo}
+            aria-label="Video precedente"
+          >
+            ‹
+          </button>
+          
+          <div className={styles.fullscreenInfo}>
+            <h3 className={styles.fullscreenTitle}>{videos[fullscreenVideoIndex].title}</h3>
+            <div className={styles.videoCounter}>
+              {fullscreenVideoIndex + 1} / {videos.length}
             </div>
           </div>
+          
+          <button 
+            className={styles.fullscreenNav + ' ' + styles.nextButton}
+            onClick={nextFullscreenVideo}
+            aria-label="Video successivo"
+          >
+            ›
+          </button>
         </div>
-      )}
-    </section>
+      </div>
+    )}
+    </>
   );
 };
 
