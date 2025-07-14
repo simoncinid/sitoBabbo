@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import { FaLinkedin, FaTiktok, FaFacebook, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import CookieSettings from './CookieSettings';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -84,6 +85,7 @@ const Footer = () => {
               <a href="/privacy" className={styles.legalLink}>Privacy Policy</a>
               <a href="/termini" className={styles.legalLink}>Termini di Servizio</a>
               <a href="/cookie" className={styles.legalLink}>Cookie Policy</a>
+              <CookieSettings />
             </div>
           </div>
         </div>

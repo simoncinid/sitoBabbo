@@ -9,111 +9,144 @@ import styles from './ArticlePage.module.css';
 const articlesData = [
   {
     id: 1,
-    title: 'Mi si infiltra l\'acqua dal muro esterno, che faccio?',
-    date: '15/07/2023',
-    summary: 'Le infiltrazioni dai muri esterni sono spesso causate da microfessure nel rivestimento.',
+    title: 'Adesione a fiamma❓️5 criticità spesso sottovalutate.',
+    date: '15/01/2024',
+    summary: 'L\'uso di fiamma libera comporta rischi e criticità spesso sottovalutate.',
     content: `
-      <p>Le infiltrazioni d'acqua dai muri esterni rappresentano uno dei problemi più comuni nelle abitazioni, soprattutto in zone con elevate precipitazioni o in edifici di vecchia costruzione.</p>
+      <p>🔥 <strong>Rischio incendio</strong><br />
+      L'uso di fiamma libera comporta un'elevata esposizione a innesco. Senza adeguate barriere protettive, il pericolo è concreto.</p>
       
-      <h2>Identificare l'origine del problema</h2>
-      <p>Prima di intervenire, è fondamentale capire da dove proviene l'acqua. Ispeziona attentamente il muro durante o subito dopo una pioggia per individuare il punto esatto d'ingresso dell'acqua.</p>
+      <p>🛠️ <strong>Applicazione complessa</strong><br />
+      La posa richiede operatori qualificati. Un'applicazione non conforme può compromettere la continuità del manto e generare punti deboli in fase di esercizio.</p>
       
-      <h3>Cause più comuni</h3>
-      <ul>
-        <li>Microfessurazioni nell'intonaco o nel rivestimento esterno</li>
-        <li>Problemi ai giunti di dilatazione</li>
-        <li>Deterioramento del materiale sigillante attorno a finestre e porte</li>
-      </ul>
+      <p>📉 <strong>Adesione parziale</strong><br />
+      Anche in condizioni ideali, l'adesione effettiva della guaina alla superficie raramente supera il 70%. Questo dato impatta sulla durabilità del sistema.</p>
       
-      <h2>Soluzioni immediate</h2>
-      <p>Per un intervento tempestivo, puoi utilizzare sigillanti elastomerici o a base di silicone per chiudere piccole fessure. Questi prodotti sono facili da applicare e creano una barriera impermeabile.</p>
+      <p>🚫 <strong>Incompatibilità con alcuni materiali</strong><br />
+      La posa a fiamma non è indicata su substrati sensibili al calore o su materiali termicamente instabili, se non previa installazione di strati separatori certificati.</p>
       
-      <h2>Soluzioni a lungo termine</h2>
-      <p>Se il problema persiste o riguarda un'ampia superficie, è necessario un trattamento più approfondito come l'applicazione di rivestimenti impermeabilizzanti specifici.</p>
-    `
+      <p>🔧 <strong>Riparabilità limitata</strong><br />
+      Le operazioni di taglio e risagomatura (cosiddetti "taglia e cuci") indeboliscono lo strato impermeabile, aumentando il rischio di infiltrazioni nel tempo.</p>
+      
+      <h2>📌 Conclusione tecnica</h2>
+      <p>La posa a fiamma resta una tecnologia valida, ma va valutata caso per caso, alla luce delle caratteristiche del supporto, delle condizioni di sicurezza e dell'evoluzione dei sistemi impermeabilizzanti alternativi (liquidi, autoadesivi, reattivi).</p>
+      
+      <p><strong>🧭 Mai Senza una valutazione tecnica approfondita.</strong><br />
+      👉Devi affrontare una impermeabilizzazione della tua copertura? Scrivimi.</p>
+    `,
+    image: '/assets/news1.png'
   },
   {
     id: 2,
-    title: 'Come proteggere l\'impermeabilizzazione dai raggi UV',
-    date: '08/07/2023',
-    summary: 'L\'esposizione prolungata ai raggi UV può degradare anche i migliori materiali impermeabilizzanti.',
+    title: 'Mai Senza approfondire. La norma ISO 4628❓️',
+    date: '08/01/2024',
+    summary: 'La norma ISO 4628 è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell\'aspetto dei rivestimenti.',
     content: `
-      <p>I raggi ultravioletti sono uno dei principali nemici delle impermeabilizzazioni esposte. Nel tempo, possono causare invecchiamento precoce, crepe e deterioramento dei materiali.</p>
+      <p>La norma ISO 4628❓️ è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell'aspetto dei rivestimenti liquidi causati da invecchiamento, agenti atmosferici o altri fattori.</p>
       
-      <h2>Effetti dei raggi UV sui materiali impermeabilizzanti</h2>
-      <p>L'esposizione solare prolungata può causare:</p>
-      <ul>
-        <li>Perdita di elasticità e flessibilità</li>
-        <li>Infragilimento e formazione di microfessure</li>
-        <li>Decolorazione e deterioramento estetico</li>
-      </ul>
+      <p>Un prodotto conforme alla norma ISO 4628 garantisce principalmente le seguenti caratteristiche relative alla qualità e alla durabilità del rivestimento:</p>
       
-      <h2>Soluzioni protettive</h2>
-      <p>Le vernici con pigmenti riflettenti sono una delle soluzioni più efficaci. Questi prodotti sono formulati per respingere i raggi UV e ridurre l'assorbimento di calore.</p>
-    `
+      <p>🔹️Controllo e limitazione di difetti quali presenza di bolle, crepe, sfogliamento e sfarinamento.</p>
+      
+      <p>🔹️Mantenimento dell'aspetto estetico del film.</p>
+      
+      <p>🔹️Resistenza ai fenomeni di degrado superficiale come ingiallimento, sfarinamento e scagliatura, anche dopo esposizioni a condizioni ambientali aggressive.</p>
+      
+      <p>🔹️Valutazione standardizzata e oggettiva dello stato del film applicato per garantire la durabilità e la protezione del substrato sottostante.</p>
+      
+      <p>In sintesi, un prodotto conforme ISO 4628 assicura che il rivestimento mantenga integrità, estetica e funzionalità nel tempo, limitando difetti e deterioramenti secondo criteri riconosciuti a livello internazionale.</p>
+      
+      <p><strong>‼️Ecco perché è importante acquistare prodotti con ISO4628 dichiarata.</strong></p>
+    `,
+    image: null, // Questo articolo avrà un componente speciale invece dell'immagine
+    isTextHeader: true,
+    headerTitle: 'Mai Senza approfondire. La norma ISO 4628❓️'
   },
   {
     id: 3,
-    title: 'Impermeabilizzazione in inverno: è possibile?',
-    date: '01/07/2023',
-    summary: 'Molti pensano che l\'impermeabilizzazione sia un lavoro da fare solo in estate, ma con i giusti accorgimenti è possibile anche d\'inverno.',
+    title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
+    date: '02/01/2024',
+    summary: 'L\'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.',
     content: `
-      <p>Contrariamente a quanto si pensa, i lavori di impermeabilizzazione possono essere eseguiti anche durante la stagione fredda, adottando gli accorgimenti giusti e scegliendo materiali appropriati.</p>
+      <p>L'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.</p>
       
-      <h2>Limitazioni delle basse temperature</h2>
-      <p>È importante conoscere le sfide che il freddo comporta:</p>
-      <ul>
-        <li>Tempi di asciugatura e indurimento più lunghi</li>
-        <li>Minore flessibilità di alcuni materiali</li>
-        <li>Difficoltà di adesione su superfici umide o gelate</li>
-      </ul>
+      <p>🔹️Un alto valore di SRI significa che il materiale riflette più radiazione solare e disperde meglio il calore, riducendo così la temperatura superficiale del tetto e limitando il trasferimento di calore agli ambienti interni.</p>
       
-      <h2>Materiali adatti alle basse temperature</h2>
-      <p>Esistono sul mercato impermeabilizzanti liquidi formulati appositamente per l'applicazione in condizioni di bassa temperatura, fino a +5°C.</p>
-    `
+      <p>🔹️Questo porta a minori consumi energetici per il raffrescamento e contribuisce a mitigare l'effetto isola di calore urbano.</p>
+    `,
+    image: '/assets/news2.png'
   },
   {
     id: 4,
-    title: 'Qual è la durata di un\'impermeabilizzazione ben fatta?',
-    date: '24/06/2023',
-    summary: 'Una buona impermeabilizzazione, eseguita con materiali di qualità e tecniche appropriate, può durare dai 10 ai 20 anni.',
+    title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
+    date: '28/12/2023',
+    summary: 'Impianti in esercizio, geometrie complesse, vecchia guaina da trattare. Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.',
     content: `
-      <p>La durabilità di un sistema impermeabilizzante dipende da molteplici fattori, tra cui la qualità dei materiali, la corretta installazione e le condizioni ambientali a cui è esposto.</p>
+      <p>Siamo su una copertura industriale attiva, in provincia di Grosseto.<br />
+      Impianti in esercizio, geometrie complesse, vecchia guaina da trattare.<br />
+      Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.</p>
       
-      <h2>Aspettativa di vita dei diversi sistemi</h2>
-      <ul>
-        <li>Membrane bituminose standard: 10-15 anni</li>
-        <li>Membrane bituminose modificate APP/SBS: 15-20 anni</li>
-        <li>Membrane sintetiche PVC: 20-30 anni</li>
-        <li>Membrane EPDM: fino a 50 anni in condizioni ottimali</li>
-      </ul>
+      <h2>🎯 Esigenza della DL:</h2>
+      <blockquote>Impermeabilizzare senza interferire con impianti, garantendo Pedonabilità, Durabilità e protezione Antifiamma tutto con documentazione tecnica.</blockquote>
       
-      <h2>Fattori che influenzano la durata</h2>
-      <p>L'esposizione a elementi climatici estremi, la qualità dell'installazione e la manutenzione regolare sono fattori determinanti per la durata dell'impermeabilizzazione.</p>
-    `
+      <h2>🎯 Esigenza del rivenditore:</h2>
+      <blockquote>Offrire una soluzione liquida già collaudata, senza sorprese.</blockquote>
+      
+      <h2>🟩 FibroGum è stato scelto perché:</h2>
+      <p>✅ Si applica senza demolizione del sottostante</p>
+      <p>✅ È conforme alle normative vigenti</p>
+      <p>✅ Rende possibile lavorare in continuità senza il fermo degli impianti.</p>
+      <p>✅ È fibrorinforzato e certificato per pedonabilità e B-Roof t2.</p>
+      
+      <p>🧰 Qui non si parla di "prodotto" ma di soluzione concreta per chi lavora con i cantieri complessi.</p>
+      <p>🔹️ Documentabile per la DL<br />
+      🔹️Proposta completa per la rivendita<br />
+      🔹️Affidabile per l'applicatore</p>
+    `,
+    image: '/assets/news33.jpg',
+    additionalImages: ['/assets/news35.jpg', '/assets/news34.jpg'] // Supporto per immagini multiple
   },
   {
     id: 5,
-    title: 'Come scegliere tra membrane bituminose e sintetiche?',
-    date: '17/06/2023',
-    summary: 'La scelta tra membrane bituminose e sintetiche dipende dalle specifiche del progetto.',
+    title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
+    date: '20/12/2023',
+    summary: 'L\'esposizione alla pioggia senza protezione adeguata può causare infiltrazioni, distacco delle piastrelle, muffe e danni alla struttura.',
     content: `
-      <p>La scelta del tipo di membrana impermeabilizzante è fondamentale per il successo di qualsiasi progetto di impermeabilizzazione.</p>
+      <p>L'esposizione alla pioggia senza protezione adeguata può causare:</p>
       
-      <h2>Membrane bituminose: vantaggi</h2>
-      <ul>
-        <li>Costo generalmente inferiore</li>
-        <li>Facilità di riparazione</li>
-        <li>Ampia disponibilità di manodopera esperta</li>
-      </ul>
+      <p>🔹️infiltrazioni nei muri e nei soffitti sottostanti</p>
+      <p>🔹️distacco delle piastrelle o rigonfiamenti</p>
+      <p>🔹️muffe e umidità permanente</p>
+      <p>🔹️danni alla struttura dell'edificio</p>
+      <p>🔹️costi elevati di ripristino nel tempo</p>
       
-      <h2>Membrane sintetiche: vantaggi</h2>
-      <ul>
-        <li>Maggiore durata (20-50 anni)</li>
-        <li>Elevata resistenza ai raggi UV e all'ozono</li>
-        <li>Maggiore elasticità e flessibilità</li>
-      </ul>
-    `
+      <h2>🛠️ 3 MODI PER INTERVENIRE senza DEMOLIRE</h2>
+      
+      <h3>🔹 1. Sovrapposizione su superficie esistente</h3>
+      <p>Hai già le piastrelle?<br />
+      In molti casi è possibile intervenire senza demolire, applicando direttamente sopra la pavimentazione un sistema impermeabile continuo, elastico e resistente.</p>
+      
+      <h3>🔹 2. Intervento su massetto grezzo</h3>
+      <p>Se devi ancora piastrellare, questa è l'occasione perfetta per proteggere tutto prima della posa.<br />
+      Una membrana impermeabile stesa sul massetto permette di avere una superficie pronta ad accogliere il rivestimento.</p>
+      
+      <h3>🔹 3. Impermeabilizzazione trasparente</h3>
+      <p>In certi casi si può proteggere il terrazzo senza cambiarne l'aspetto, usando materiali trasparenti che sigillano le fughe e impediscono infiltrazioni, mantenendo visibile la pavimentazione sottostante.</p>
+      
+      <h2>🔍 COSA DOVREBBE AVERE UN BUON SISTEMA IMPERMEABILE</h2>
+      <p>✔️ Deve aderire bene alla superficie<br />
+      ✔️ Resistere al sole, al gelo, alla pioggia<br />
+      ✔️ Coprire tutto senza giunture<br />
+      ✔️ Seguire i movimenti della struttura senza rompersi<br />
+      ✔️ Durare negli anni<br />
+      ✔️ Essere applicabile anche senza fiamme o attrezzature complesse</p>
+      
+      <h2>ℹ️ ATTENZIONE AI DETTAGLI</h2>
+      <p>Occhio alle bocche di scolo: devono rimanere libere e ben integrate nel sistema impermeabilizzante.</p>
+      <p>Occhio ai parapetti e ai battiscopa: sono spesso i punti più critici.</p>
+      <p>Occhio ai prodotti miracolosi: meglio informarsi bene prima di acquistare, ogni superficie ha le sue esigenze.</p>
+    `,
+    image: '/assets/news4.png'
   }
 ];
 

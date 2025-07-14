@@ -16,92 +16,62 @@ const Novita = () => {
   const articles = [
     {
       id: 1,
-      title: 'Nuove Tecnologie per l\'Impermeabilizzazione 2024',
+      title: 'Adesione a fiamma❓️5 criticità spesso sottovalutate.',
       date: '15/01/2024',
       author: 'Mauro Simoncini',
-      excerpt: 'Scopri le ultime innovazioni nel campo dell\'impermeabilizzazione: dai nano-rivestimenti alle membrane smart che si auto-riparano. Una rivoluzione tecnologica che cambierà il modo di proteggere i nostri edifici.',
-      content: 'Il 2024 porta con sé rivoluzionarie novità nel settore dell\'impermeabilizzazione. Le nuove tecnologie nano-strutturate permettono di creare barriere invisibili ma incredibilmente efficaci. I nano-rivestimenti, applicabili con semplici spruzzatori, penetrano in profondità nei materiali creando una protezione molecolare. Inoltre, le membrane smart dotate di micro-capsule contenenti agenti sigillanti si attivano automaticamente in presenza di micro-fessure, garantendo un\'auto-riparazione immediata.',
-      image: '/assets/1.webp',
-      category: 'Innovazione',
+      excerpt: 'L\'uso di fiamma libera comporta rischi e criticità spesso sottovalutate che possono compromettere l\'efficacia dell\'impermeabilizzazione.',
+      content: 'L\'uso di fiamma libera comporta un\'elevata esposizione a innesco. Senza adeguate barriere protettive, il pericolo è concreto. La posa richiede operatori qualificati e un\'applicazione non conforme può compromettere la continuità del manto.',
+      image: '/assets/news1.png',
+      category: 'Tecnica',
       readTime: '5 min'
     },
     {
       id: 2,
-      title: 'Impermeabilizzazione Sostenibile: Materiali Eco-Friendly',
+      title: 'Mai Senza approfondire. La norma ISO 4628❓️',
       date: '08/01/2024',
       author: 'Mauro Simoncini',
-      excerpt: 'L\'evoluzione green del settore: materiali biodegradabili e a basso impatto ambientale per un futuro più sostenibile. Scopri come proteggere l\'ambiente senza compromettere l\'efficacia.',
-      content: 'La sostenibilità ambientale è diventata una priorità anche nel settore dell\'impermeabilizzazione. I nuovi materiali eco-friendly derivati da fonti rinnovabili offrono prestazioni paragonabili ai prodotti tradizionali ma con un impatto ambientale drasticamente ridotto. Dalle membrane a base di oli vegetali ai sigillanti biodegradabili, il futuro dell\'impermeabilizzazione è sempre più verde.',
-      image: '/assets/2.png',
-      category: 'Sostenibilità',
+      excerpt: 'La norma ISO 4628 è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell\'aspetto dei rivestimenti liquidi.',
+      content: 'La norma ISO 4628 è fondamentale per garantire la qualità dei rivestimenti. Un prodotto conforme assicura controllo dei difetti, mantenimento dell\'aspetto estetico e resistenza al degrado superficiale.',
+      image: null,
+      isTextHeader: true,
+      headerTitle: 'Mai Senza approfondire. La norma ISO 4628❓️',
+      category: 'Normative',
       readTime: '4 min'
     },
-          {
-        id: 3,
-        title: 'Casi Studio: Progetti Complessi Risolti con Successo',
-        date: '02/01/2024',
-        author: 'Mauro Simoncini',
-        excerpt: 'Analisi dettagliata di tre progetti particolarmente sfidanti: dalle infiltrazioni storiche alle soluzioni innovative per edifici moderni. Esempi pratici di come l\'esperienza fa la differenza.',
-        content: 'Presentiamo tre casi studio che dimostrano come l\'esperienza e l\'innovazione possano risolvere anche i problemi più complessi. Il primo caso riguarda un palazzo storico del centro con infiltrazioni croniche risolte attraverso tecniche conservative. Il secondo caso presenta un edificio moderno con problemi strutturali che richiedevano soluzioni non invasive.',
-        image: '/assets/3.png',
-        category: 'Case Study',
-        readTime: '7 min'
-      },
-      {
-        id: 4,
-        title: 'Impermeabilizzazione di Terrazzi: Guida Completa 2024',
-        date: '28/12/2023',
-        author: 'Mauro Simoncini',
-        excerpt: 'Tutto quello che devi sapere per impermeabilizzare correttamente un terrazzo: dalla preparazione del sottofondo alla scelta dei materiali più adatti.',
-        content: 'L\'impermeabilizzazione di un terrazzo richiede particolare attenzione a diversi fattori. La preparazione del sottofondo è fondamentale: deve essere pulito, asciutto e livellato. La scelta del sistema impermeabilizzante dipende dal tipo di utilizzo del terrazzo e dalle condizioni climatiche della zona.',
-        image: '/assets/hero.png',
-        category: 'Guide',
-        readTime: '6 min'
-      },
-      {
-        id: 5,
-        title: 'Errori Comuni nell\'Impermeabilizzazione da Evitare',
-        date: '20/12/2023',
-        author: 'Mauro Simoncini',
-        excerpt: 'I 10 errori più frequenti che compromettono l\'efficacia dell\'impermeabilizzazione e come evitarli per garantire risultati duraturi.',
-        content: 'Dopo 20 anni di esperienza, ho identificato gli errori più comuni che possono compromettere un lavoro di impermeabilizzazione. Il primo errore è sottovalutare la preparazione del supporto. Il secondo è scegliere materiali inadatti al tipo di superficie.',
-        image: '/assets/1.webp',
-        category: 'Guide',
-        readTime: '5 min'
-      },
-      {
-        id: 6,
-        title: 'Manutenzione Impermeabilizzazioni: Quando e Come',
-        date: '15/12/2023',
-        author: 'Mauro Simoncini',
-        excerpt: 'La manutenzione preventiva è la chiave per prolungare la vita delle impermeabilizzazioni. Scopri quando intervenire e quali controlli effettuare.',
-        content: 'Una corretta manutenzione può prolungare la vita di un\'impermeabilizzazione fino al 50%. È importante effettuare controlli periodici, specialmente dopo eventi atmosferici intensi. I segnali di allarme includono crepe, bolle o distacchi della membrana.',
-        image: '/assets/2.png',
-        category: 'Manutenzione',
-        readTime: '4 min'
-      },
-      {
-        id: 7,
-        title: 'Impermeabilizzazione e Risparmio Energetico',
-        date: '10/12/2023',
-        author: 'Mauro Simoncini',
-        excerpt: 'Come una corretta impermeabilizzazione può contribuire al risparmio energetico dell\'edificio e quali sono le soluzioni più innovative.',
-        content: 'L\'impermeabilizzazione non serve solo a proteggere dall\'acqua, ma può contribuire significativamente al risparmio energetico. Le membrane riflettenti possono ridurre il surriscaldamento estivo, mentre un buon isolamento termico abbinato all\'impermeabilizzazione migliora l\'efficienza energetica.',
-        image: '/assets/3.png',
-        category: 'Innovazione',
-        readTime: '6 min'
-      },
-      {
-        id: 8,
-        title: 'Soluzioni per Infiltrazioni Difficili da Individuare',
-        date: '05/12/2023',
-        author: 'Mauro Simoncini',
-        excerpt: 'Tecniche avanzate per individuare e risolvere infiltrazioni nascoste che non si manifestano nel punto di origine.',
-        content: 'Le infiltrazioni più insidiose sono quelle che si manifestano lontano dal punto di origine. Utilizziamo tecnologie avanzate come la termografia e i test con gas traccianti per individuare con precisione la fonte del problema. Una volta identificata, la riparazione deve essere mirata e definitiva.',
-        image: '/assets/hero.png',
-        category: 'Case Study',
-        readTime: '8 min'
-      }
+    {
+      id: 3,
+      title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
+      date: '02/01/2024',
+      author: 'Mauro Simoncini',
+      excerpt: 'L\'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.',
+      content: 'Un alto valore di SRI significa che il materiale riflette più radiazione solare e disperde meglio il calore, riducendo la temperatura superficiale del tetto e limitando il trasferimento di calore agli ambienti interni.',
+      image: '/assets/news2.png',
+      category: 'Efficienza Energetica',
+      readTime: '3 min'
+    },
+    {
+      id: 4,
+      title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
+      date: '28/12/2023',
+      author: 'Mauro Simoncini',
+      excerpt: 'Impianti in esercizio, geometrie complesse, vecchia guaina da trattare. Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.',
+      content: 'FibroGum è stato scelto perché si applica senza demolizione del sottostante, è conforme alle normative vigenti e rende possibile lavorare in continuità senza il fermo degli impianti. Soluzione documentabile per la DL.',
+      image: '/assets/news33.jpg',
+      additionalImages: ['/assets/news35.jpg', '/assets/news34.jpg'],
+      category: 'Case Study',
+      readTime: '7 min'
+    },
+    {
+      id: 5,
+      title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
+      date: '20/12/2023',
+      author: 'Mauro Simoncini',
+      excerpt: 'L\'esposizione alla pioggia senza protezione adeguata può causare infiltrazioni, distacco delle piastrelle, muffe e danni alla struttura dell\'edificio.',
+      content: 'Esistono 3 modi per intervenire senza demolire: sovrapposizione su superficie esistente, intervento su massetto grezzo o impermeabilizzazione trasparente. Ogni superficie ha le sue esigenze specifiche.',
+      image: '/assets/news4.png',
+      category: 'Guide',
+      readTime: '8 min'
+    }
   ];
 
   const categories = ['Tutti', 'Innovazione', 'Sostenibilità', 'Case Study', 'Guide', 'Manutenzione'];
@@ -252,7 +222,20 @@ const Novita = () => {
                   >
                     <article className={styles.articleCard}>
                       <div className={styles.articleImage}>
-                        <img src={article.image} alt={article.title} loading="lazy" />
+                        {article.isTextHeader ? (
+                          <div className={styles.textHeader}>
+                            <h3 className={styles.textHeaderTitle}>{article.headerTitle}</h3>
+                          </div>
+                        ) : (
+                          <>
+                            <img src={article.image} alt={article.title} loading="lazy" />
+                            {article.additionalImages && (
+                              <div className={styles.multipleImagesIndicator}>
+                                <span>+{article.additionalImages.length}</span>
+                              </div>
+                            )}
+                          </>
+                        )}
                         <div className={styles.categoryBadge}>
                           {article.category}
                         </div>

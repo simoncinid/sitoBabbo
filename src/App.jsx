@@ -15,6 +15,9 @@ import ArticlePage from './components/ArticlePage';
 import Novita from './components/Novita';
 import ArticleDetail from './components/ArticleDetail';
 import AnimationLoader from './components/AnimationLoader';
+import CookieBanner from './components/CookieBanner';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import { CookieManager } from './utils/CookieManager';
 import './App.css';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Inizializza il Cookie Manager
+    CookieManager.init();
+    
     // Controlla se è desktop
     const checkIsDesktop = () => {
       setIsDesktop(window.innerWidth >= 1024);
@@ -90,7 +96,11 @@ function App() {
             } />
             <Route path="/novita" element={<Novita />} />
             <Route path="/novita/:slug" element={<ArticleDetail />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
+          
+          {/* Cookie Banner */}
+          <CookieBanner />
         </div>
       </Router>
     </HelmetProvider>
