@@ -63,7 +63,7 @@ app.post('/api/send-email', async (req, res) => {
 
     const mailOptions = {
       from: 'reservationwebbitz@gmail.com',
-      to: 'simoncinimauro@hotmail.com',
+      to: 'simonciniliquiplast@gmail.com',
       subject: emailSubject,
       html: emailBody,
       replyTo: email

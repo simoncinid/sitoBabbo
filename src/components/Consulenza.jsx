@@ -18,6 +18,9 @@ const Consulenza = () => {
     privacy: false,
     newsletter: true
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,6 +32,10 @@ const Consulenza = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (isSubmitting || isSuccess) return;
+    
+    setIsSubmitting(true);
     
     try {
       const response = await fetch('/api/send-email', {
@@ -56,29 +63,36 @@ const Consulenza = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert('Richiesta di consulenza inviata con successo! Ti ricontatterò entro 24 ore.');
-        setFormData({
-          nome: '',
-          email: '',
-          telefono: '',
-          tipoCliente: 'privato',
-          nomeAzienda: '',
-          partitaIva: '',
-          settoreAttivita: '',
-          tipoProgetto: '',
-          descrizione: '',
-          urgenza: 'normale',
-          budget: '',
-          citta: '',
-          privacy: false,
-          newsletter: true
-        });
+        setIsSuccess(true);
+        
+        // Reset form dopo 4 secondi (più lungo per leggere il messaggio)
+        setTimeout(() => {
+          setFormData({
+            nome: '',
+            email: '',
+            telefono: '',
+            tipoCliente: 'privato',
+            nomeAzienda: '',
+            partitaIva: '',
+            settoreAttivita: '',
+            tipoProgetto: '',
+            descrizione: '',
+            urgenza: 'normale',
+            budget: '',
+            citta: '',
+            privacy: false,
+            newsletter: true
+          });
+          setIsSuccess(false);
+        }, 4000);
       } else {
         alert('Errore nell\'invio della richiesta. Riprova più tardi.');
       }
     } catch (error) {
       console.error('Errore:', error);
       alert('Errore nell\'invio della richiesta. Riprova più tardi.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -96,7 +110,15 @@ const Consulenza = () => {
 
         {/* Form Section */}
         <div className={styles.formSection}>
-          <form onSubmit={handleSubmit} className={styles.consultForm}>
+          {isSuccess ? (
+            <div className={styles.successMessage}>
+              <div className={styles.successIcon}>✓</div>
+              <h3>Richiesta di Consulenza Inviata!</h3>
+              <p>Ti ricontatterò entro 24 ore per discutere del tuo progetto.</p>
+              <p><strong>Grazie per la fiducia!</strong></p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className={`${styles.consultForm} ${isSubmitting ? styles.submitting : ''}`}>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="nome">Nome e Cognome *</label>
@@ -107,6 +129,7 @@ const Consulenza = () => {
                   value={formData.nome}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -297,10 +320,15 @@ const Consulenza = () => {
               </label>
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Invia Richiesta di Consulenza
+            <button 
+              type="submit" 
+              className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''}`}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Invio in corso...' : 'Invia Richiesta di Consulenza'}
             </button>
           </form>
+          )}
         </div>
       </div>
     </section>

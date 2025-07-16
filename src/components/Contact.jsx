@@ -10,6 +10,9 @@ const Contact = () => {
     message: ''
   });
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -20,6 +23,10 @@ const Contact = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (isSubmitting || isSuccess) return;
+    
+    setIsSubmitting(true);
     
     try {
       const response = await fetch('/api/send-email', {
@@ -47,19 +54,26 @@ const Contact = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert('Il messaggio è stato inviato con successo! Ti ricontatterò presto.');
-        setFormData({
-          name: '',
-          email: '',
-          subject: 'consulenza',
-          message: ''
-        });
+        setIsSuccess(true);
+        
+        // Reset form dopo 3 secondi
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            subject: 'consulenza',
+            message: ''
+          });
+          setIsSuccess(false);
+        }, 3000);
       } else {
         alert('Errore nell\'invio del messaggio. Riprova più tardi.');
       }
     } catch (error) {
       console.error('Errore:', error);
       alert('Errore nell\'invio del messaggio. Riprova più tardi.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -93,64 +107,82 @@ const Contact = () => {
           </div>
           
           <div className={styles.formContainer}>
-            <form className={styles.contactForm} onSubmit={handleSubmit}>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="name">Nome e Cognome</label>
-                <input
-                  className={styles.formInput}
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+            {isSuccess ? (
+              <div className={styles.successMessage}>
+                <div className={styles.successIcon}>✓</div>
+                <h3>Messaggio Inviato con Successo!</h3>
+                <p>Ti ricontatterò presto. Grazie per avermi contattato!</p>
               </div>
-              
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="email">Email</label>
-                <input
-                  className={styles.formInput}
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="subject">Oggetto</label>
-                <select
-                  className={styles.formSelect}
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
+            ) : (
+              <form className={styles.contactForm} onSubmit={handleSubmit}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="name">Nome e Cognome</label>
+                  <input
+                    className={styles.formInput}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="email">Email</label>
+                  <input
+                    className={styles.formInput}
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="subject">Oggetto</label>
+                  <select
+                    className={styles.formSelect}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                  >
+                    <option value="consulenza">Consulenza Privata</option>
+                    <option value="collaborazione">Collaborazione Aziendale</option>
+                    <option value="proposta">Proposta Professionale</option>
+                    <option value="altro">Altro</option>
+                  </select>
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="message">Messaggio</label>
+                  <textarea
+                    className={styles.formTextarea}
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''}`}
+                  disabled={isSubmitting}
                 >
-                  <option value="consulenza">Consulenza Privata</option>
-                  <option value="collaborazione">Collaborazione Aziendale</option>
-                  <option value="proposta">Proposta Professionale</option>
-                  <option value="altro">Altro</option>
-                </select>
-              </div>
-              
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="message">Messaggio</label>
-                <textarea
-                  className={styles.formTextarea}
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <button type="submit" className={styles.submitButton}>Invia Messaggio</button>
-            </form>
+                  {isSubmitting ? 'Invio in corso...' : 'Invia Messaggio'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
