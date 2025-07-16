@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Abilita CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -15,8 +15,17 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  console.log('API chiamata ricevuta:', req.method, req.body);
+
   try {
     const { name, email, subject, message, formType } = req.body;
+    
+    if (!req.body || !formType) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Dati del form mancanti o non validi' 
+      });
+    }
     
     // Configurazione nodemailer
     const transporter = nodemailer.createTransporter({

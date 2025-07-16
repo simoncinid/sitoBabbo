@@ -33,6 +33,17 @@ const Contact = () => {
         }),
       });
 
+      // Controlla se la risposta è OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Controlla se la risposta è JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('La risposta del server non è in formato JSON');
+      }
+
       const result = await response.json();
 
       if (result.success) {
@@ -48,7 +59,11 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Errore:', error);
-      alert('Errore nell\'invio del messaggio. Riprova più tardi.');
+      if (error.message.includes('JSON')) {
+        alert('Errore di configurazione del server. Contattami direttamente via email: simoncinimauro@hotmail.com');
+      } else {
+        alert('Errore nell\'invio del messaggio. Riprova più tardi o contattami direttamente.');
+      }
     }
   };
   
