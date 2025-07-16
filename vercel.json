@@ -7,13 +7,12 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "api/send-email.js",
+      "use": "@vercel/node"
     }
   ],
-  "functions": {
-    "api/send-email.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
     {
       "src": "/api/send-email",
