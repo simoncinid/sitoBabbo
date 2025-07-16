@@ -15,7 +15,7 @@ const Navbar = () => {
       setIsScrolled(scrollPosition > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'novita', 'faq'];
+      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'faq', 'novita'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
@@ -46,8 +46,8 @@ const Navbar = () => {
     { id: 'mai-senza-consigli', label: 'Conoscenza' },
     { id: 'mai-senza-manutenzione', label: 'Cura' },
     { id: 'mai-senza-esperienza', label: 'Il Prodotto Giusto' },
-    { id: 'novita', label: 'Novità' },
-    { id: 'faq', label: 'FAQ' }
+    { id: 'faq', label: 'FAQ' },
+    { id: 'novita', label: 'Articoli' }
   ];
 
   return (
@@ -69,7 +69,6 @@ const Navbar = () => {
               <span className={styles.logoTitle}>Mai Senza</span>
               <span className={styles.logoSubtitle}>prodotti e consigli</span>
               <span className={styles.logoSubtitle}>per impermeabilizzare al top</span>
-
             </div>
           </Link>
 
@@ -82,6 +81,7 @@ const Navbar = () => {
                   to="/novita"
                   className={`${styles.navLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
                   onClick={closeMobileMenu}
+                  data-section="articoli"
                 >
                   <span className={styles.navText}>{item.label}</span>
                   <div className={styles.navIndicator}></div>
@@ -174,6 +174,7 @@ const Navbar = () => {
                     className={`${styles.mobileNavLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
                     onClick={closeMobileMenu}
                     style={{ animationDelay: `${index * 0.1}s` }}
+                    data-section="articoli"
                   >
                     <span className={styles.mobileNavText}>{item.label}</span>
                     <span className={styles.mobileNavArrow}>→</span>
@@ -204,31 +205,6 @@ const Navbar = () => {
                   </RouterLink>
                 )
               ))}
-              
-              {/* Additional mobile menu items */}
-              <a
-                href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.mobileNavLink}
-                onClick={closeMobileMenu}
-                style={{ animationDelay: `${navItems.length * 0.1}s` }}
-              >
-                <span className={styles.mobileNavText}>Consulenza Gratuita</span>
-                <span className={styles.mobileNavArrow}>→</span>
-              </a>
-              
-              <Link
-                to="mai-senza-esperienza"
-                smooth={true}
-                duration={500}
-                className={styles.mobileNavLink}
-                onClick={closeMobileMenu}
-                style={{ animationDelay: `${(navItems.length + 1) * 0.1}s` }}
-              >
-                <span className={styles.mobileNavText}>Portfolio Progetti</span>
-                <span className={styles.mobileNavArrow}>→</span>
-              </Link>
             </div>
 
             <div className={styles.mobileMenuFooter}>
@@ -263,4 +239,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

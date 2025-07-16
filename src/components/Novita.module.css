@@ -217,6 +217,10 @@
   position: relative;
   height: 250px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
 }
 
 .articleImage img {

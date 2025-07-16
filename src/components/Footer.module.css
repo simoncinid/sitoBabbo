@@ -191,8 +191,8 @@
 
   .footerContent {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 2rem;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
   }
 
   .footerBrand {
@@ -202,14 +202,26 @@
 
   .brandDescription {
     text-align: center;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
   }
 
   .contactInfo {
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .contactItem {
     justify-content: center;
+    font-size: 0.8rem;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .contactIcon {
+    font-size: 0.9rem;
   }
 
   .footerSocial {
@@ -219,27 +231,38 @@
 
   .footerTitle {
     text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
 
   .socialLinks {
     justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
   }
 
   .socialLink {
     justify-content: center;
+    font-size: 0.8rem;
+    gap: 0.5rem;
   }
 
   .legalLinks {
     justify-content: center;
     text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   .legalLink {
     display: inline-block;
+    font-size: 0.75rem;
   }
 
   .footerBottom {
-    padding: 2rem;
+    padding: 1.5rem 1rem;
   }
 
   .copyright {

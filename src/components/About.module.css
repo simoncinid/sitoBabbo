@@ -712,82 +712,63 @@
   font-weight: 600;
 }
 
-/* Button Mobile Semplici - Stile CTA */
+/* Button Mobile Semplici - Stile minimale senza icone */
 .ctaButtonMobile {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  color: white;
-  text-decoration: none;
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  font-family: var(--font-primary);
-}
-
-.ctaButtonMobile::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ctaButtonMobile:hover::before {
-  left: 100%;
+  flex: 1 !important;
+  max-width: 180px !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  min-height: 60px !important;
+  color: var(--primary-color) !important;
+  background: rgba(26, 95, 63, 0.1) !important;
+  border: 1px solid rgba(26, 95, 63, 0.2) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  font-family: var(--font-primary) !important;
 }
 
 .ctaButtonMobile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-.socialButton {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-}
-
-.socialButton:hover {
-  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
-}
-
-.guidesButton {
-  background: linear-gradient(135deg, #4ecdc4, #44a08d);
-}
-
-.guidesButton:hover {
-  box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4);
-}
-
-.aboutButton {
-  background: linear-gradient(135deg, #45b7d1, #3498db);
-}
-
-.aboutButton:hover {
-  box-shadow: 0 15px 40px rgba(69, 183, 209, 0.4);
+  transform: translateY(-2px) !important;
+  background: rgba(26, 95, 63, 0.15) !important;
+  border-color: rgba(26, 95, 63, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(26, 95, 63, 0.2) !important;
 }
 
 .ctaIconMobile {
-  font-size: 1.2rem;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ctaButtonMobile:hover .ctaIconMobile {
-  transform: translateX(5px) scale(1.1);
+  display: none !important;
 }
 
 .ctaTextMobile {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  color: var(--primary-color) !important;
+}
+
+.socialButton,
+.guidesButton,
+.aboutButton {
+  background: rgba(26, 95, 63, 0.1) !important;
+  border: 1px solid rgba(26, 95, 63, 0.2) !important;
+  color: var(--primary-color) !important;
+}
+
+.socialButton:hover,
+.guidesButton:hover,
+.aboutButton:hover {
+  background: rgba(26, 95, 63, 0.15) !important;
+  border-color: rgba(26, 95, 63, 0.3) !important;
+  color: var(--primary-color) !important;
+  box-shadow: 0 4px 12px rgba(26, 95, 63, 0.2) !important;
 }
 
 /* POPUP OVERLAY - SEMPRE AL CENTRO DEL VIEWPORT UTENTE */
@@ -1074,31 +1055,33 @@
     flex: 1 !important;
     max-width: 180px !important;
     padding: 1rem 1.5rem !important;
-    border-radius: 50px !important;
+    border-radius: 8px !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 0.5rem !important;
     min-height: 60px !important;
-    color: white !important;
-    border: none !important;
+    color: var(--primary-color) !important;
+    background: rgba(26, 95, 63, 0.1) !important;
+    border: 1px solid rgba(26, 95, 63, 0.2) !important;
     cursor: pointer !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
     position: relative !important;
     overflow: hidden !important;
     font-family: var(--font-primary) !important;
   }
 
   .ctaButtonMobile:hover {
-    transform: translateY(-5px) scale(1.05) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-2px) !important;
+    background: rgba(26, 95, 63, 0.15) !important;
+    border-color: rgba(26, 95, 63, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(26, 95, 63, 0.2) !important;
   }
 
   .ctaIconMobile {
-    font-size: 1.2rem !important;
-    margin-bottom: 0 !important;
+    display: none !important;
   }
 
   .ctaTextMobile {
@@ -1106,6 +1089,7 @@
     font-weight: 600 !important;
     text-align: center !important;
     line-height: 1.2 !important;
+    color: var(--primary-color) !important;
   }
 
   .aboutText {
@@ -1396,31 +1380,42 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 600px;
   margin: 2rem auto 0 auto;
+  align-items: center;
 }
 
 .desktopCtaButtons .ctaButtonMobile {
   width: 100%;
-  max-width: none;
+  max-width: 500px;
   padding: 1rem 1.5rem;
-  border-radius: 50px;
+  border-radius: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
   min-height: auto;
+  background: rgba(26, 95, 63, 0.1);
+  border: 1px solid rgba(26, 95, 63, 0.2);
+  color: var(--primary-color);
+  box-shadow: none;
+}
+
+.desktopCtaButtons .ctaButtonMobile:hover {
+  background: rgba(26, 95, 63, 0.15);
+  border-color: rgba(26, 95, 63, 0.3);
+  box-shadow: 0 4px 12px rgba(26, 95, 63, 0.2);
 }
 
 .desktopCtaButtons .ctaIconMobile {
-  font-size: 1.2rem;
-  margin-bottom: 0;
+  display: none;
 }
 
 .desktopCtaButtons .ctaTextMobile {
   font-size: 1rem;
   font-weight: 600;
+  color: var(--primary-color);
 }
 
 /* Nascondi sezioni verticali duplicate */

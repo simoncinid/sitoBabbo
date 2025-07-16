@@ -600,3 +600,95 @@
     font-size: 0.8rem;
   }
 } 
+
+/* Evidenziazione speciale per Articoli con shine effect */
+.navLink[data-section="articoli"] {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  color: #fff !important;
+  overflow: hidden;
+}
+
+.navLink[data-section="articoli"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 2s infinite;
+  z-index: 1;
+}
+
+.navLink[data-section="articoli"] .navText {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.navLink[data-section="articoli"]:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Stili per navbar scrolled (sfondo bianco) */
+.navbar.scrolled .navLink[data-section="articoli"] {
+  background: linear-gradient(135deg, rgba(26, 95, 63, 0.9), rgba(26, 95, 63, 0.8));
+  border: 1px solid rgba(26, 95, 63, 1);
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(26, 95, 63, 0.3);
+}
+
+.navbar.scrolled .navLink[data-section="articoli"]::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.navbar.scrolled .navLink[data-section="articoli"]:hover {
+  background: linear-gradient(135deg, rgba(26, 95, 63, 1), rgba(26, 95, 63, 0.9));
+  box-shadow: 0 4px 12px rgba(26, 95, 63, 0.4);
+}
+
+/* Navigation Links */ 
+
+/* Mobile styles per Articoli */
+@media (max-width: 768px) {
+  .mobileNavLink[data-section="articoli"] {
+    background: linear-gradient(135deg, rgba(26, 95, 63, 0.9), rgba(26, 95, 63, 0.8));
+    border: 1px solid rgba(26, 95, 63, 1);
+    color: #fff !important;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mobileNavLink[data-section="articoli"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 2s infinite;
+    z-index: 1;
+  }
+  
+  .mobileNavLink[data-section="articoli"] .mobileNavText {
+    position: relative;
+    z-index: 2;
+  }
+} 

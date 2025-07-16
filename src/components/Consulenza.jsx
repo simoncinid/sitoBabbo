@@ -27,11 +27,48 @@ const Consulenza = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Qui implementeresti l'invio del form
-    console.log('Form data:', formData);
-    alert('Richiesta inviata! Ti ricontatterò entro 24 ore.');
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: 'consultation'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Richiesta di consulenza inviata con successo! Ti ricontatterò entro 24 ore.');
+        setFormData({
+          nome: '',
+          email: '',
+          telefono: '',
+          tipoCliente: 'privato',
+          nomeAzienda: '',
+          partitaIva: '',
+          settoreAttivita: '',
+          tipoProgetto: '',
+          descrizione: '',
+          urgenza: 'normale',
+          budget: '',
+          citta: '',
+          privacy: false,
+          newsletter: true
+        });
+      } else {
+        alert('Errore nell\'invio della richiesta. Riprova più tardi.');
+      }
+    } catch (error) {
+      console.error('Errore:', error);
+      alert('Errore nell\'invio della richiesta. Riprova più tardi.');
+    }
   };
 
   return (

@@ -74,7 +74,7 @@ const Novita = () => {
     }
   ];
 
-  const categories = ['Tutti', 'Innovazione', 'Sostenibilità', 'Case Study', 'Guide', 'Manutenzione'];
+  const categories = ['Tutti', 'Tecnica', 'Normative', 'Efficienza Energetica', 'Case Study', 'Guide'];
   
   useEffect(() => {
     let results = articles;

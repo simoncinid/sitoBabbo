@@ -18,17 +18,38 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Qui si implementerebbe la logica di invio del form
-    console.log('Form submitted:', formData);
-    alert('Il modulo è stato inviato con successo! (Simulazione)');
-    setFormData({
-      name: '',
-      email: '',
-      subject: 'consulenza',
-      message: ''
-    });
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: 'contact'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Il messaggio è stato inviato con successo! Ti ricontatterò presto.');
+        setFormData({
+          name: '',
+          email: '',
+          subject: 'consulenza',
+          message: ''
+        });
+      } else {
+        alert('Errore nell\'invio del messaggio. Riprova più tardi.');
+      }
+    } catch (error) {
+      console.error('Errore:', error);
+      alert('Errore nell\'invio del messaggio. Riprova più tardi.');
+    }
   };
   
   return (
