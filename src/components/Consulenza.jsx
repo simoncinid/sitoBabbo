@@ -78,11 +78,7 @@ const Consulenza = () => {
       }
     } catch (error) {
       console.error('Errore:', error);
-      if (error.message.includes('JSON')) {
-        alert('Errore di configurazione del server. Contattami direttamente via email: simoncinimauro@hotmail.com');
-      } else {
-        alert('Errore nell\'invio della richiesta. Riprova più tardi o contattami direttamente.');
-      }
+      alert('Errore nell\'invio della richiesta. Riprova più tardi.');
     }
   };
 
