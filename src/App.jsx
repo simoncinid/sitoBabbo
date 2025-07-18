@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -19,6 +19,16 @@ import CookieBanner from './components/CookieBanner';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import { CookieManager } from './utils/CookieManager';
 import './App.css';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -61,6 +71,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         <div className="App">
           <SEOHead />
           
@@ -99,8 +110,8 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
           
-          {/* Cookie Banner */}
-          <CookieBanner />
+          {/* Cookie Banner - Solo dopo l'animazione */}
+          {!isLoading && <CookieBanner />}
         </div>
       </Router>
     </HelmetProvider>

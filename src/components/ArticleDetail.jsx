@@ -13,7 +13,7 @@ const ArticleDetail = () => {
     {
       id: 1,
       title: 'Adesione a fiamma❓️5 criticità spesso sottovalutate.',
-      date: '15/01/2024',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'uso di fiamma libera comporta rischi e criticità spesso sottovalutate che possono compromettere l\'efficacia dell\'impermeabilizzazione.',
       content: `🔥 Rischio incendio
@@ -43,7 +43,7 @@ La posa a fiamma resta una tecnologia valida, ma va valutata caso per caso, alla
     {
       id: 2,
       title: 'Mai Senza approfondire. La norma ISO 4628❓️',
-      date: '08/01/2024',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'La norma ISO 4628 è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell\'aspetto dei rivestimenti liquidi.',
       content: `La norma ISO 4628❓️ è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell'aspetto dei rivestimenti liquidi causati da invecchiamento, agenti atmosferici o altri fattori.
@@ -70,7 +70,7 @@ In sintesi, un prodotto conforme ISO 4628 assicura che il rivestimento mantenga 
     {
       id: 3,
       title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
-      date: '02/01/2024',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.',
       content: `L'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.
@@ -85,7 +85,7 @@ In sintesi, un prodotto conforme ISO 4628 assicura che il rivestimento mantenga 
     {
       id: 4,
       title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
-      date: '28/12/2023',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'Impianti in esercizio, geometrie complesse, vecchia guaina da trattare. Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.',
       content: `Siamo su una copertura industriale attiva, in provincia di Grosseto.
@@ -93,25 +93,22 @@ Impianti in esercizio, geometrie complesse, vecchia guaina da trattare.
 Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.
 
 **🎯 Esigenza della DL:**
-> Impermeabilizzare senza interferire con impianti, garantendo Pedonabilità, Durabilità e protezione Antifiamma tutto con documentazione tecnica.
+Impermeabilizzazione conforme alle normative vigenti, senza fermo degli impianti e senza demolizione del sottostante.
 
-**🎯 Esigenza del rivenditore:**
-> Offrire una soluzione liquida già collaudata, senza sorprese.
+**✅ Soluzione scelta: FibroGum**
+Sistema impermeabilizzante liquido che si applica direttamente sulla guaina esistente, creando una membrana continua e resistente.
 
-**🟩 FibroGum è stato scelto perché:**
+**🔧 Vantaggi:**
+- Applicazione senza demolizione
+- Nessun fermo degli impianti
+- Conformità normativa documentabile
+- Resistenza agli agenti atmosferici
+- Facilità di manutenzione
 
-✅ Si applica senza demolizione del sottostante 
+**📋 Risultato:**
+Copertura perfettamente impermeabilizzata, impianti operativi, DL soddisfatta.
 
-✅ È conforme alle normative vigenti 
-
-✅ Rende possibile lavorare in continuità senza il fermo degli impianti.
-
-✅ È fibrorinforzato e certificato per pedonabilità e B-Roof t2.
-
-🧰 Qui non si parla di "prodotto" ma di soluzione concreta per chi lavora con i cantieri complessi.
-🔹️ Documentabile per la DL
-🔹️Proposta completa per la rivendita
-🔹️Affidabile per l'applicatore`,
+**💡 Mai Senza la soluzione giusta per ogni esigenza.**`,
       image: '/assets/news33.jpg',
       additionalImages: ['/assets/news35.jpg', '/assets/news34.jpg'],
       category: 'Case Study',
@@ -120,26 +117,13 @@ Non si può demolire, non si possono scollegare gli impianti. Serve un approccio
     {
       id: 5,
       title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
-      date: '20/12/2023',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'esposizione alla pioggia senza protezione adeguata può causare infiltrazioni, distacco delle piastrelle, muffe e danni alla struttura dell\'edificio.',
-      content: `L'esposizione alla pioggia senza protezione adeguata può causare:
-
-🔹️infiltrazioni nei muri e nei soffitti sottostanti
-
-🔹️distacco delle piastrelle o rigonfiamenti
-
-🔹️muffe e umidità permanente
-
-🔹️danni alla struttura dell'edificio
-
-🔹️costi elevati di ripristino nel tempo
-
-**🛠️ 3 MODI PER INTERVENIRE senza DEMOLIRE**
+      content: `Se hai un terrazzo, un balcone o una copertura piastrellata che presenta problemi di infiltrazioni, è importante sapere che esistono soluzioni efficaci senza demolire tutto.
 
 **🔹 1. Sovrapposizione su superficie esistente**
-Hai già le piastrelle?
-In molti casi è possibile intervenire senza demolire, applicando direttamente sopra la pavimentazione un sistema impermeabile continuo, elastico e resistente.
+Si può applicare un nuovo sistema impermeabile direttamente sopra le piastrelle esistenti, dopo aver verificato che siano ben ancorate. Questa soluzione è veloce ed economica.
 
 **🔹 2. Intervento su massetto grezzo**
 Se devi ancora piastrellare, questa è l'occasione perfetta per proteggere tutto prima della posa.
@@ -164,7 +148,7 @@ Occhio alle bocche di scolo: devono rimanere libere e ben integrate nel sistema 
 Occhio ai parapetti e ai battiscopa: sono spesso i punti più critici.
 
 Occhio ai prodotti miracolosi: meglio informarsi bene prima di acquistare, ogni superficie ha le sue esigenze.`,
-      image: '/assets/news4.png',
+      image: '/assets/news4.jpg',
       category: 'Guide',
       readTime: '8 min'
     }

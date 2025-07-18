@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://maisenza.it/sitemap.xml
+Sitemap: https://www.maurosimoncini.it/sitemap.xml
 
 # Crawl-delay per essere gentili con i server
 Crawl-delay: 1

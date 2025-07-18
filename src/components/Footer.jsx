@@ -31,10 +31,6 @@ const Footer = () => {
             </p>
             <div className={styles.contactInfo}>
               <div className={styles.contactItem}>
-                <FaEnvelope className={styles.contactIcon} />
-                <span>simoncinimauro@hotmail.com</span>
-              </div>
-              <div className={styles.contactItem}>
                 <FaPhone className={styles.contactIcon} />
                 <span>+39 393 8657606</span>
               </div>

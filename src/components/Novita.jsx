@@ -16,8 +16,8 @@ const Novita = () => {
   const articles = [
     {
       id: 1,
-      title: 'Adesione a fiamma❓️5 criticità spesso sottovalutate.',
-      date: '15/01/2024',
+      title: 'Adesione a fiamma?  5 criticità spesso sottovalutate.',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'uso di fiamma libera comporta rischi e criticità spesso sottovalutate che possono compromettere l\'efficacia dell\'impermeabilizzazione.',
       content: 'L\'uso di fiamma libera comporta un\'elevata esposizione a innesco. Senza adeguate barriere protettive, il pericolo è concreto. La posa richiede operatori qualificati e un\'applicazione non conforme può compromettere la continuità del manto.',
@@ -27,21 +27,21 @@ const Novita = () => {
     },
     {
       id: 2,
-      title: 'Mai Senza approfondire. La norma ISO 4628❓️',
-      date: '08/01/2024',
+      title: 'Mai Senza approfondire. La norma ISO 4628?',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'La norma ISO 4628 è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell\'aspetto dei rivestimenti liquidi.',
       content: 'La norma ISO 4628 è fondamentale per garantire la qualità dei rivestimenti. Un prodotto conforme assicura controllo dei difetti, mantenimento dell\'aspetto estetico e resistenza al degrado superficiale.',
       image: null,
       isTextHeader: true,
-      headerTitle: 'Mai Senza approfondire. La norma ISO 4628❓️',
+      headerTitle: 'Mai Senza approfondire la norma ISO 4628',
       category: 'Normative',
       readTime: '4 min'
     },
     {
       id: 3,
       title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
-      date: '02/01/2024',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.',
       content: 'Un alto valore di SRI significa che il materiale riflette più radiazione solare e disperde meglio il calore, riducendo la temperatura superficiale del tetto e limitando il trasferimento di calore agli ambienti interni.',
@@ -52,7 +52,7 @@ const Novita = () => {
     {
       id: 4,
       title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
-      date: '28/12/2023',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'Impianti in esercizio, geometrie complesse, vecchia guaina da trattare. Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.',
       content: 'FibroGum è stato scelto perché si applica senza demolizione del sottostante, è conforme alle normative vigenti e rende possibile lavorare in continuità senza il fermo degli impianti. Soluzione documentabile per la DL.',
@@ -64,11 +64,11 @@ const Novita = () => {
     {
       id: 5,
       title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
-      date: '20/12/2023',
+      date: '19/12/2024',
       author: 'Mauro Simoncini',
       excerpt: 'L\'esposizione alla pioggia senza protezione adeguata può causare infiltrazioni, distacco delle piastrelle, muffe e danni alla struttura dell\'edificio.',
       content: 'Esistono 3 modi per intervenire senza demolire: sovrapposizione su superficie esistente, intervento su massetto grezzo o impermeabilizzazione trasparente. Ogni superficie ha le sue esigenze specifiche.',
-      image: '/assets/news4.png',
+      image: '/assets/news4.jpg',
       category: 'Guide',
       readTime: '8 min'
     }
