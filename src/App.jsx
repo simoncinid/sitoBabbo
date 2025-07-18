@@ -17,6 +17,7 @@ import ArticleDetail from './components/ArticleDetail';
 import AnimationLoader from './components/AnimationLoader';
 import CookieBanner from './components/CookieBanner';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import TerminiServizio from './components/TerminiServizio';
 import { CookieManager } from './utils/CookieManager';
 import './App.css';
 
@@ -108,6 +109,7 @@ function App() {
             <Route path="/novita" element={<Novita />} />
             <Route path="/novita/:slug" element={<ArticleDetail />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/termini" element={<TerminiServizio />} />
           </Routes>
           
           {/* Cookie Banner - Solo dopo l'animazione */}

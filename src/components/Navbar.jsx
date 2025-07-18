@@ -52,7 +52,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${location.pathname.startsWith('/novita') && !isScrolled ? styles.greenBg : ''}`}>
+      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${(location.pathname.startsWith('/novita') || location.pathname === '/privacy' || location.pathname === '/termini') && !isScrolled ? styles.greenBg : ''}`}>
         <div className={styles.navContainer}>
           {/* Logo */}
           <Link
