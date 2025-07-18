@@ -1,0 +1,25 @@
+# Gestione MIME types
+AddType application/xml .xml
+AddType text/plain .txt
+
+# Headers per sitemap
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+    Header set Cache-Control "public, max-age=3600"
+</Files>
+
+# Headers per robots.txt
+<Files "robots.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+    Header set Cache-Control "public, max-age=3600"
+</Files>
+
+# Rewrite rules per SPA
+RewriteEngine On
+RewriteBase /
+
+# Non reindirizzare file statici
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(xml|txt|js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+RewriteRule . /index.html [L] 

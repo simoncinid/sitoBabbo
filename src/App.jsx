@@ -15,9 +15,9 @@ import ArticlePage from './components/ArticlePage';
 import Novita from './components/Novita';
 import ArticleDetail from './components/ArticleDetail';
 import AnimationLoader from './components/AnimationLoader';
-import CookieBanner from './components/CookieBanner';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TerminiServizio from './components/TerminiServizio';
+import CookieBanner from './components/CookieBanner';
 import { CookieManager } from './utils/CookieManager';
 import './App.css';
 
@@ -25,6 +25,10 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Non scrollare per file statici
+    if (pathname.includes('.xml') || pathname.includes('.txt')) {
+      return;
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
 
