@@ -1,45 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Homepage -->
   <url>
-    <loc>https://maisenza.it/</loc>
+    <loc>https://www.maurosimoncini.it/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
+  
+  <!-- Sezioni principali -->
   <url>
-    <loc>https://maisenza.it/#about</loc>
+    <loc>https://www.maurosimoncini.it/#about</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://maisenza.it/#mai-senza-consigli</loc>
+    <loc>https://www.maurosimoncini.it/#mai-senza-consigli</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://maisenza.it/#mai-senza-manutenzione</loc>
+    <loc>https://www.maurosimoncini.it/#mai-senza-manutenzione</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://maisenza.it/#mai-senza-esperienza</loc>
+    <loc>https://www.maurosimoncini.it/#mai-senza-esperienza</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://maisenza.it/#faq</loc>
+    <loc>https://www.maurosimoncini.it/#faq</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://maisenza.it/#consulenza</loc>
+    <loc>https://www.maurosimoncini.it/#consulenza</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
+  </url>
+  
+  <!-- Pagina blog -->
+  <url>
+    <loc>https://www.maurosimoncini.it/novita</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  
+  <!-- Articoli del blog -->
+  <url>
+    <loc>https://www.maurosimoncini.it/novita/adesione-a-fiamma-5-criticita-spesso-sottovalutate</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.maurosimoncini.it/novita/mai-senza-approfondire-la-norma-iso-4628</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.maurosimoncini.it/novita/in-che-modo-un-alto-valore-sri-aiuta-a-ridurre-il-surriscaldamento-delle-coperture</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.maurosimoncini.it/novita/siamo-su-una-copertura-industriale-attiva-in-provincia-di-grosseto</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.maurosimoncini.it/novita/ecco-cosa-sapere-e-valutare-se-hai-un-terrazzo-un-balcone-o-una-copertura-piastrellata-da-proteggere-una-volta-per-tutte</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Pagine legali -->
+  <url>
+    <loc>https://www.maurosimoncini.it/privacy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
   </url>
 </urlset> 

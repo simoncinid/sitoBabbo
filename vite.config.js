@@ -22,7 +22,13 @@ export default defineConfig({
         },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
+        assetFileNames: (assetInfo) => {
+          // Mantieni i nomi originali per sitemap.xml e robots.txt
+          if (assetInfo.name === 'sitemap.xml' || assetInfo.name === 'robots.txt') {
+            return '[name].[ext]';
+          }
+          return 'assets/[name].[hash].[ext]';
+        }
       }
     }
   },
@@ -38,6 +44,11 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: true
+    host: true,
+    // Configurazione per servire correttamente i file XML
+    middlewareMode: false,
+    headers: {
+      'Cache-Control': 'no-cache'
+    }
   }
 }) 
