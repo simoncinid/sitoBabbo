@@ -5,7 +5,6 @@ import styles from './About.module.css';
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activePopup, setActivePopup] = useState(null);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const aboutRef = useRef(null);
 
   useEffect(() => {
@@ -25,38 +24,6 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto slide per testimonials su desktop
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000); // Cambia ogni 4 secondi
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const testimonials = [
-    {
-      name: "Marco Rossi",
-      role: "Proprietario di Casa",
-      text: "Problema risolto senza demolire. Grazie Mauro!",
-      rating: 5,
-      photo: "/assets/feedback1.png"
-    },
-    {
-      name: "Giulia Bianchi", 
-      role: "Architetto",
-      text: "Consulenza precisa e prodotti perfetti.",
-      rating: 5,
-      photo: "/assets/feedback2.png"
-    },
-    {
-      name: "Roberto Verdi",
-      role: "Impresa Edile", 
-      text: "Competenze tecniche eccezionali.",
-      rating: 5,
-      photo: "/assets/feedback3.png"
-    }
-  ];
 
   return (
     <>
@@ -91,49 +58,7 @@ const About = () => {
               />
             </div>
             
-            {/* Testimonials Slider - Desktop only */}
-            <div className={styles.testimonialsSlider}>
-              <div className={styles.testimonialCard}>
-                <div className={styles.testimonialContent}>
-                  <div className={styles.testimonialHeader}>
-                    <img 
-                      src={testimonials[currentTestimonial].photo} 
-                      alt={testimonials[currentTestimonial].name}
-                      className={styles.testimonialPhoto}
-                    />
-                    <div className={styles.testimonialPersonInfo}>
-                      <div className={styles.authorName}>{testimonials[currentTestimonial].name}</div>
-                      <div className={styles.authorRole}>{testimonials[currentTestimonial].role}</div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.testimonialText}>
-                    {testimonials[currentTestimonial].text}
-                  </div>
-                  
-                  <div className={styles.testimonialFooter}>
-                    <div className={styles.rating}>
-                      {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                        <span key={i} className={styles.star}>⭐</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Indicatori slide */}
-              <div className={styles.slideIndicators}>
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`${styles.slideIndicator} ${index === currentTestimonial ? styles.active : ''}`}
-                    onClick={() => setCurrentTestimonial(index)}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Desktop CTA Buttons - Sotto lo slider */}
+            {/* Desktop CTA Buttons */}
             <div className={styles.desktopCtaButtons}>
               {/* Social Media Button */}
               <button 
@@ -209,39 +134,6 @@ const About = () => {
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Testimonials Section - Separate from main content */}
-        <div className={styles.testimonialsSection}>
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className={styles.testimonialCard}>
-              <div className={styles.testimonialContent}>
-                <div className={styles.testimonialHeader}>
-                  <img 
-                    src={testimonial.photo} 
-                    alt={testimonial.name}
-                    className={styles.testimonialPhoto}
-                  />
-                  <div className={styles.testimonialPersonInfo}>
-                    <div className={styles.authorName}>{testimonial.name}</div>
-                    <div className={styles.authorRole}>{testimonial.role}</div>
-                  </div>
-                </div>
-                
-                <div className={styles.testimonialText}>
-                  {testimonial.text}
-                </div>
-                
-                <div className={styles.testimonialFooter}>
-                  <div className={styles.rating}>
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className={styles.star}>⭐</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Bottom Grid Section - Solo per Mobile */}
