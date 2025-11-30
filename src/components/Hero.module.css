@@ -480,7 +480,7 @@
   border-radius: 100px 0 0 100px;
   overflow: hidden;
   background-image: url('/assets/newPhoto.jpg');
-  background-size: cover;
+  background-size: 69%;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -720,7 +720,7 @@
     border-radius: 100px 0 0 100px;
     overflow: hidden;
     background-image: url('/assets/newPhoto.jpg');
-    background-size: cover;
+    background-size: 69%;
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -770,7 +770,7 @@
     width: 100%;
     height: 100%;
     background-image: url('/assets/newPhoto.jpg');
-    background-size: cover;
+    background-size: 69%;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
@@ -954,7 +954,7 @@
     width: 100%;
     height: 100%;
     background-image: url('/assets/newPhoto.jpg');
-    background-size: cover;
+    background-size: 69%;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
