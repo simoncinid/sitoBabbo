@@ -481,7 +481,7 @@
   overflow: hidden;
   background-image: url('/assets/newPhoto.jpg');
   background-size: 69%;
-  background-position: center;
+  background-position: left center;
   background-repeat: no-repeat;
 }
 
@@ -721,7 +721,7 @@
     overflow: hidden;
     background-image: url('/assets/newPhoto.jpg');
     background-size: 69%;
-    background-position: center;
+    background-position: left center;
     background-repeat: no-repeat;
   }
   
@@ -771,7 +771,7 @@
     height: 100%;
     background-image: url('/assets/newPhoto.jpg');
     background-size: 69%;
-    background-position: center;
+    background-position: left center;
     background-repeat: no-repeat;
     z-index: 1;
   }
@@ -955,7 +955,7 @@
     height: 100%;
     background-image: url('/assets/newPhoto.jpg');
     background-size: 69%;
-    background-position: center;
+    background-position: left center;
     background-repeat: no-repeat;
     z-index: 1;
   }
