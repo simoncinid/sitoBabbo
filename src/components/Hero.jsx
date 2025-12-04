@@ -186,7 +186,7 @@ const Hero = () => {
               {/* Colonna Destra: Foto */}
               <div className={styles.mobileRight}>
                 <img 
-                  src="/assets/babbonobg.png"
+                  src="/assets/newPhoto.jpg"
                   alt="Mauro Simoncini"
                   className={styles.mobilePhoto}
                 />
