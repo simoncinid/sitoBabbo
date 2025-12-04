@@ -52,7 +52,7 @@ const About = () => {
           <div className={styles.leftColumn}>
             <div className={styles.photoContainer}>
               <img 
-                src="/assets/mauro2.png" 
+                src="/assets/newPhoto.jpg" 
                 alt="Profilo professionale"
                 className={styles.profilePhoto}
               />
