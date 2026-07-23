@@ -1,126 +1,102 @@
-/* Consulenza Section - Modern & Clean */
-
 .consulenzaSection {
+  padding: var(--section-space) 0;
   background: white;
-  padding: 6rem 0;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: min(calc(100% - 48px), 980px);
+  margin-inline: auto;
 }
 
-/* Header Section */
 .headerSection {
+  max-width: 760px;
+  margin: 0 auto 56px;
   text-align: center;
-  margin-bottom: 4rem;
 }
 
 .sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 1.5rem;
+  font-size: 40px;
   line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .sectionDescription {
-  font-size: 1.2rem;
-  color: #475569;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.7;
+  max-width: 690px;
+  margin: 22px auto 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.47;
 }
 
-/* Form Section */
 .formSection {
-  max-width: 800px;
-  margin: 0 auto 6rem auto;
+  padding: clamp(28px, 5vw, 64px);
+  border-radius: var(--radius-card);
+  background: var(--parchment);
 }
 
 .consultForm {
-  background: #f8fafc;
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.consultForm.submitting input,
-.consultForm.submitting select,
-.consultForm.submitting textarea {
-  opacity: 0.6;
-  cursor: not-allowed;
-  pointer-events: none;
+  display: grid;
+  gap: 22px;
 }
 
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 18px;
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup:has(#budget) {
-  margin-top: 1.5rem;
-}
-
-.formGroup:has(input[type="checkbox"]) {
-  margin-top: 1.5rem;
+  display: grid;
+  gap: 8px;
 }
 
 .formGroup label {
+  color: var(--ink);
+  font-size: 13px;
   font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
 }
 
-.formGroup input,
+.formGroup input:not([type="checkbox"]),
 .formGroup select,
 .formGroup textarea {
-  padding: 0.875rem 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid var(--hairline);
+  border-radius: 11px;
+  outline: 0;
   background: white;
+  color: var(--ink);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.formGroup textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
 .formGroup input:focus,
 .formGroup select:focus,
 .formGroup textarea:focus {
-  outline: none;
-  border-color: #22c55e;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-}
-
-.formGroup textarea {
-  resize: vertical;
-  min-height: 120px;
-  font-family: inherit;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(26, 95, 63, 0.13);
 }
 
 .checkboxLabel {
-  display: flex;
+  display: flex !important;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 10px;
+  color: var(--muted) !important;
+  font-weight: 400 !important;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #374151;
-  line-height: 1.5;
 }
 
-.checkboxLabel input[type="checkbox"] {
+.checkboxLabel input {
   width: 18px;
   height: 18px;
-  accent-color: #22c55e;
-  margin: 0;
+  flex: 0 0 auto;
+  margin-top: 1px;
+  accent-color: var(--green);
 }
 
 .checkmark {
@@ -128,162 +104,114 @@
 }
 
 .submitButton {
-  width: 100%;
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  min-height: 52px;
+  justify-self: start;
+  padding: 12px 24px;
+  border: 1px solid var(--green);
+  border-radius: var(--radius-pill);
+  background: var(--green);
   color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-  margin-top: 1rem;
 }
 
 .submitButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
-}
-
-.submitButton.submitting {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.7;
+  background: var(--green-hover);
 }
 
 .submitButton:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.7;
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .successMessage {
+  padding: 48px 20px;
   text-align: center;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-  border-radius: 15px;
-  color: white;
-  animation: slideInUp 0.6s ease-out;
-  margin: 2rem 0;
 }
 
 .successIcon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  animation: bounceIn 0.8s ease-out 0.2s both;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-size: 25px;
 }
 
 .successMessage h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  animation: fadeIn 0.6s ease-out 0.4s both;
+  font-size: 32px;
 }
 
 .successMessage p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
-  animation: fadeIn 0.6s ease-out 0.6s both;
+  margin-top: 10px;
+  color: var(--muted);
 }
 
-@keyframes slideInUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .consulenzaSection {
-    padding: 4rem 0;
+    padding: 54px 0;
   }
 
   .container {
-    padding: 0 1rem;
+    width: calc(100% - 32px);
   }
 
   .headerSection {
-    margin-bottom: 3rem;
+    margin-bottom: 30px;
   }
 
-  .formSection {
-    margin-bottom: 4rem;
-  }
-
-  .consultForm {
-    padding: 2rem 1.5rem;
+  .sectionDescription {
+    margin-top: 15px;
+    font-size: 15px;
   }
 
   .formRow {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 14px;
   }
 
-
-}
-
-@media (max-width: 480px) {
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 34px;
   }
 
-  .sectionDescription {
-    font-size: 1rem;
+  .formSection {
+    padding: 22px 18px;
+    margin-inline: -4px;
   }
 
   .consultForm {
-    padding: 1.5rem 1rem;
+    gap: 14px;
   }
 
-  .formGroup input,
+  .formGroup {
+    gap: 6px;
+  }
+
+  .formGroup input:not([type="checkbox"]),
   .formGroup select,
   .formGroup textarea {
-    padding: 0.75rem;
-    font-size: 0.9rem;
+    min-height: 44px;
+    padding: 10px 12px;
+  }
+
+  .formGroup textarea {
+    min-height: 105px;
+  }
+
+  .checkboxLabel {
+    font-size: 11px !important;
   }
 
   .submitButton {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+    width: 100%;
+    min-height: 46px;
   }
+}
 
-
+@media (max-width: 419px) {
+  .sectionTitle {
+    font-size: 32px;
+  }
 }

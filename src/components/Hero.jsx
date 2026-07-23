@@ -1,244 +1,220 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
 import styles from './Hero.module.css';
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoStarted, setVideoStarted] = useState(false);
+  const videoRef = useRef(null);
+  const orbitRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const startVideo = () => {
+      const video = videoRef.current;
+      if (reducedMotion || !videoReady || !video) return;
+
+      video.play().catch(() => {});
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    if (window.scrollY > 1) startVideo();
+    window.addEventListener('scroll', startVideo, { passive: true, once: true });
+
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', startVideo);
+    };
+  }, [videoReady]);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return undefined;
+
+    let animationFrame = null;
+
+    const updateOrbit = () => {
+      animationFrame = null;
+      if (!orbitRef.current) return;
+
+      const rotation = Math.min(54, window.scrollY * 0.075);
+      orbitRef.current.style.setProperty('--orbit-rotation', `${rotation}deg`);
+    };
+
+    const requestUpdate = () => {
+      if (animationFrame === null) {
+        animationFrame = window.requestAnimationFrame(updateOrbit);
+      }
+    };
+
+    updateOrbit();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', requestUpdate);
+      if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
   }, []);
 
+  const handleVideoReady = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.pause();
+    setVideoReady(true);
+  };
+
   return (
-    <>
-      <section 
-        ref={heroRef}
-        className={`${styles.heroContainer} ${isVisible ? styles.visible : ''}`} 
-        id="home"
-      >
-        {/* Luxury Background System */}
-        <div className={styles.backgroundSystem}>
-          <div className={styles.primaryGradient}></div>
-          <div 
-            className={styles.parallaxLayer}
-            style={{
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
-            }}
-          ></div>
-          <div className={styles.noiseTexture}></div>
+    <section className={styles.hero} id="home">
+      <div className={styles.copyColumn}>
+        <div className={styles.copy}>
+          <p className="eyebrow">Mai Senza · con Mauro Simoncini</p>
+          <h1 className="display-title">Impermeabilizzare.<br />Fallo bene, da solo.</h1>
+          <p className={styles.subtitle}>
+            Metodo, cura e il prodotto giusto per proteggere terrazzi, tetti e superfici
+            senza demolire e senza costosi tentativi.
+          </p>
+          <div className={styles.actions}>
+            <a
+              className="button-primary"
+              href="https://wa.me/393938657606?text=Ciao Mauro! Vorrei capire come impermeabilizzare la mia superficie."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Chiedi a Mauro
+            </a>
+            <Link to="mai-senza-esperienza" smooth duration={550} offset={-96} className="button-secondary">
+              Vedi le soluzioni
+            </Link>
+          </div>
+          <img
+            src="/assets/mauro/heromauro.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            decoding="async"
+            className={styles.copyBucket}
+          />
         </div>
+      </div>
 
-        {/* World-Class Content Grid */}
-        <div className={styles.contentGrid}>
-          
-          {/* Left Column - Typography Masterpiece */}
-          <div className={styles.leftColumn}>
-            
-            {/* DESKTOP: Luxury Name System */}
-            <div className={styles.nameSystem}>
-              <div className={styles.nameBlock}>
-                <div className={styles.letterGroup}>
-                  <span className={styles.bigLetter}>M</span>
-                  <div className={styles.wordStack}>
-                    <span className={styles.topWord}>ai</span>
-                    <span className={styles.bottomWord}>auro</span>
-                  </div>
-                </div>
-                <div className={styles.letterGroup}>
-                  <span className={styles.bigLetter}>S</span>
-                  <div className={styles.wordStack}>
-                    <span className={styles.topWord}>enza</span>
-                    <span className={styles.bottomWord}>imoncini</span>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.tagline}>Prodotti e consigli per impermeabilizzare al Top</div>
-            </div>
-
-            {/* DESKTOP: Luxury Pillars */}
-            <div className={styles.pillarsSystem}>
-              <Link
-                to="mai-senza-consigli"
-                smooth={true}
-                duration={1000}
-                className={styles.pillarItem}
-              >
-                <div className={styles.pillarIcon}>
-                  <img src="/assets/icon11.png" alt="Conoscenza" />
-                </div>
-                <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>conoscenza</span></h3>
-                </div>
+      <div className={styles.productSequence}>
+        <div className={styles.productStage}>
+          <div className={styles.productHeroCopy}>
+            <h2><span>Il prodotto</span> <em>giusto</em></h2>
+            <div className={styles.productActions}>
+              <Link to="mai-senza-esperienza" smooth duration={550} offset={-96} className="button-primary">
+                Scopri i casi
               </Link>
-              
-              <Link
-                to="mai-senza-manutenzione"
-                smooth={true}
-                duration={1000}
-                className={styles.pillarItem}
-              >
-                <div className={styles.pillarIcon}>
-                  <img src="/assets/icon22.png" alt="Cura" />
-                </div>
-                <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>cura</span></h3>
-                </div>
-              </Link>
-              
-              <Link
-                to="mai-senza-esperienza"
-                smooth={true}
-                duration={1000}
-                className={styles.pillarItem}
-              >
-                <div className={styles.pillarIcon}>
-                  <img src="/assets/icon33.png" alt="Il Prodotto Giusto" />
-                </div>
-                <div className={styles.pillarContent}>
-                  <h3>Mai senza <span className={styles.pillarHighlight}>il prodotto giusto</span></h3>
-                </div>
-              </Link>
-            </div>
-
-            {/* MOBILE ONLY: Sezione a due colonne */}
-            <div className={styles.mobileTopSection}>
-              {/* Colonna Sinistra: Mai Senza + Pillars */}
-              <div className={styles.mobileLeft}>
-                {/* Luxury Name System */}
-                <div className={styles.nameBlock}>
-                  <div className={styles.letterGroup}>
-                    <span className={styles.bigLetter}>M</span>
-                    <div className={styles.wordStack}>
-                      <span className={styles.topWord}>ai</span>
-                      <span className={styles.bottomWord}>auro</span>
-                    </div>
-                  </div>
-                  <div className={styles.letterGroup}>
-                    <span className={styles.bigLetter}>S</span>
-                    <div className={styles.wordStack}>
-                      <span className={styles.topWord}>enza</span>
-                      <span className={styles.bottomWord}>imoncini</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Pillars sotto Mai Senza */}
-                <div className={styles.pillarsSystem}>
-                  <Link
-                    to="mai-senza-consigli"
-                    smooth={true}
-                    duration={1000}
-                    className={styles.pillarItem}
-                  >
-                    <div className={styles.pillarIcon}>
-                      <img src="/assets/icon11.png" alt="Conoscenza" />
-                    </div>
-                    <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>conoscenza</span></h3>
-                    </div>
-                  </Link>
-                  
-                  <Link
-                    to="mai-senza-manutenzione"
-                    smooth={true}
-                    duration={1000}
-                    className={styles.pillarItem}
-                  >
-                    <div className={styles.pillarIcon}>
-                      <img src="/assets/icon22.png" alt="Cura" />
-                    </div>
-                    <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>cura</span></h3>
-                    </div>
-                  </Link>
-                  
-                  <Link
-                    to="mai-senza-esperienza"
-                    smooth={true}
-                    duration={1000}
-                    className={styles.pillarItem}
-                  >
-                    <div className={styles.pillarIcon}>
-                      <img src="/assets/icon33.png" alt="Il Prodotto Giusto" />
-                    </div>
-                    <div className={styles.pillarContent}>
-                      <h3>Mai senza <span className={styles.pillarHighlight}>il prodotto giusto</span></h3>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Colonna Destra: Foto */}
-              <div className={styles.mobileRight}>
-                <img 
-                  src="/assets/newPhoto.jpg"
-                  alt="Mauro Simoncini"
-                  className={styles.mobilePhoto}
-                />
-              </div>
-            </div>
-
-            {/* Premium Actions */}
-            <div className={styles.actionsSystem}>
-              <a 
-                href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
+              <a
+                className="button-secondary"
+                href="https://wa.me/393938657606?text=Ciao Mauro! Vorrei scegliere il sistema giusto."
                 target="_blank"
-                rel="noopener noreferrer"
-                className={styles.primaryAction}
+                rel="noreferrer"
               >
-                <span className={styles.actionText}>Consulenza Gratuita</span>
-                <span className={styles.actionArrow}>→</span>
+                Chiedi consiglio
               </a>
-              
-              <Link 
-                to="mai-senza-esperienza" 
-                smooth={true} 
-                duration={1000}
-                className={styles.secondaryAction}
+            </div>
+          </div>
+
+          <div
+            className={styles.bucketSequence}
+            role="img"
+            aria-label="Secchio Fibro-gum che ruota fino a mostrare il prodotto e il rullo"
+          >
+            <div
+              ref={orbitRef}
+              className={`${styles.productOrbit} ${videoStarted ? styles.orbitVisible : ''}`}
+              aria-hidden="true"
+            >
+              <img
+                src="/assets/secchio-stile-apple/secchioinaria.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitOne}`}
+              />
+              <img
+                src="/assets/animazione/frame2.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitTwo}`}
+              />
+              <img
+                src="/assets/animazione/frame5.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitThree}`}
+              />
+              <img
+                src="/assets/animazione/frame8.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitFour}`}
+              />
+              <img
+                src="/assets/animazione/frame10.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitFive}`}
+              />
+              <img
+                src="/assets/animazione/frame3.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitSix}`}
+              />
+              <img
+                src="/assets/animazione/frame7.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitSeven}`}
+              />
+              <img
+                src="/assets/animazione/frame9.png"
+                alt=""
+                className={`${styles.orbitItem} ${styles.orbitEight}`}
+              />
+            </div>
+            <img
+              src="/assets/secchio-stile-apple/secchioinaria.png"
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+              decoding="async"
+              className={`${styles.bucketMedia} ${styles.bucketPoster} ${videoStarted ? styles.mediaHidden : ''}`}
+            />
+            <div
+              className={`${styles.bucketMedia} ${styles.videoFrame} ${videoStarted ? styles.mediaReady : ''}`}
+              aria-hidden="true"
+            >
+              <video
+                ref={videoRef}
+                className={styles.bucketVideo}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                disablePictureInPicture
+                onLoadedData={handleVideoReady}
+                onPlaying={() => setVideoStarted(true)}
               >
-                <span className={styles.actionText}>Portfolio Progetti</span>
-              </Link>
-            </div>
-
-          </div>
-
-          {/* Right Column - Visual Excellence */}
-          <div className={styles.rightColumn}>
-            {/* Content overlay per eventuale testo futuro */}
-            <div className={styles.rightColumnContent}>
-              {/* Spazio per contenuto futuro */}
+                <source src="/assets/animazione/video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
-
         </div>
+      </div>
 
-        {/* Luxury Scroll Indicator */}
-        <div className={styles.scrollSystem}>
-          <div className={styles.scrollTrack}>
-            <div className={styles.scrollIndicator}></div>
-          </div>
-        </div>
-
-        {/* Background Accent */}
-        <div className={styles.backgroundAccent}></div>
-
-      </section>
-    </>
+      <div className={styles.pillars}>
+        <Link to="mai-senza-consigli" smooth duration={550} offset={-96} className={styles.pillar}>
+          <span>01</span>
+          <strong>Conoscenza</strong>
+          <small>Capire prima di scegliere</small>
+        </Link>
+        <Link to="mai-senza-manutenzione" smooth duration={550} offset={-96} className={styles.pillar}>
+          <span>02</span>
+          <strong>Cura</strong>
+          <small>Proteggere nel tempo</small>
+        </Link>
+        <Link to="mai-senza-esperienza" smooth duration={550} offset={-96} className={styles.pillar}>
+          <span>03</span>
+          <strong>Prodotto giusto</strong>
+          <small>Una soluzione per ogni supporto</small>
+        </Link>
+      </div>
+    </section>
   );
 };
 

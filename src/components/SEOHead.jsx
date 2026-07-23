@@ -15,6 +15,7 @@ const SEOHead = () => {
     "name": siteName,
     "description": description,
     "url": siteUrl,
+    "logo": `${siteUrl}/assets/brand/mai-senza-mark.png`,
     "telephone": "+39-123-456-7890",
     "email": "info@maisenza.it",
     "address": {
@@ -110,4 +111,4 @@ const SEOHead = () => {
   );
 };
 
-export default SEOHead; 
+export default SEOHead;

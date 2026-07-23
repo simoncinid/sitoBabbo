@@ -1,240 +1,131 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import React, { useEffect, useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 
+const homeLinks = [
+  { id: 'about', label: 'Mauro' },
+  { id: 'mai-senza-consigli', label: 'Conoscenza' },
+  { id: 'mai-senza-manutenzione', label: 'Cura' },
+  { id: 'mai-senza-esperienza', label: 'Soluzioni' },
+  { id: 'faq', label: 'FAQ' },
+];
+
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [open, setOpen] = useState(false);
   const location = useLocation();
+  const onHome = location.pathname === '/';
 
+  useEffect(() => setOpen(false), [location.pathname]);
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'mai-senza-consigli', 'mai-senza-manutenzione', 'mai-senza-esperienza', 'faq', 'novita'];
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i]);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
     };
+  }, [open]);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const renderLink = (item, mobile = false) => {
+    const className = mobile ? styles.mobileLink : styles.navLink;
+    return onHome ? (
+      <ScrollLink
+        key={item.id}
+        to={item.id}
+        smooth
+        duration={550}
+        offset={-96}
+        spy
+        activeClass={styles.active}
+        className={className}
+        onClick={() => setOpen(false)}
+      >
+        {item.label}
+      </ScrollLink>
+    ) : (
+      <RouterLink
+        key={item.id}
+        to={`/#${item.id}`}
+        className={className}
+        onClick={() => setOpen(false)}
+      >
+        {item.label}
+      </RouterLink>
+    );
   };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const navItems = [
-    { id: 'about', label: 'Chi Sono' },
-    { id: 'mai-senza-consigli', label: 'Conoscenza' },
-    { id: 'mai-senza-manutenzione', label: 'Cura' },
-    { id: 'mai-senza-esperienza', label: 'Il Prodotto Giusto' },
-    { id: 'faq', label: 'FAQ' },
-    { id: 'novita', label: 'Articoli' }
-  ];
 
   return (
     <>
-      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${(location.pathname.startsWith('/novita') || location.pathname === '/privacy' || location.pathname === '/termini') && !isScrolled ? styles.greenBg : ''}`}>
-        <div className={styles.navContainer}>
-          {/* Logo */}
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            className={styles.logo}
-            onClick={closeMobileMenu}
-          >
-            <div className={styles.logoIcon}>
-              <img src="/assets/logo.png" alt="Logo" className={styles.logoImage} />
-            </div>
-            <div className={styles.logoText}>
-              <span className={styles.logoTitle}>Mai Senza</span>
-              <span className={styles.logoSubtitle}>prodotti e consigli</span>
-              <span className={styles.logoSubtitle}>per impermeabilizzare al top</span>
-            </div>
-          </Link>
+      <nav className={styles.globalNav} aria-label="Navigazione principale">
+        <div className={styles.navInner}>
+          <RouterLink to="/" className={styles.brand} aria-label="Mai Senza, home">
+            <img
+              className={styles.brandMark}
+              src="/assets/brand/mai-senza-mark.webp"
+              alt=""
+              width="28"
+              height="28"
+            />
+            <span className={styles.brandName}>Mai Senza</span>
+          </RouterLink>
 
-          {/* Desktop Navigation */}
-          <div className={styles.navLinks}>
-            {navItems.map((item) => (
-              item.id === 'novita' ? (
-                <RouterLink
-                  key={item.id}
-                  to="/novita"
-                  className={`${styles.navLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
-                  onClick={closeMobileMenu}
-                  data-section="articoli"
-                >
-                  <span className={styles.navText}>{item.label}</span>
-                  <div className={styles.navIndicator}></div>
-                </RouterLink>
-              ) : location.pathname === '/' ? (
-                <Link
-                  key={item.id}
-                  to={item.id}
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
-                  onClick={closeMobileMenu}
-                >
-                  <span className={styles.navText}>{item.label}</span>
-                  <div className={styles.navIndicator}></div>
-                </Link>
-              ) : (
-                <RouterLink
-                  key={item.id}
-                  to={`/#${item.id}`}
-                  className={styles.navLink}
-                  onClick={closeMobileMenu}
-                >
-                  <span className={styles.navText}>{item.label}</span>
-                  <div className={styles.navIndicator}></div>
-                </RouterLink>
-              )
-            ))}
-          </div>
-
-          {/* Mobile Navbar Text */}
-          <div className={styles.mobileNavbarText}>
-            <span className={styles.mobileNavbarTitle}>Mai Senza</span>
-            <span className={styles.mobileNavbarSubtitle}>prodotti e consigli</span>
-            <span className={styles.mobileNavbarSubtitle}>per impermeabilizzare al top</span>
-          </div>
-
-          {/* CTA Button - Consulenza */}
-          <div className={styles.navCta}>
-            <a
-              href="https://wa.me/393938657606?text=Ciao! Vorrei informazioni sui vostri prodotti per impermeabilizzazione"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaButton}
-              onClick={closeMobileMenu}
+          <div className={styles.desktopLinks}>
+            {homeLinks.map((item) => renderLink(item))}
+            <RouterLink
+              to="/novita"
+              className={`${styles.navLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
             >
-              <span className={styles.ctaText}>Whatsapp</span>
-            </a>
+              Articoli
+            </RouterLink>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.open : ''}`}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu"
+          <a
+            className={styles.navCta}
+            href="https://wa.me/393938657606?text=Ciao Mauro! Vorrei una consulenza sull'impermeabilizzazione."
+            target="_blank"
+            rel="noreferrer"
           >
-            <span className={styles.hamburgerLine}></span>
-            <span className={styles.hamburgerLine}></span>
-            <span className={styles.hamburgerLine}></span>
+            Parliamone
+          </a>
+
+          <button
+            className={`${styles.menuButton} ${open ? styles.menuOpen : ''}`}
+            type="button"
+            aria-label={open ? 'Chiudi menu' : 'Apri menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span />
+            <span />
           </button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        <div className={`${styles.mobileMenuOverlay} ${isMobileMenuOpen ? styles.open : ''}`}>
-          <div className={styles.mobileMenuContent}>
-            <div className={styles.mobileMenuHeader}>
-              <div className={styles.mobileMenuLogo}>
-                <img src="/assets/logo.png" alt="Logo" className={styles.mobileLogoImage} />
-                <div className={styles.mobileLogoTextContainer}>
-                  <span className={styles.mobileLogoTitle}>Mai Senza</span>
-                  <span className={styles.mobileLogoSubtitle}>consigli e prodotti per impermeabilizzare al top</span>
-                </div>
-              </div>
-              <button
-                className={styles.mobileMenuClose}
-                onClick={closeMobileMenu}
-                aria-label="Close mobile menu"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className={styles.mobileNavLinks}>
-              {navItems.map((item, index) => (
-                item.id === 'novita' ? (
-                  <RouterLink
-                    key={item.id}
-                    to="/novita"
-                    className={`${styles.mobileNavLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
-                    onClick={closeMobileMenu}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    data-section="articoli"
-                  >
-                    <span className={styles.mobileNavText}>{item.label}</span>
-                    <span className={styles.mobileNavArrow}>→</span>
-                  </RouterLink>
-                ) : location.pathname === '/' ? (
-                  <Link
-                    key={item.id}
-                    to={item.id}
-                    smooth={true}
-                    duration={500}
-                    className={`${styles.mobileNavLink} ${activeSection === item.id ? styles.active : ''}`}
-                    onClick={closeMobileMenu}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <span className={styles.mobileNavText}>{item.label}</span>
-                    <span className={styles.mobileNavArrow}>→</span>
-                  </Link>
-                ) : (
-                  <RouterLink
-                    key={item.id}
-                    to={`/#${item.id}`}
-                    className={styles.mobileNavLink}
-                    onClick={closeMobileMenu}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <span className={styles.mobileNavText}>{item.label}</span>
-                    <span className={styles.mobileNavArrow}>→</span>
-                  </RouterLink>
-                )
-              ))}
-            </div>
-
-            <div className={styles.mobileMenuFooter}>
-              <a
-                href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.mobileCtaButton}
-                onClick={closeMobileMenu}
-              >
-                <span className={styles.mobileCtaText}>Consulenza</span>
-              </a>
-              
-              <div className={styles.mobileMenuInfo}>
-                <p>Esperti dal 2004</p>
-                <p>5000+ Progetti Completati</p>
-                <p>100% Soddisfazione Garantita</p>
-              </div>
-            </div>
-          </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Backdrop */}
-      {isMobileMenuOpen && (
-        <div
-          className={styles.mobileMenuBackdrop}
-          onClick={closeMobileMenu}
-        />
-      )}
+      <div className={styles.subNav}>
+        <div className={styles.subNavInner}>
+          <span>Impermeabilizzare, senza improvvisare.</span>
+          <RouterLink to="/#consulenza">Consulenza gratuita <span aria-hidden="true">›</span></RouterLink>
+        </div>
+      </div>
+
+      <div
+        className={`${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ''}`}
+        aria-hidden={!open}
+        inert={open ? undefined : ''}
+      >
+        <div className={styles.mobileLinks}>
+          {homeLinks.map((item) => renderLink(item, true))}
+          <RouterLink to="/novita" className={styles.mobileLink} onClick={() => setOpen(false)}>
+            Articoli
+          </RouterLink>
+        </div>
+        <a
+          className="button-primary"
+          href="https://wa.me/393938657606?text=Ciao Mauro! Vorrei una consulenza sull'impermeabilizzazione."
+          target="_blank"
+          rel="noreferrer"
+        >
+          Scrivi a Mauro
+        </a>
+      </div>
     </>
   );
 };

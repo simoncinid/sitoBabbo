@@ -6,17 +6,11 @@ const Consulenza = () => {
     nome: '',
     email: '',
     telefono: '',
-    tipoCliente: 'privato',
-    nomeAzienda: '',
-    partitaIva: '',
-    settoreAttivita: '',
     tipoProgetto: '',
     descrizione: '',
     urgenza: 'normale',
-    budget: '',
     citta: '',
-    privacy: false,
-    newsletter: true
+    privacy: false
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,17 +65,11 @@ const Consulenza = () => {
             nome: '',
             email: '',
             telefono: '',
-            tipoCliente: 'privato',
-            nomeAzienda: '',
-            partitaIva: '',
-            settoreAttivita: '',
             tipoProgetto: '',
             descrizione: '',
             urgenza: 'normale',
-            budget: '',
             citta: '',
-            privacy: false,
-            newsletter: true
+            privacy: false
           });
           setIsSuccess(false);
         }, 4000);
@@ -168,67 +156,6 @@ const Consulenza = () => {
               </div>
             </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="tipoCliente">Tipo Cliente *</label>
-              <select
-                id="tipoCliente"
-                name="tipoCliente"
-                value={formData.tipoCliente}
-                onChange={handleChange}
-                required
-              >
-                <option value="privato">Privato</option>
-                <option value="rivenditore">Rivenditore/Applicatore</option>
-              </select>
-            </div>
-
-            {formData.tipoCliente === 'rivenditore' && (
-              <>
-                <div className={styles.formRow}>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="nomeAzienda">Nome Azienda *</label>
-                    <input
-                      type="text"
-                      id="nomeAzienda"
-                      name="nomeAzienda"
-                      value={formData.nomeAzienda}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="partitaIva">Partita IVA *</label>
-                    <input
-                      type="text"
-                      id="partitaIva"
-                      name="partitaIva"
-                      value={formData.partitaIva}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="settoreAttivita">Settore di Attività *</label>
-                  <select
-                    id="settoreAttivita"
-                    name="settoreAttivita"
-                    value={formData.settoreAttivita}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Seleziona...</option>
-                    <option value="rivenditore-materiali">Rivenditore Materiali Edili</option>
-                    <option value="applicatore-impermeabilizzazioni">Applicatore Impermeabilizzazioni</option>
-                    <option value="impresa-edile">Impresa Edile</option>
-                    <option value="architetto-progettista">Architetto/Progettista</option>
-                    <option value="altro">Altro</option>
-                  </select>
-                </div>
-              </>
-            )}
-
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="tipoProgetto">Tipo di Progetto *</label>
@@ -277,23 +204,6 @@ const Consulenza = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="budget">Budget Indicativo</label>
-              <select
-                id="budget"
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-              >
-                <option value="">Preferisco non specificare</option>
-                <option value="under-500">Sotto i 500€</option>
-                <option value="500-1000">500€ - 1.000€</option>
-                <option value="1000-2500">1.000€ - 2.500€</option>
-                <option value="2500-5000">2.500€ - 5.000€</option>
-                <option value="over-5000">Oltre 5.000€</option>
-              </select>
-            </div>
-
-            <div className={styles.formGroup}>
               <label className={styles.checkboxLabel}>
                 <input
                   type="checkbox"
@@ -304,19 +214,6 @@ const Consulenza = () => {
                 />
                 <span className={styles.checkmark}></span>
                 Accetto il trattamento dei dati personali secondo la privacy policy *
-              </label>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  name="newsletter"
-                  checked={formData.newsletter}
-                  onChange={handleChange}
-                />
-                <span className={styles.checkmark}></span>
-                Iscrivimi alla newsletter
               </label>
             </div>
 
@@ -335,4 +232,4 @@ const Consulenza = () => {
   );
 };
 
-export default Consulenza; 
+export default Consulenza;

@@ -1,327 +1,164 @@
-/* Footer Section - Modern & Clean */
-
-.footerContainer {
-  background: #1e293b;
-  color: white;
+.footer {
+  padding: 64px 0 30px;
+  background: var(--parchment);
+  color: var(--ink);
 }
 
-.container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+.inner {
+  width: min(calc(100% - 48px), 1080px);
+  margin-inline: auto;
 }
 
-/* Footer Main Content */
-.footerContent {
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mark {
+  width: 52px;
+  height: 52px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.brand strong {
+  font-size: 20px;
+}
+
+.brand p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.columns {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 4rem;
-  padding: 4rem 4rem;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 64px;
+  padding: 48px 0;
 }
 
-/* Brand Section */
-.footerBrand {
+.columns > div {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 10px;
 }
 
-.footerLogo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.columns h3 {
+  margin-bottom: 5px;
+  font-size: 13px;
 }
 
-.logoImage {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+.columns a,
+.columns span,
+.columns button {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: left;
 }
 
-.footerLogo h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: white;
-  margin: 0;
+.columns a:hover,
+.columns button:hover {
+  color: var(--green);
 }
 
-.brandDescription {
-  color: #94a3b8;
-  line-height: 1.6;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.contactInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.contactItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #94a3b8;
-  font-size: 0.9rem;
-}
-
-.contactIcon {
-  color: #22c55e;
-  font-size: 1rem;
-}
-
-/* Navigation Links */
-.footerLinks,
-.footerServices,
-.footerSocial {
-  display: flex;
-  flex-direction: column;
-}
-
-.footerTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 1.5rem;
-}
-
-.footerNavList,
-.servicesList {
-  list-style: none;
+.columns button {
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footerNavLink {
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  border: 0;
+  background: transparent;
   cursor: pointer;
 }
 
-.footerNavLink:hover {
-  color: #22c55e;
-}
-
-.servicesList li {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* Social Links */
-.socialLinks {
+.bottom {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  gap: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
 }
 
-.socialLink {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+.bottom p {
+  max-width: 540px;
+  color: #7a7a7a;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
-.socialLink:hover {
-  color: #22c55e;
-}
-
-.socialLink svg {
-  font-size: 1.2rem;
-}
-
-/* Legal Links */
-.legalLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.legalLink {
-  color: #64748b;
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-}
-
-.legalLink:hover {
-  color: #94a3b8;
-}
-
-/* Footer Bottom */
-.footerBottom {
-  border-top: 1px solid #334155;
-  padding: 2rem 0;
-}
-
-.footerBottomContent {
-  text-align: center;
-}
-
-.copyright {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.disclaimer {
-  color: #64748b;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 0;
+@media (max-width: 700px) {
+  .footer {
+    padding: 52px 0 24px;
   }
 
-  .footerContent {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 2rem 1rem;
+  .inner {
+    width: calc(100% - 32px);
   }
 
-  .footerBrand {
-    text-align: center;
-    order: 1;
-  }
-
-  .brandDescription {
-    text-align: center;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .contactInfo {
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .contactItem {
-    justify-content: center;
-    font-size: 0.8rem;
-    flex: 1;
-    min-width: 120px;
-  }
-
-  .contactIcon {
-    font-size: 0.9rem;
-  }
-
-  .footerSocial {
-    text-align: center;
-    order: 2;
-  }
-
-  .footerTitle {
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .socialLinks {
-    justify-content: center;
-    flex-direction: row;
-    gap: 1rem;
-  }
-
-  .socialLink {
-    justify-content: center;
-    font-size: 0.8rem;
-    gap: 0.5rem;
-  }
-
-  .legalLinks {
-    justify-content: center;
-    text-align: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .legalLink {
-    display: inline-block;
-    font-size: 0.75rem;
-  }
-
-  .footerBottom {
-    padding: 1.5rem 1rem;
-  }
-
-  .copyright {
-    font-size: 0.8rem;
-  }
-
-  .disclaimer {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .footerContent {
-    grid-template-columns: 1fr;
-    padding: 1.5rem 0;
-    gap: 1rem;
-  }
-
-  .footerBrand {
-    margin-bottom: 1rem;
-  }
-
-  .footerLogo {
+  .top {
+    align-items: center;
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footerLogo h3 {
-    font-size: 1.1rem;
-  }
-
-  .brandDescription {
-    font-size: 0.8rem;
-  }
-
-  .contactInfo {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footerLinks,
-  .footerServices {
+    gap: 22px;
+    padding-bottom: 34px;
     text-align: center;
   }
 
-  .socialLinks {
-    gap: 0.8rem;
-  }
-
-  .legalLinks {
+  .brand {
+    align-items: center;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 10px;
   }
 
-  .copyright {
-    font-size: 0.75rem;
+  .brand p {
+    max-width: 280px;
   }
 
-  .disclaimer {
-    font-size: 0.65rem;
+  .top > a {
+    min-width: 170px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding: 34px 0;
+  }
+
+  .columns > div {
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .columns h3 {
+    font-size: 11px;
+  }
+
+  .columns a,
+  .columns span,
+  .columns button {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .bottom {
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .bottom p {
+    font-size: 9px;
   }
 }

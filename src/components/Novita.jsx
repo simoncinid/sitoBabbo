@@ -1,355 +1,209 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { FaSearch, FaCalendar, FaUser, FaArrowRight, FaArrowLeft, FaTags, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import styles from './Novita.module.css';
 
+const articles = [
+  {
+    id: 1,
+    title: 'Adesione a fiamma?  5 criticità spesso sottovalutate.',
+    slug: 'adesione-a-fiamma5-criticita-spesso-sottovalutate',
+    date: '19 dicembre 2024',
+    excerpt: 'Fiamma libera, continuità del manto e competenze: i rischi da conoscere prima di scegliere il sistema.',
+    image: '/assets/news1.png',
+    category: 'Tecnica',
+    readTime: '5 min',
+  },
+  {
+    id: 2,
+    title: 'Mai Senza approfondire. La norma ISO 4628?',
+    date: '19 dicembre 2024',
+    excerpt: 'Lo standard internazionale per valutare difetti e cambiamenti nell’aspetto dei rivestimenti liquidi.',
+    image: '/assets/generated/iso-4628-laboratorio.png',
+    category: 'Normative',
+    readTime: '4 min',
+  },
+  {
+    id: 3,
+    title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
+    date: '19 dicembre 2024',
+    excerpt: 'Riflettanza solare ed emissività termica: cosa misurano e perché contano davvero.',
+    image: '/assets/news2.png',
+    category: 'Efficienza Energetica',
+    readTime: '3 min',
+  },
+  {
+    id: 4,
+    title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
+    date: '19 dicembre 2024',
+    excerpt: 'Impianti in esercizio, geometrie complesse e una vecchia guaina: intervenire senza fermare il lavoro.',
+    image: '/assets/news33.jpg',
+    category: 'Case Study',
+    readTime: '7 min',
+  },
+  {
+    id: 5,
+    title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
+    date: '19 dicembre 2024',
+    excerpt: 'Tre modi per proteggere una superficie piastrellata senza demolire, con criteri e limiti.',
+    image: '/assets/news4.jpg',
+    category: 'Guide',
+    readTime: '8 min',
+  },
+  {
+    id: 6,
+    title: 'Lastrico solare: impermeabilizzare senza demolire',
+    slug: 'use-case-lastrico-solare-senza-demolire',
+    date: '23 luglio 2026',
+    excerpt: 'Un lastrico con infiltrazioni recuperato con un ciclo liquido continuo e senza rimuovere il supporto.',
+    image: '/assets/generated/lastrico-solare-fibrogum.png',
+    category: 'Case Study',
+    readTime: '6 min',
+  },
+  {
+    id: 7,
+    title: 'Lamiere coibentate: protezione continua e resistente',
+    slug: 'use-case-lamiere-coibentate-protette',
+    date: '23 luglio 2026',
+    excerpt: 'La protezione di una copertura metallica usurata senza sostituire i pannelli ancora efficienti.',
+    image: '/assets/generated/lamiere-coibentate-fibrogum.png',
+    category: 'Case Study',
+    readTime: '5 min',
+  },
+  {
+    id: 8,
+    title: 'Guaina bituminosa: rinnovarla senza rimuoverla',
+    slug: 'use-case-guaina-bituminosa-rinnovata',
+    date: '23 luglio 2026',
+    excerpt: 'Una vecchia guaina recuperata con un sistema liquido compatibile e termoriflettente.',
+    image: '/assets/generated/guaina-rinnovata-fibrogum.png',
+    category: 'Case Study',
+    readTime: '6 min',
+  },
+];
+
+const slugify = (title) => title
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9\s-]/g, '')
+  .trim()
+  .replace(/\s+/g, '-')
+  .replace(/-+/g, '-');
+
 const Novita = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredArticles, setFilteredArticles] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('Tutti');
-  const [isSearching, setIsSearching] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 4;
-  
-  const articles = [
-    {
-      id: 1,
-      title: 'Adesione a fiamma?  5 criticità spesso sottovalutate.',
-      date: '19/12/2024',
-      author: 'Mauro Simoncini',
-      excerpt: 'L\'uso di fiamma libera comporta rischi e criticità spesso sottovalutate che possono compromettere l\'efficacia dell\'impermeabilizzazione.',
-      content: 'L\'uso di fiamma libera comporta un\'elevata esposizione a innesco. Senza adeguate barriere protettive, il pericolo è concreto. La posa richiede operatori qualificati e un\'applicazione non conforme può compromettere la continuità del manto.',
-      image: '/assets/news1.png',
-      category: 'Tecnica',
-      readTime: '5 min'
-    },
-    {
-      id: 2,
-      title: 'Mai Senza approfondire. La norma ISO 4628?',
-      date: '19/12/2024',
-      author: 'Mauro Simoncini',
-      excerpt: 'La norma ISO 4628 è una serie di standard internazionali che definiscono un sistema per valutare i difetti e i cambiamenti nell\'aspetto dei rivestimenti liquidi.',
-      content: 'La norma ISO 4628 è fondamentale per garantire la qualità dei rivestimenti. Un prodotto conforme assicura controllo dei difetti, mantenimento dell\'aspetto estetico e resistenza al degrado superficiale.',
-      image: null,
-      isTextHeader: true,
-      headerTitle: 'Mai Senza approfondire la norma ISO 4628',
-      category: 'Normative',
-      readTime: '4 min'
-    },
-    {
-      id: 3,
-      title: 'In che modo un alto valore SRI aiuta a ridurre il surriscaldamento delle coperture?',
-      date: '19/12/2024',
-      author: 'Mauro Simoncini',
-      excerpt: 'L\'SRI (Solar Reflectance Index) aiuta a ridurre il surriscaldamento delle coperture combinando due proprietà: alta riflettanza solare e alta emissività termica.',
-      content: 'Un alto valore di SRI significa che il materiale riflette più radiazione solare e disperde meglio il calore, riducendo la temperatura superficiale del tetto e limitando il trasferimento di calore agli ambienti interni.',
-      image: '/assets/news2.png',
-      category: 'Efficienza Energetica',
-      readTime: '3 min'
-    },
-    {
-      id: 4,
-      title: 'Siamo su una copertura industriale attiva, in provincia di Grosseto.',
-      date: '19/12/2024',
-      author: 'Mauro Simoncini',
-      excerpt: 'Impianti in esercizio, geometrie complesse, vecchia guaina da trattare. Non si può demolire, non si possono scollegare gli impianti. Serve un approccio diverso.',
-      content: 'FibroGum è stato scelto perché si applica senza demolizione del sottostante, è conforme alle normative vigenti e rende possibile lavorare in continuità senza il fermo degli impianti. Soluzione documentabile per la DL.',
-      image: '/assets/news33.jpg',
-      additionalImages: ['/assets/news35.jpg', '/assets/news34.jpg'],
-      category: 'Case Study',
-      readTime: '7 min'
-    },
-    {
-      id: 5,
-      title: 'Ecco cosa sapere (e valutare) se hai un terrazzo, un balcone o una copertura piastrellata da proteggere una volta per tutte.',
-      date: '19/12/2024',
-      author: 'Mauro Simoncini',
-      excerpt: 'L\'esposizione alla pioggia senza protezione adeguata può causare infiltrazioni, distacco delle piastrelle, muffe e danni alla struttura dell\'edificio.',
-      content: 'Esistono 3 modi per intervenire senza demolire: sovrapposizione su superficie esistente, intervento su massetto grezzo o impermeabilizzazione trasparente. Ogni superficie ha le sue esigenze specifiche.',
-      image: '/assets/news4.jpg',
-      category: 'Guide',
-      readTime: '8 min'
-    }
-  ];
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('Tutti');
+  const categories = ['Tutti', ...new Set(articles.map((article) => article.category))];
+  const filtered = useMemo(() => articles.filter((article) => {
+    const categoryMatch = category === 'Tutti' || article.category === category;
+    const queryMatch = `${article.title} ${article.excerpt}`.toLowerCase().includes(query.toLowerCase());
+    return categoryMatch && queryMatch;
+  }), [category, query]);
 
-  const categories = ['Tutti', 'Tecnica', 'Normative', 'Efficienza Energetica', 'Case Study', 'Guide'];
-  
-  useEffect(() => {
-    let results = articles;
-    
-    // Filtro per categoria
-    if (selectedCategory !== 'Tutti') {
-      results = results.filter(article => article.category === selectedCategory);
-    }
-    
-    // Filtro per ricerca
-    if (searchTerm.trim() !== '') {
-      setIsSearching(true);
-      results = results.filter(article => 
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.category.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else {
-      setIsSearching(false);
-    }
-    
-    setFilteredArticles(results);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [searchTerm, selectedCategory]);
-
-  // Calculate pagination
-  const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
-  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const nextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-  const prevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  
-  const clearSearch = () => {
-    setSearchTerm('');
-    setSelectedCategory('Tutti');
-    setIsSearching(false);
-  };
-
-  // Create URL-friendly slug from title
-  const createSlug = (title) => {
-    return title
-      .toLowerCase()
-      .replace(/[àáâãäå]/g, 'a')
-      .replace(/[èéêë]/g, 'e')
-      .replace(/[ìíîï]/g, 'i')
-      .replace(/[òóôõö]/g, 'o')
-      .replace(/[ùúûü]/g, 'u')
-      .replace(/[ç]/g, 'c')
-      .replace(/[ñ]/g, 'n')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim('-');
-  };
-  
-      return (
-      <div className={styles.novitaPage}>
-        <Navbar />
-
-      
-
-      {/* Search and Filter Section */}
-      <section className={styles.searchSection}>
-        <div className={styles.container}>
-          {/* Barra di ricerca avanzata */}
-          <div className={styles.searchContainer}>
-            <div className={styles.searchBox}>
-              <FaSearch className={styles.searchIcon} />
-              <input
-                type="text"
-                placeholder="Cerca articoli, tecnologie, casi studio..."
-                value={searchTerm}
-                onChange={handleSearch}
-                className={styles.searchInput}
-              />
-              {searchTerm && (
-                <button 
-                  type="button" 
-                  onClick={clearSearch}
-                  className={styles.clearButton}
-                  title="Cancella ricerca"
-                >
-                  ×
-                </button>
-              )}
-            </div>
+  return (
+    <div className={styles.page}>
+      <Navbar />
+      <main>
+        <header className={styles.hero}>
+          <div className="site-container">
+            <p className="eyebrow">Mai Senza · Articoli</p>
+            <h1 className="display-title">Capire meglio.<br />Lavorare meglio.</h1>
+            <p>Approfondimenti tecnici, guide pratiche e casi reali spiegati senza gergo inutile.</p>
           </div>
+        </header>
 
-          {/* Filtri per categoria */}
-          <div className={styles.categoryFilters}>
-            <span className={styles.filterLabel}>
-              <FaTags className={styles.filterIcon} />
-              Filtra per categoria:
-            </span>
-            <div className={styles.categoryButtons}>
-              {categories.map((category) => (
+        <section className={styles.filters} aria-label="Filtra articoli">
+          <div className={styles.filterInner}>
+            <label className={styles.search}>
+              <span className="sr-only">Cerca negli articoli</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 5 5" /></svg>
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Cerca un argomento"
+              />
+              {query && <button type="button" onClick={() => setQuery('')} aria-label="Cancella ricerca">×</button>}
+            </label>
+            <div className={styles.categories}>
+              {categories.map((item) => (
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`${styles.categoryButton} ${selectedCategory === category ? styles.active : ''}`}
+                  type="button"
+                  className={category === item ? styles.active : ''}
+                  onClick={() => setCategory(item)}
+                  key={item}
                 >
-                  {category}
+                  {item}
                 </button>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* Statistiche ricerca */}
-          <div className={styles.searchStats}>
-            <span className={styles.resultsCount}>
-              {filteredArticles.length} {filteredArticles.length === 1 ? 'articolo trovato' : 'articoli trovati'}
-            </span>
-            {(isSearching || selectedCategory !== 'Tutti') && (
-              <button onClick={clearSearch} className={styles.resetFilters}>
-                Cancella filtri
-              </button>
-            )}
-          </div>
-        </div>
-      </section>
+        <section className={styles.articles}>
+          <div className="site-container">
+            <div className={styles.resultLine}>
+              <h2>{filtered.length} {filtered.length === 1 ? 'articolo' : 'articoli'}</h2>
+              {(query || category !== 'Tutti') && (
+                <button type="button" onClick={() => { setQuery(''); setCategory('Tutti'); }}>Azzera filtri</button>
+              )}
+            </div>
 
-      {/* Articles Section */}
-      <section className={styles.articlesSection}>
-        <div className={styles.container}>
-          {filteredArticles.length > 0 ? (
-            <>
-              <div className={styles.articlesGrid}>
-                {currentArticles.map((article) => (
-                  <RouterLink 
-                    key={article.id} 
-                    to={`/novita/${createSlug(article.title)}`}
-                    className={styles.articleCardLink}
+            {filtered.length ? (
+              <div className={styles.grid}>
+                {filtered.map((article, index) => (
+                  <Link
+                    className={`${styles.card} ${index === 0 ? styles.featured : ''}`}
+                    to={`/novita/${article.slug || slugify(article.title)}`}
+                    key={article.id}
                   >
-                    <article className={styles.articleCard}>
-                      <div className={styles.articleImage}>
-                        {article.isTextHeader ? (
-                          <div className={styles.textHeader}>
-                            <h3 className={styles.textHeaderTitle}>{article.headerTitle}</h3>
-                          </div>
-                        ) : (
-                          <>
-                            <img src={article.image} alt={article.title} loading="lazy" />
-                            {article.additionalImages && (
-                              <div className={styles.multipleImagesIndicator}>
-                                <span>+{article.additionalImages.length}</span>
-                              </div>
-                            )}
-                          </>
-                        )}
-                        <div className={styles.categoryBadge}>
-                          {article.category}
-                        </div>
-                        <div className={styles.readTime}>
-                          {article.readTime}
-                        </div>
+                    <div className={styles.image}>
+                      <img src={article.image} alt="" />
+                    </div>
+                    <div className={styles.cardBody}>
+                      <div className={styles.meta}>
+                        <span>{article.category}</span>
+                        <span>{article.readTime}</span>
                       </div>
-                      
-                      <div className={styles.articleContent}>
-                        <div className={styles.articleMeta}>
-                          <span className={styles.metaItem}>
-                            <FaCalendar className={styles.metaIcon} />
-                            {article.date}
-                          </span>
-                          <span className={styles.metaItem}>
-                            <FaUser className={styles.metaIcon} />
-                            {article.author}
-                          </span>
-                        </div>
-                        
-                        <h2 className={styles.articleTitle}>{article.title}</h2>
-                        <p className={styles.articleExcerpt}>{article.excerpt}</p>
-                        
-                        <div className={styles.readMoreButton}>
-                          Leggi l'articolo completo
-                          <FaArrowRight className={styles.buttonIcon} />
-                        </div>
-                      </div>
-                    </article>
-                  </RouterLink>
+                      <h2>{article.title}</h2>
+                      <p>{article.excerpt}</p>
+                      <span className={styles.link}>Leggi l’articolo <span aria-hidden="true">›</span></span>
+                    </div>
+                  </Link>
                 ))}
               </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className={styles.pagination}>
-                  <button 
-                    onClick={prevPage} 
-                    disabled={currentPage === 1}
-                    className={`${styles.paginationButton} ${styles.paginationArrow}`}
-                  >
-                    <FaChevronLeft />
-                  </button>
-                  
-                  <div className={styles.paginationNumbers}>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                      <button
-                        key={number}
-                        onClick={() => paginate(number)}
-                        className={`${styles.paginationButton} ${currentPage === number ? styles.active : ''}`}
-                      >
-                        {number}
-                      </button>
-                    ))}
-                  </div>
-                  
-                  <button 
-                    onClick={nextPage} 
-                    disabled={currentPage === totalPages}
-                    className={`${styles.paginationButton} ${styles.paginationArrow}`}
-                  >
-                    <FaChevronRight />
-                  </button>
-                </div>
-              )}
-            </>
-          ) : (
-            <div className={styles.noResults}>
-              <div className={styles.noResultsIcon}>🔍</div>
-              <h3>Nessun articolo trovato</h3>
-              <p>
-                Non abbiamo trovato articoli che corrispondono ai tuoi criteri di ricerca.
-                <br />
-                Prova a modificare i termini di ricerca o i filtri.
-              </p>
-              <button onClick={clearSearch} className={styles.resetButton}>
-                Mostra tutti gli articoli
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      
-
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-        <div className={styles.container}>
-          <div className={styles.ctaCard}>
-            <h3 className={styles.ctaTitle}>Hai un progetto di impermeabilizzazione?</h3>
-            <p className={styles.ctaText}>
-              Contattami per una consulenza personalizzata. Con oltre 20 anni di esperienza, 
-              posso aiutarti a trovare la soluzione perfetta per le tue esigenze.
-            </p>
-            <div className={styles.ctaButtons}>
-              <a
-                href="https://wa.me/393938657606?text=Ciao! Ho letto i tuoi articoli e vorrei una consulenza"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.ctaButtonPrimary}
-              >
-                Consulenza WhatsApp
-              </a>
-              <RouterLink to="/" className={styles.ctaButtonSecondary}>
-                Scopri i Servizi
-              </RouterLink>
-            </div>
+            ) : (
+              <div className={styles.empty}>
+                <h2>Nessun articolo trovato.</h2>
+                <p>Prova un altro termine o torna a tutti gli articoli.</p>
+                <button className="button-primary" type="button" onClick={() => { setQuery(''); setCategory('Tutti'); }}>
+                  Mostra tutto
+                </button>
+              </div>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
 
-              <Footer />
+        <section className={styles.cta}>
+          <div className="site-container">
+            <p className="eyebrow">Il tuo progetto</p>
+            <h2 className="section-heading">Dalla teoria al tuo caso.</h2>
+            <p>Hai letto qualcosa che somiglia al tuo problema? Raccontamelo.</p>
+            <a
+              className="button-primary"
+              href="https://wa.me/393938657606?text=Ciao Mauro! Ho letto i tuoi articoli e vorrei parlarti del mio progetto."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Scrivi a Mauro
+            </a>
+          </div>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 };
 
-export default Novita; 
+export default Novita;

@@ -1,102 +1,64 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-scroll';
+import React from 'react';
 import styles from './MaiSenzaManutenzione.module.css';
 
-const MaiSenzaManutenzione = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section 
-      ref={sectionRef}
-      className={`${styles.manutContainer} ${isVisible ? styles.visible : ''}`} 
-      id="mai-senza-manutenzione"
-    >
-      <div className={styles.container}>
-        {/* Header Section */}
-        <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Mai Senza Cura</h2>
-          <h4 className={styles.sectionSubtitle}>
-            Perchè l'impermeabilizzazione non finisce con l'applicazione
-          </h4>
-          <p className={styles.sectionDescription}>
-            Il 73% dei danni strutturali poteva essere evitato con una semplice cura preventiva.
-          </p>
-        </div>
-
-        {/* Professional Comparison */}
-        <div className={styles.comparisonSection}>
-          <div className={styles.comparisonGrid}>
-            <div className={styles.preventionCard}>
-              <div className={styles.cardImage}>
-                <img 
-                  src="/assets/1.webp" 
-                  alt="Cura preventiva professionale"
-                  className={styles.comparisonImage}
-                />
-                
-              </div>
-              
-            </div>
-
-            <div className={styles.emergencyCard}>
-              <div className={styles.cardImage}>
-                <video 
-                  src="/assets/video3.mp4" 
-                  alt="Video danni da infiltrazioni non trattate"
-                  className={styles.comparisonVideo}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-                
-              </div>
-              
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className={styles.ctaSection}>
-          <div className={styles.offerCard}>
-            <p className={styles.conclusionText}>
-              <strong>La differenza è evidente:</strong> un piccolo investimento oggi ti protegge da costi enormi domani.
-            </p>
-            
-            
-            
-            <a
-              href="https://wa.me/393938657606?text=Ciao! Vorrei una consulenza gratuita per impermeabilizzazione"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaButton}
-            >
-              Richiedi Consulenza Gratuita
-            </a>
-            
-          </div>
-        </div>
+const MaiSenzaManutenzione = () => (
+  <section className={styles.section} id="mai-senza-manutenzione">
+    <div className={styles.intro}>
+      <p className={styles.eyebrow}>02 · Cura</p>
+      <h2 className="section-heading">Il lavoro non finisce<br />con l’applicazione.</h2>
+      <p className={styles.lead}>
+        Una cura programmata protegge il sistema, mantiene le prestazioni
+        e trasforma un piccolo controllo in un grande risparmio.
+      </p>
+      <div className={styles.metric}>
+        <strong className={styles.metricValue}>73%</strong>
+        <span className={styles.metricText}>
+          dei danni strutturali può essere evitato con una semplice cura preventiva.
+        </span>
       </div>
-    </section>
-  );
-};
+    </div>
+
+    <div className={styles.comparison}>
+      <article>
+        <div className={styles.comparisonImage}>
+          <img
+            src="/assets/generated/manutenzione-preventiva.png"
+            alt="Tecnico durante il controllo preventivo di una copertura impermeabilizzata"
+          />
+        </div>
+        <div className={styles.cardCopy}>
+          <p className="eyebrow">Prima</p>
+          <h3>Controllare oggi.</h3>
+          <p>Ispezione, pulizia e piccoli ripristini prima che l’acqua trovi spazio.</p>
+        </div>
+      </article>
+      <article className={styles.darkCard}>
+        <div className={styles.comparisonImage}>
+          <img
+            src="/assets/generated/danno-infiltrazione.png"
+            alt="Danno da infiltrazione con umidità e distacco dell’intonaco"
+          />
+        </div>
+        <div className={styles.cardCopy}>
+          <p className={styles.darkEyebrow}>Dopo</p>
+          <h3>Riparare domani.</h3>
+          <p>Demolizioni, infiltrazioni e costi che una manutenzione avrebbe evitato.</p>
+        </div>
+      </article>
+    </div>
+
+    <div className={styles.cta}>
+      <p><strong>La differenza è semplice:</strong> un piccolo gesto oggi protegge da costi enormi domani.</p>
+      <a
+        className="button-primary"
+        href="https://wa.me/393938657606?text=Ciao Mauro! Vorrei programmare un controllo della mia impermeabilizzazione."
+        target="_blank"
+        rel="noreferrer"
+      >
+        Valuta lo stato della superficie
+      </a>
+    </div>
+  </section>
+);
 
 export default MaiSenzaManutenzione;

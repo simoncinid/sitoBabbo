@@ -10,4 +10,10 @@
 
 /robots.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600 
+  Cache-Control: public, max-age=3600
+
+/_vercel/insights/script.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/_vercel/insights/vitals.js
+  Cache-Control: public, max-age=31536000, immutable 

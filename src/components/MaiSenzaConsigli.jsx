@@ -1,301 +1,138 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './MaiSenzaConsigli.module.css';
 
+const lessons = [
+  { title: 'Preparare il supporto', meta: 'Le basi · 6 min', src: '/assets/video1.mp4' },
+  { title: 'Leggere una scheda tecnica', meta: 'Prodotti · 8 min', src: '/assets/video2.mp4' },
+  { title: 'Evitare gli errori comuni', meta: 'Metodo · 5 min', src: '/assets/video4.mp4' },
+];
+
+const topics = [
+  ['SRI, elasticità, consumo', 'Capisci cosa dicono davvero i numeri prima di acquistare.'],
+  ['Primer: quando serve', 'Riconosci supporto, assorbimento e compatibilità.'],
+  ['Una superficie pronta', 'Preparazione, pulizia e dettagli che cambiano il risultato.'],
+  ['Applicazione corretta', 'Tempi, spessori e condizioni per non vanificare il lavoro.'],
+];
+
 const MaiSenzaConsigli = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [fullscreenVideoIndex, setFullscreenVideoIndex] = useState(0);
-  const sectionRef = useRef(null);
-  const videoRefs = useRef([]);
-  const fullscreenVideoRef = useRef(null);
+  const [activeLesson, setActiveLesson] = useState(0);
+  const galleryRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Avvia autoplay dei video quando la sezione è visibile
-          if (!isFullscreen) {
-            videoRefs.current.forEach(video => {
-              if (video) {
-                video.play().catch(e => console.log('Autoplay prevented:', e));
-              }
-            });
-          }
-        } else {
-          // Pausa i video quando la sezione non è visibile
-          if (!isFullscreen) {
-            videoRefs.current.forEach(video => {
-              if (video) {
-                video.pause();
-              }
-            });
-          }
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isFullscreen]);
-
-  const openFullscreen = (videoIndex) => {
-    setFullscreenVideoIndex(videoIndex);
-    setIsFullscreen(true);
-    // Pausa tutti i video normali
-    videoRefs.current.forEach(video => {
-      if (video) video.pause();
+  const selectLesson = (index) => {
+    const safeIndex = Math.max(0, Math.min(lessons.length - 1, index));
+    setActiveLesson(safeIndex);
+    galleryRef.current?.children[safeIndex]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
     });
   };
 
-  const closeFullscreen = () => {
-    setIsFullscreen(false);
-    if (fullscreenVideoRef.current) {
-      fullscreenVideoRef.current.pause();
-    }
-  };
-
-  const nextFullscreenVideo = () => {
-    setFullscreenVideoIndex((prev) => (prev + 1) % videos.length);
-  };
-
-  const prevFullscreenVideo = () => {
-    setFullscreenVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
-  };
-
-  // Gestione tasti freccia per fullscreen
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (isFullscreen) {
-        if (e.key === 'ArrowRight') nextFullscreenVideo();
-        if (e.key === 'ArrowLeft') prevFullscreenVideo();
-        if (e.key === 'Escape') closeFullscreen();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isFullscreen]);
-
-  const videos = [
-    {
-      id: 1,
-      title: 'Impermeabilizzazione Terrazzo',
-      duration: '12:45',
-      videoSrc: '/assets/video1.mp4'
-    },
-    {
-      id: 2,
-      title: 'Tecniche di Applicazione',
-      duration: '18:30',
-      videoSrc: '/assets/video2.mp4'
-    },
-    {
-      id: 3,
-      title: 'Cura Preventiva',
-      duration: '15:20',
-      videoSrc: '/assets/video4.mp4'
-    }
-  ];
-
-  const nextVideo = () => {
-    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-  };
-
-  const prevVideo = () => {
-    setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+  const updateActiveOnScroll = () => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+    const center = gallery.scrollLeft + gallery.clientWidth / 2;
+    const cards = Array.from(gallery.children);
+    const closest = cards.reduce((best, card, index) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2;
+      const distance = Math.abs(cardCenter - center);
+      return distance < best.distance ? { index, distance } : best;
+    }, { index: 0, distance: Infinity });
+    setActiveLesson(closest.index);
   };
 
   return (
-    <>
-    <section 
-      ref={sectionRef}
-      className={`${styles.consigliContainer} ${isVisible ? styles.visible : ''}`} 
-      id="mai-senza-consigli"
-    >
-      <div className={styles.container}>
-        {/* Header Section */}
-        <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Mai Senza Conoscenza</h2>
-          <h4 className={styles.sectionSubtitle}>
-            Perchè chi sa, sceglie meglio
-          </h4>
-          <p className={styles.sectionDescription}>
-            Ogni superficie ha <strong>le sue regole</strong>, ogni prodotto ha <strong>i suoi limiti</strong> e ogni lavoro ha bisogno di una <strong>preparazione precisa</strong>.
-            <br /><br />
-            Qui comprenderai il perché, prima di acquistare, è opportuno conoscere: <br></br>
-            • Come leggere una scheda tecnica<br />
-            • Cosa significano i valori come SRI, elasticità, consumo<br />
-            • Come si prepara una superficie davvero pronta all'applicazione<br />
-            • Quando, se e come usare un primer<br />
-            • Come evitare gli errori più frequenti
-            <br></br><br></br>
-            <strong>Prima di acquistare<br></br>Se non sai, <a
-              href="https://wa.me/393938657606?text=Ciao! Ho un dubbio prima di acquistare"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#4CAF50',
-                fontWeight: 'bold',
-                textDecoration: 'underline',
-                cursor: 'pointer'
-              }}
-            >
-              chiedi qua
-            </a></strong>
+    <section className={styles.section} id="mai-senza-consigli">
+      <div className="site-container">
+        <header className={styles.header}>
+          <div>
+            <p className="eyebrow">01 · Conoscenza</p>
+            <h2 className="section-heading">Prima capisci.<br />Poi scegli.</h2>
+          </div>
+          <p className={styles.headerCopy}>
+            Ogni superficie ha le sue regole e ogni prodotto i suoi limiti.
+            Qui impari il perché, prima ancora del come.
           </p>
-        </div>
+        </header>
 
-        {/* Videos Grid - Desktop */}
-        <div className={styles.videosGrid}>
-          {videos.map((video, index) => (
-            <div key={video.id} className={styles.videoCard}>
-              <div className={styles.videoThumbnail}>
-                <video 
-                  ref={(el) => {
-                    videoRefs.current[index] = el;
-                  }}
-                  src={video.videoSrc}
-                  className={styles.thumbnailImage}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  onClick={() => openFullscreen(index)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  Your browser does not support the video tag.
-                </video>
-                <button 
-                  className={styles.fullscreenButton}
-                  onClick={() => openFullscreen(index)}
-                  aria-label="Visualizza a schermo intero"
-                >
-                  ⛶
-                </button>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* Video Gallery - Mobile */}
-        <div className={styles.videoGallery}>
-          <div className={styles.galleryContainer}>
-            <button 
-              className={styles.galleryNav + ' ' + styles.navPrev}
-              onClick={prevVideo}
-              aria-label="Video precedente"
-            >
-              ‹
-            </button>
-            
-            <div className={styles.gallerySlide}>
-              <div className={styles.videoCard}>
-                <div className={styles.videoThumbnail}>
-                  <video 
-                    ref={(el) => {
-                      videoRefs.current[currentVideoIndex] = el;
-                    }}
-                    src={videos[currentVideoIndex].videoSrc}
-                    className={styles.thumbnailImage}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    onClick={() => openFullscreen(currentVideoIndex)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                  <button 
-                    className={styles.fullscreenButton}
-                    onClick={() => openFullscreen(currentVideoIndex)}
-                    aria-label="Visualizza a schermo intero"
-                  >
-                    ⛶
-                  </button>
-                </div>
-
-              </div>
-            </div>
-            
-            <button 
-              className={styles.galleryNav + ' ' + styles.navNext}
-              onClick={nextVideo}
-              aria-label="Video successivo"
-            >
-              ›
-            </button>
-          </div>
-          
-          <div className={styles.galleryDots}>
-            {videos.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.galleryDot} ${index === currentVideoIndex ? styles.active : ''}`}
-                onClick={() => setCurrentVideoIndex(index)}
-                aria-label={`Vai al video ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* POPUP FUORI DAL CONTAINER - SI POSIZIONA RELATIVO AL VIEWPORT */}
-    {isFullscreen && (
-      <div className={styles.fullscreenModal} onClick={closeFullscreen}>
-        <div className={styles.fullscreenContent} onClick={(e) => e.stopPropagation()}>
-          <button 
-            className={styles.closeButton}
-            onClick={closeFullscreen}
-            aria-label="Chiudi"
-          >
-            ✕
-          </button>
-          
-          <video 
-            ref={fullscreenVideoRef}
-            src={videos[fullscreenVideoIndex].videoSrc}
-            className={styles.fullscreenVideo}
-            controls
-            autoPlay
-          >
-            Your browser does not support the video tag.
-          </video>
-          
-          <button 
-            className={styles.fullscreenNav + ' ' + styles.prevButton}
-            onClick={prevFullscreenVideo}
+        <div className={styles.galleryShell}>
+          <button
+            className={`${styles.galleryArrow} ${styles.previous}`}
+            type="button"
+            onClick={() => selectLesson(activeLesson - 1)}
+            disabled={activeLesson === 0}
             aria-label="Video precedente"
           >
             ‹
           </button>
-          
-          <div className={styles.fullscreenInfo}>
-            <h3 className={styles.fullscreenTitle}>{videos[fullscreenVideoIndex].title}</h3>
-            <div className={styles.videoCounter}>
-              {fullscreenVideoIndex + 1} / {videos.length}
-            </div>
+
+          <div className={styles.lessonGrid} ref={galleryRef} onScroll={updateActiveOnScroll}>
+            {lessons.map((lesson) => (
+              <article className={styles.lessonCard} key={lesson.title}>
+                <div className={styles.lessonMedia}>
+                  <video
+                    src={lesson.src}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label={lesson.title}
+                  />
+                </div>
+                <div className={styles.lessonCopy}>
+                  <p>{lesson.meta}</p>
+                  <h3>{lesson.title}</h3>
+                </div>
+              </article>
+            ))}
           </div>
-          
-          <button 
-            className={styles.fullscreenNav + ' ' + styles.nextButton}
-            onClick={nextFullscreenVideo}
+
+          <button
+            className={`${styles.galleryArrow} ${styles.next}`}
+            type="button"
+            onClick={() => selectLesson(activeLesson + 1)}
+            disabled={activeLesson === lessons.length - 1}
             aria-label="Video successivo"
           >
             ›
           </button>
         </div>
+
+        <div className={styles.galleryDots} aria-label="Seleziona video">
+          {lessons.map((lesson, index) => (
+            <button
+              type="button"
+              key={lesson.title}
+              className={activeLesson === index ? styles.activeDot : ''}
+              onClick={() => selectLesson(index)}
+              aria-label={`Vai al video ${index + 1}`}
+              aria-current={activeLesson === index}
+            />
+          ))}
+        </div>
+
+        <div className={styles.topicGrid}>
+          {topics.map(([title, copy], index) => (
+            <article className={styles.topic} key={title}>
+              <span>0{index + 1}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.prompt}>
+          <p>Hai un dubbio prima di acquistare?</p>
+          <a
+            className="button-primary"
+            href="https://wa.me/393938657606?text=Ciao Mauro! Ho un dubbio prima di acquistare."
+            target="_blank"
+            rel="noreferrer"
+          >
+            Chiedi prima di scegliere
+          </a>
+        </div>
       </div>
-    )}
-    </>
+    </section>
   );
 };
 

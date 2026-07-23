@@ -1,45 +1,10 @@
-/* Performance Optimizations */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Optimize font loading */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2');
-}
-
-/* Critical CSS for above-the-fold content */
 .App {
   min-height: 100vh;
-  background: #0a0f0a;
-  color: white;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  background: var(--canvas);
+  color: var(--ink);
+  overflow: clip;
 }
 
-/* SEO-friendly hidden text for screen readers */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -52,112 +17,10 @@
   border: 0;
 }
 
-/* Focus indicators for accessibility */
-*:focus {
-  outline: 2px solid #43a047;
-  outline-offset: 2px;
-}
-
-/* Cursor Follower - Solo Desktop */
-.cursor-follower {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  background: rgba(67, 160, 71, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  backdrop-filter: blur(2px);
-  will-change: transform;
-}
-
-/* Effetto hover su elementi interattivi */
-a:hover ~ .cursor-follower,
-button:hover ~ .cursor-follower,
-.cursor-follower:hover {
-  transform: translate(-50%, -50%) scale(1.5);
-  background: rgba(67, 160, 71, 0.5);
-}
-
-/* Lazy loading optimization */
-img {
-  loading: lazy;
-  decoding: async;
-}
-
-/* Critical images should be eager loaded */
-img[data-critical] {
-  loading: eager;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Print styles */
 @media print {
-  .cursor-follower,
   nav,
-  button {
+  button,
+  .cookie-banner {
     display: none !important;
   }
-  
-  * {
-    background: white !important;
-    color: black !important;
-  }
 }
-
-.section-title {
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-}
-
-.section-title:after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary-color);
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  font-weight: 700;
-  transition: all 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0d62d0;
-}
-
-.btn-secondary {
-  background-color: var(--dark-color);
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: var(--primary-color);
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 3rem 0;
-  }
-} 

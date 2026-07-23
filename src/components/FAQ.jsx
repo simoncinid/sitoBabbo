@@ -1,103 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-scroll';
+import React, { useState } from 'react';
 import styles from './FAQ.module.css';
 
+const questions = [
+  {
+    question: 'Posso impermeabilizzare una guaina ardesiata?',
+    answer: 'Sì. Con un sistema compatibile è possibile intervenire sulla guaina esistente, dopo averne verificato stato, aderenza e preparazione.',
+  },
+  {
+    question: 'Quanto dura un’impermeabilizzazione liquida ben fatta?',
+    answer: 'Può superare i 10 anni. La durata dipende da prodotto, preparazione, spessore applicato, esposizione e manutenzione periodica.',
+  },
+  {
+    question: 'Membrana liquida o guaina prefabbricata?',
+    answer: 'La membrana liquida crea un film continuo senza giunti e si applica senza fiamme. La scelta corretta dipende però dal supporto e dal risultato richiesto.',
+  },
+  {
+    question: 'Posso fare il lavoro da solo?',
+    answer: 'Molti interventi sono alla portata di un privato preparato. Prima bisogna valutare supporto, dettagli critici, sicurezza e ciclo completo.',
+  },
+  {
+    question: 'Ogni quanto va controllata la superficie?',
+    answer: 'In media ogni tre anni, e sempre dopo eventi atmosferici importanti. Un controllo visivo periodico permette di intervenire prima del danno.',
+  },
+];
+
 const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const faqData = [
-    {
-      id: 1,
-      question: "Posso impermeabilizzare una guaina ardesiata?",
-      answer: "Certamente,con le membrane impermeabilizzanti Fibrogum si può impermeabilizzare qualsiasi tipo di guaina ardesiata."
-    },
-    {
-      id: 2,
-      question: "Quanto dura un'impermeabilizzazione liquida ben fatta?",
-      answer: "Un'impermeabilizzazione eseguita correttamente può durare oltre i 10 anni a seconda del tipo di prodotto utilizzato, della qualità dell'applicazione e della manutenzione."
-    },
-    {
-      id: 3,
-      question: "Qual è la differenza principale tra le membrane liquide impermeabilizzanti e le guaine prefabbricate?",
-      answer: "Le membrane liquide rappresentano il futuro  dell'impermeabilizzazione  moderna, si applicano a rullo, pennello o airless ,senza bisogno  di fiamme  libere e creano un film continuo senza giunti."
-    },
-    {
-      id: 4,
-      question: "Posso fare da solo l'impermeabilizzazione della mia copertura?",
-      answer: "Con le membrane impermeabilizzanti Fibrogum ed il mio aiuto potrai riuscire ad avere un risultato da professionista"
-    },
-    {
-      id: 5,
-      question: "Ogni quanto controllare l'impermeabilizzazione eseguita?",
-      answer: "Mediamente ogni 3 anni deve essere fatto un controllo sulla copertura, se hai utilizzato la tecnica del colore spia,avrai immediatamente l'avviso di una eventuale manutenzione"
-    }
-  ];
-
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+  const [active, setActive] = useState(0);
 
   return (
-    <section 
-      ref={sectionRef}
-      className={`${styles.faqContainer} ${isVisible ? styles.visible : ''}`} 
-      id="faq"
-    >
-      <div className={styles.container}>
-        {/* Header Section */}
-        <div className={styles.headerSection}>
-          <h2 className={styles.sectionTitle}>Domande Frequenti</h2>
-          <p className={styles.sectionDescription}>
-            Risposte alle domande più comuni sull'impermeabilizzazione. 
-            Non trovi quello che cerchi? Contattaci per una consulenza personalizzata.
-          </p>
-        </div>
-
-        {/* FAQ List */}
-        <div className={styles.faqSection}>
-          <div className={styles.faqList}>
-            {faqData.map((faq, index) => (
-              <div 
-                key={faq.id} 
-                className={`${styles.faqItem} ${activeIndex === index ? styles.active : ''}`}
-              >
-                <button 
-                  className={styles.faqQuestion}
-                  onClick={() => toggleFAQ(index)}
+    <section className={styles.section} id="faq">
+      <div className="site-container">
+        <header className={styles.header}>
+          <p className="eyebrow">Domande frequenti</p>
+          <h2 className="section-heading">Risposte chiare.<br />Prima di iniziare.</h2>
+        </header>
+        <div className={styles.layout}>
+          <div className={styles.list}>
+            {questions.map((item, index) => (
+              <article className={`${styles.item} ${active === index ? styles.active : ''}`} key={item.question}>
+                <button
+                  type="button"
+                  aria-expanded={active === index}
+                  onClick={() => setActive(active === index ? -1 : index)}
                 >
-                  <span className={styles.questionText}>{faq.question}</span>
-                  <span className={styles.expandIcon}>
-                    {activeIndex === index ? '−' : '+'}
-                  </span>
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">{active === index ? '−' : '+'}</span>
                 </button>
-                <div className={styles.faqAnswer}>
-                  <p className={styles.answerText}>{faq.answer}</p>
+                <div className={styles.answer}>
+                  <p>{item.answer}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
+          <aside className={styles.aside}>
+            <span>Non trovi il tuo dubbio?</span>
+            <h3>Ogni caso parte da una domanda.</h3>
+            <p>Mandami due righe e, se puoi, una foto della superficie.</p>
+            <a
+              className="button-primary"
+              href="https://wa.me/393938657606?text=Ciao Mauro! Ho una domanda sulla mia impermeabilizzazione."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Fai la tua domanda
+            </a>
+          </aside>
         </div>
-
-        
       </div>
     </section>
   );

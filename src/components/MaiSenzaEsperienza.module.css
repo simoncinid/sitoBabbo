@@ -1,520 +1,183 @@
-/* Container principale */
-.esperienzaContainer {
-  background: linear-gradient(135deg, #f8fffe 0%, #e8f5e8 50%, #f0f8f0 100%);
-  padding: 3rem 0;
-  position: relative;
-  overflow: hidden;
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.8s ease;
+.section {
+  padding: var(--section-space) 0;
+  background: var(--dark);
+  color: white;
 }
 
-.esperienzaContainer.visible {
-  opacity: 1;
-  transform: translateY(0);
+.header {
+  max-width: 860px;
 }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--green-on-dark);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* Header Section */
-.headerSection {
-  text-align: center;
-  margin-bottom: 2rem;
+.header > p:last-child {
+  max-width: 670px;
+  margin-top: 26px;
+  color: #bbc2bd;
+  font-size: 19px;
 }
 
-.sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: var(--gray-900);
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-}
-
-.sectionDescription {
-  font-size: 1.2rem;
-  color: var(--black);
- 
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* Stats Section */
-.statsSection {
-  margin-bottom: 2rem;
-}
-
-.statsGrid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 56px;
 }
 
-.statCard {
-  background: white;
-  border-radius: 15px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(26, 95, 63, 0.1);
-}
-
-.statCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-.statNumber {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  line-height: 1;
-}
-
-.statLabel {
-  font-size: 1rem;
-  color: var(--gray-600);
-  font-weight: 500;
-}
-
-/* Case Studies Section */
-.caseStudiesSection {
-  margin-bottom: 2rem;
-}
-
-.caseStudiesTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--gray-900);
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.caseStudiesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.caseCard {
-  background: white;
-  border-radius: 15px;
+.card {
+  display: block;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(26, 95, 63, 0.1);
+  border-radius: var(--radius-card);
+  background: white;
+  color: var(--ink);
+  transition: transform 180ms ease;
 }
 
-.caseCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .caseImage {
-  position: relative;
-  height: 200px;
+  min-height: 320px;
+  height: 320px;
   overflow: hidden;
 }
 
-.casePhoto {
+.caseImage img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.caseCard:hover .casePhoto {
-  transform: scale(1.05);
+.cardBody {
+  padding: 28px;
 }
 
-.caseOverlay {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(26, 95, 63, 0.9);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.caseContent {
-  padding: 1.5rem;
-}
-
-.caseTitle {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 0.5rem;
-}
-
-.caseDescription {
-  font-size: 1rem;
-  color: var(--gray-600);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-.caseDetails {
-  margin-bottom: 1.5rem;
-}
-
-.caseDetail {
-  font-size: 0.9rem;
-  color: var(--gray-600);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.caseDetail strong {
-  color: var(--gray-900);
-}
-
-.caseFooter {
+.cardTopline {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  color: var(--green);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.sectionSubtitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--gray-900);
-  margin-bottom: 2.5rem;
+.card h3 {
+  margin-top: 18px;
+  font-size: 26px;
 }
 
-.caseInvestment {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
+.card dl {
+  display: grid;
+  gap: 0;
+  margin-top: 24px;
+}
+
+.card dl div {
+  padding: 13px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.card dt {
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.card dd {
+  font-size: 14px;
+}
+
+.readCase {
   display: inline-block;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(26, 95, 63, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.caseInvestment::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.caseInvestment:hover::before {
-  left: 100%;
-}
-
-.caseInvestment:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(26, 95, 63, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-/* CTA Section */
-.ctaSection {
-  display: flex;
-  justify-content: center;
-}
-
-.ctaCard {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 3rem;
-  text-align: center;
-  max-width: 600px;
-  border: 1px solid rgba(26, 95, 63, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.ctaTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 1rem;
-}
-
-.ctaDescription {
-  font-size: 1.1rem;
-  color: var(--gray-600);
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.ctaButton {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  text-decoration: none;
+  margin-top: 22px;
+  color: var(--green);
+  font-size: 14px;
   font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 20px rgba(26, 95, 63, 0.3);
 }
 
-.ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26, 95, 63, 0.4);
-}
-
-/* Case Gallery - Mobile Only */
-.caseGallery {
-  display: none;
-}
-
-.galleryContainer {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.gallerySlide {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.galleryNav {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.galleryNav:hover {
-  background: var(--primary-dark);
-  transform: scale(1.1);
-}
-
-.galleryDots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.galleryDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background: var(--gray-300);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.galleryDot.active {
-  background: var(--primary-color);
-  transform: scale(1.2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .esperienzaContainer {
-    padding: 2rem 0;
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(310px, 1fr));
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-right: 16px;
   }
 
-  .caseDetail{
+  .card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    max-width: 100%;
+    margin-inline: auto;
     text-align: center;
   }
 
-  .container {
-    padding: 0 1rem;
+  .header > p:last-child {
+    margin-inline: auto;
+    font-size: 16px;
   }
 
-  .headerSection {
-    margin-bottom: 3rem;
+  .grid {
+    width: calc(100% + 32px);
+    display: flex;
+    gap: 12px;
+    margin-top: 34px;
+    margin-inline: -16px;
+    padding: 0 8vw 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
 
-  .sectionTitle {
-    font-size: clamp(2rem, 6vw, 3rem);
-    margin-bottom: 1.5rem;
-  }
-
-  .sectionDescription {
-    font-size: 1.1rem;
-  }
-
-  /* Mobile: Statistiche su una sola riga ridimensionate */
-  .statsGrid {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .statCard {
-    padding: 1rem;
-  }
-
-  .statNumber {
-    font-size: 1.5rem;
-  }
-
-  .statLabel {
-    font-size: 0.8rem;
-  }
-
-  /* Mobile: Nascondi grid normale e mostra gallery */
-  .caseStudiesSection {
+  .grid::-webkit-scrollbar {
     display: none;
   }
 
-  .caseGallery {
-    display: block;
+  .card {
+    width: 82vw;
+    max-width: 350px;
+    flex: 0 0 82vw;
+    scroll-snap-align: center;
   }
 
   .caseImage {
-    height: 180px;
+    height: 280px;
+    min-height: 280px;
   }
 
-  /* Centramento migliore del contenuto delle card */
-  .caseContent {
-    padding: 1.2rem;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+  .cardBody {
+    padding: 22px;
   }
 
-  .caseTitle {
-    text-align: center !important;
-    margin-bottom: 0.8rem !important;
+  .card h3 {
+    margin-top: 14px;
+    font-size: 24px;
   }
 
-  .caseDescription {
-    text-align: center !important;
-    margin-bottom: 1rem !important;
+  .card dl {
+    margin-top: 18px;
   }
 
-  .caseDetails {
-    text-align: left !important;
-    width: 100% !important;
-    max-width: 280px !important;
+  .card dl div {
+    padding: 10px 0;
   }
 
-  .caseDetail {
-    text-align: left !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  .caseFooter {
-    text-align: center !important;
-    margin-top: 1rem !important;
-  }
-
-  .ctaCard {
-    padding: 2rem 1.5rem;
-  }
-
-  .ctaTitle {
-    font-size: 1.5rem;
-  }
-
-  .ctaButton {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
+  .readCase {
+    margin-top: 17px;
   }
 }
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .sectionDescription {
-    font-size: 1rem;
-  }
-
-  .statsGrid {
-    gap: 0.5rem;
-  }
-
-  .statCard {
-    padding: 0.8rem;
-  }
-
-  .statNumber {
-    font-size: 1.3rem;
-  }
-
-  .statLabel {
-    font-size: 0.7rem;
-  }
-
-  .caseImage {
-    height: 160px;
-  }
-
-  /* Centramento migliore del contenuto delle card per mobile piccolo */
-  .caseContent {
-    padding: 1rem;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  .caseTitle {
-    text-align: center !important;
-    margin-bottom: 0.6rem !important;
-  }
-
-  .caseDescription {
-    text-align: center !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  .caseDetails {
-    text-align: left !important;
-    width: 100% !important;
-    max-width: 250px !important;
-  }
-
-  .caseDetail {
-    text-align: left !important;
-    margin-bottom: 0.6rem !important;
-    font-size: 0.85rem !important;
-  }
-
-  .caseFooter {
-    text-align: center !important;
-    margin-top: 0.8rem !important;
-  }
-
-  .ctaCard {
-    padding: 1.5rem 1rem;
-  }
-} 
