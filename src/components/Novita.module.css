@@ -3,8 +3,19 @@
 }
 
 .hero {
+  position: relative;
   padding: 80px 0;
+  overflow: hidden;
   background: white;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.desktopHeroPortrait {
+  display: none;
 }
 
 .hero h1 {
@@ -245,6 +256,20 @@
 
 .cta a {
   margin-top: 28px;
+}
+
+@media (min-width: 900px) {
+  .desktopHeroPortrait {
+    width: clamp(400px, 32vw, 500px);
+    max-width: none;
+    display: block;
+    position: absolute;
+    right: clamp(-115px, -7vw, -95px);
+    bottom: -1px;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
 }
 
 @media (max-width: 760px) {

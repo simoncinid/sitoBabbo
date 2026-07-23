@@ -1,73 +1,151 @@
 const mysql = require('mysql2/promise');
 const { Pool: PostgresPool } = require('pg');
+const tls = require('tls');
 
 const REQUIRED_ENV = ['DB_HOST', 'DB_NAME', 'DB_PASSWORD', 'DB_PORT', 'DB_USER'];
 let pool;
 let schemaPromise;
 
-function getDatabaseKind() {
-  const explicit = String(process.env.DB_DIALECT || '').toLowerCase();
-  if (explicit === 'postgres' || explicit === 'postgresql' || explicit === 'pg') return 'postgres';
-  if (explicit === 'mysql' || explicit === 'mariadb') return 'mysql';
-  return String(process.env.DB_PORT) === '5432' ? 'postgres' : 'mysql';
+function isEnabled(value) {
+  return !['', '0', 'false', 'off', 'no', 'disabled'].includes(String(value || '').toLowerCase());
 }
 
-function getCertificate() {
-  const value = process.env.TLS_CERT;
+function getDatabaseKind(env = process.env) {
+  const explicit = String(env.DB_DIALECT || '').toLowerCase();
+  if (explicit === 'postgres' || explicit === 'postgresql' || explicit === 'pg') return 'postgres';
+  if (explicit === 'mysql' || explicit === 'mariadb') return 'mysql';
+
+  const connectionString = String(env.DATABASE_URL || '').trim().toLowerCase();
+  if (connectionString.startsWith('postgres://') || connectionString.startsWith('postgresql://')) {
+    return 'postgres';
+  }
+  if (connectionString.startsWith('mysql://') || connectionString.startsWith('mariadb://')) {
+    return 'mysql';
+  }
+
+  return String(env.DB_PORT) === '5432' ? 'postgres' : 'mysql';
+}
+
+function normalizeTlsPem(value) {
   if (!value) return undefined;
 
-  const withNewlines = value.replace(/\\n/g, '\n');
-  if (withNewlines.includes('BEGIN CERTIFICATE')) return withNewlines;
+  const extractPemBlocks = (input) => {
+    const expanded = String(input)
+      .trim()
+      .replace(/\\r/g, '')
+      .replace(/\\n/g, '\n');
+    const blocks = expanded.match(
+      /-----BEGIN CERTIFICATE-----[\s\S]*?-----END CERTIFICATE-----/g,
+    );
+    return blocks?.length ? blocks.join('\n') : undefined;
+  };
+
+  const directPem = extractPemBlocks(value);
+  if (directPem) return directPem;
 
   try {
-    const decoded = Buffer.from(value, 'base64').toString('utf8');
-    return decoded.includes('BEGIN CERTIFICATE') ? decoded : withNewlines;
+    const decoded = Buffer.from(String(value).trim(), 'base64').toString('utf8');
+    return extractPemBlocks(decoded) || String(value).trim();
   } catch {
-    return withNewlines;
+    return String(value).trim();
   }
 }
 
-function wantsSsl() {
-  const value = String(process.env.DB_SSL || '').toLowerCase();
-  return !['', '0', 'false', 'off', 'no', 'disabled'].includes(value) || Boolean(process.env.TLS_CERT);
+function extractHostFromDatabaseUrl(connectionString) {
+  try {
+    return new URL(connectionString).hostname || undefined;
+  } catch {
+    return undefined;
+  }
 }
 
-function getConfig() {
-  const missing = REQUIRED_ENV.filter((key) => !process.env[key]);
+function stripSslParamsFromDatabaseUrl(connectionString) {
+  try {
+    const parsed = new URL(connectionString);
+    ['ssl', 'sslmode', 'sslcert', 'sslkey', 'sslrootcert'].forEach((key) => {
+      parsed.searchParams.delete(key);
+    });
+    return parsed.toString();
+  } catch {
+    return connectionString;
+  }
+}
+
+function getDiscreteConfig(env = process.env) {
+  const missing = REQUIRED_ENV.filter((key) => !env[key]);
   if (missing.length) {
     throw new Error(`Configurazione database incompleta: ${missing.join(', ')}`);
   }
 
   return {
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    port: Number(process.env.DB_PORT),
+    host: env.DB_HOST,
+    database: env.DB_NAME,
+    user: env.DB_USER,
+    password: env.DB_PASSWORD,
+    port: Number(env.DB_PORT),
   };
+}
+
+function resolveSslConfig(env = process.env, host) {
+  const certificate = normalizeTlsPem(env.TLS_CERT);
+  if (certificate) {
+    return {
+      rejectUnauthorized: true,
+      ca: certificate,
+      ...(host ? {
+        checkServerIdentity: (_servername, peerCertificate) => (
+          tls.checkServerIdentity(host, peerCertificate)
+        ),
+      } : {}),
+    };
+  }
+  return isEnabled(env.DB_SSL) ? { rejectUnauthorized: false } : undefined;
+}
+
+function resolvePgPoolConfig(env = process.env) {
+  const rawConnectionString = String(env.DATABASE_URL || '').trim();
+
+  if (rawConnectionString) {
+    const hostFromUrl = extractHostFromDatabaseUrl(rawConnectionString);
+    const mustForceSslConfig = Boolean(normalizeTlsPem(env.TLS_CERT) || isEnabled(env.DB_SSL));
+    const config = {
+      connectionString: mustForceSslConfig
+        ? stripSslParamsFromDatabaseUrl(rawConnectionString)
+        : rawConnectionString,
+      ...(hostFromUrl ? { host: hostFromUrl } : {}),
+    };
+    const ssl = resolveSslConfig(env, hostFromUrl);
+    if (ssl) config.ssl = ssl;
+    return config;
+  }
+
+  const config = getDiscreteConfig(env);
+  const ssl = resolveSslConfig(env, config.host);
+  return { ...config, ...(ssl ? { ssl } : {}) };
+}
+
+function resolveMysqlPoolConfig(env = process.env) {
+  const config = getDiscreteConfig(env);
+  const certificate = normalizeTlsPem(env.TLS_CERT);
+  const ssl = certificate
+    ? { rejectUnauthorized: true, ca: certificate }
+    : (isEnabled(env.DB_SSL) ? { rejectUnauthorized: false } : undefined);
+  return { ...config, ...(ssl ? { ssl } : {}) };
 }
 
 function getPool() {
   if (pool) return pool;
 
-  const config = getConfig();
-  const certificate = getCertificate();
-  const ssl = wantsSsl()
-    ? { rejectUnauthorized: Boolean(certificate), ...(certificate ? { ca: certificate } : {}) }
-    : undefined;
-
   if (getDatabaseKind() === 'postgres') {
     pool = new PostgresPool({
-      ...config,
-      ssl,
+      ...resolvePgPoolConfig(),
       max: 5,
       idleTimeoutMillis: 10000,
       connectionTimeoutMillis: 10000,
     });
   } else {
     pool = mysql.createPool({
-      ...config,
-      ssl,
+      ...resolveMysqlPoolConfig(),
       waitForConnections: true,
       connectionLimit: 5,
       queueLimit: 0,
@@ -168,7 +246,11 @@ async function ensureSchema() {
 }
 
 module.exports = {
+  extractHostFromDatabaseUrl,
   ensureSchema,
   getDatabaseKind,
+  normalizeTlsPem,
   query,
+  resolvePgPoolConfig,
+  stripSslParamsFromDatabaseUrl,
 };

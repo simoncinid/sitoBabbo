@@ -39,11 +39,17 @@ const Novita = () => {
       <Navbar />
       <main>
         <header className={styles.hero}>
-          <div className="site-container">
+          <div className={`site-container ${styles.heroContent}`}>
             <p className="eyebrow">Mai Senza · Articoli</p>
             <h1 className="display-title">Capire meglio.<br />Lavorare meglio.</h1>
             <p>Approfondimenti tecnici, guide pratiche e casi reali spiegati senza gergo inutile.</p>
           </div>
+          <img
+            className={styles.desktopHeroPortrait}
+            src="/assets/mauro/heromauro.png"
+            alt=""
+            aria-hidden="true"
+          />
         </header>
 
         <section className={styles.filters} aria-label="Filtra articoli">
