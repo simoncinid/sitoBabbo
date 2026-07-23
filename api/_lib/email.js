@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 
+const RECIPIENT_EMAIL = process.env.GMAIL_RECIPIENT || 'simonciniliquiplast@gmail.com';
+
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -100,7 +102,7 @@ async function sendFormEmail(body) {
 
   await transporter.sendMail({
     from: address,
-    to: address,
+    to: RECIPIENT_EMAIL,
     subject,
     html,
     replyTo,

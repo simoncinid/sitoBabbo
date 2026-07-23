@@ -69,10 +69,7 @@ const Navbar = () => {
 
           <div className={styles.desktopLinks}>
             {homeLinks.map((item) => renderLink(item))}
-            <RouterLink
-              to="/novita"
-              className={`${styles.navLink} ${location.pathname.startsWith('/novita') ? styles.active : ''}`}
-            >
+            <RouterLink to="/novita" className={`${styles.navLink} ${styles.navLinkFeatured}`}>
               Articoli
             </RouterLink>
           </div>
@@ -113,7 +110,11 @@ const Navbar = () => {
       >
         <div className={styles.mobileLinks}>
           {homeLinks.map((item) => renderLink(item, true))}
-          <RouterLink to="/novita" className={styles.mobileLink} onClick={() => setOpen(false)}>
+          <RouterLink
+            to="/novita"
+            className={`${styles.mobileLink} ${styles.mobileLinkFeatured}`}
+            onClick={() => setOpen(false)}
+          >
             Articoli
           </RouterLink>
         </div>

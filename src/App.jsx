@@ -15,6 +15,7 @@ import Novita from './components/Novita';
 import ArticleDetail from './components/ArticleDetail';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TerminiServizio from './components/TerminiServizio';
+import Admin from './components/Admin';
 import CookieBanner from './components/CookieBanner';
 import { CookieManager } from './utils/CookieManager';
 import './App.css';
@@ -53,6 +54,26 @@ function HomePage() {
   );
 }
 
+function AppContent() {
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith('/admin');
+
+  return (
+    <div className="App">
+      {!isAdmin && <SEOHead />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/novita" element={<Novita />} />
+        <Route path="/novita/:slug" element={<ArticleDetail />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/termini" element={<TerminiServizio />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+      {!isAdmin && <CookieBanner />}
+    </div>
+  );
+}
+
 function App() {
   useEffect(() => {
     CookieManager.init();
@@ -62,17 +83,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <ScrollToTop />
-        <div className="App">
-          <SEOHead />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/novita" element={<Novita />} />
-            <Route path="/novita/:slug" element={<ArticleDetail />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/termini" element={<TerminiServizio />} />
-          </Routes>
-          <CookieBanner />
-        </div>
+        <AppContent />
       </Router>
     </HelmetProvider>
   );

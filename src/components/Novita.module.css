@@ -145,6 +145,16 @@
   transition: transform 500ms ease;
 }
 
+.imageFallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .card:hover .image img {
   transform: scale(1.025);
 }

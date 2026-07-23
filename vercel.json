@@ -37,6 +37,18 @@
       "destination": "/api/send-email.js"
     },
     {
+      "source": "/api/articles",
+      "destination": "/api/articles.js"
+    },
+    {
+      "source": "/api/admin/session",
+      "destination": "/api/admin/session.js"
+    },
+    {
+      "source": "/api/admin/articles",
+      "destination": "/api/admin/articles.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
