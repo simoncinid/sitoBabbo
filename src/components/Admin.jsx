@@ -12,7 +12,6 @@ import {
   FaTrash,
   FaUpload,
 } from 'react-icons/fa';
-import { upload as uploadToBlob } from '@vercel/blob/client';
 import { formatArticleDate, slugify } from '../utils/articlesApi';
 import styles from './Admin.module.css';
 
@@ -56,24 +55,74 @@ async function adminRequest(url, options = {}) {
 }
 
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const MAX_UPLOAD_BYTES = 3 * 1024 * 1024;
 
-function buildUploadPathname(filename) {
-  const safe = String(filename || 'immagine')
-    .normalize('NFKD')
-    .replace(/[^\w.-]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 80) || 'immagine';
-  return `articles/${Date.now()}-${safe}`;
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(',')[1]);
+    reader.onerror = () => reject(new Error('Lettura file non riuscita.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function compressImageForUpload(file) {
+  if (file.type === 'image/gif' || file.size <= MAX_UPLOAD_BYTES * 0.7) {
+    return file;
+  }
+
+  const bitmap = await createImageBitmap(file);
+  const maxWidth = 1920;
+  const scale = Math.min(1, maxWidth / bitmap.width);
+  const width = Math.max(1, Math.round(bitmap.width * scale));
+  const height = Math.max(1, Math.round(bitmap.height * scale));
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d');
+  if (!context) {
+    bitmap.close();
+    return file;
+  }
+
+  context.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close();
+
+  let quality = 0.88;
+  let blob = await new Promise((resolve) => {
+    canvas.toBlob(resolve, 'image/jpeg', quality);
+  });
+
+  while (blob && blob.size > MAX_UPLOAD_BYTES && quality > 0.52) {
+    quality -= 0.08;
+    blob = await new Promise((resolve) => {
+      canvas.toBlob(resolve, 'image/jpeg', quality);
+    });
+  }
+
+  if (!blob) {
+    throw new Error('Compressione immagine non riuscita.');
+  }
+  if (blob.size > MAX_UPLOAD_BYTES) {
+    throw new Error('Immagine troppo grande. Prova un file più piccolo o in JPG.');
+  }
+
+  const safeName = file.name.replace(/\.[^.]+$/, '') || 'immagine';
+  return new File([blob], `${safeName}.jpg`, { type: 'image/jpeg' });
 }
 
 async function uploadImage(file) {
-  const blob = await uploadToBlob(buildUploadPathname(file.name), file, {
-    access: 'public',
-    handleUploadUrl: '/api/admin/upload',
-    contentType: file.type,
+  const prepared = await compressImageForUpload(file);
+  const data = await readFileAsBase64(prepared);
+  return adminRequest('/api/admin/upload', {
+    method: 'POST',
+    body: JSON.stringify({
+      filename: prepared.name,
+      contentType: prepared.type,
+      data,
+    }),
   });
-  return { url: blob.url, contentType: blob.contentType || file.type };
 }
 
 async function deleteUploadedImage(url) {
@@ -102,8 +151,8 @@ function ImageUploadField({ label, value, onChange, onUnauthorized }) {
       setError('Formato non supportato. Usa JPG, PNG, WebP o GIF.');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      setError('Immagine troppo grande. Massimo 5 MB.');
+    if (file.size > 8 * 1024 * 1024) {
+      setError('Immagine troppo grande. Massimo 8 MB dal dispositivo.');
       return;
     }
 
@@ -178,8 +227,8 @@ function GalleryUploadField({ images, onChange, onUnauthorized }) {
         setError('Formato non supportato. Usa JPG, PNG, WebP o GIF.');
         return;
       }
-      if (file.size > 5 * 1024 * 1024) {
-        setError('Immagine troppo grande. Massimo 5 MB.');
+      if (file.size > 8 * 1024 * 1024) {
+        setError('Immagine troppo grande. Massimo 8 MB dal dispositivo.');
         return;
       }
     }

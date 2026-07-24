@@ -1,11 +1,11 @@
 const fs = require('fs/promises');
 const path = require('path');
-const { del } = require('@vercel/blob');
-const { handleUpload } = require('@vercel/blob/client');
-const { requireAdmin, validateMutationOrigin, verifySession } = require('../_lib/adminAuth');
+const { put, del } = require('@vercel/blob');
+const { requireAdmin, validateMutationOrigin } = require('../_lib/adminAuth');
 
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-const MAX_BYTES = 5 * 1024 * 1024;
+const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+// Limite Vercel Functions ~4.5 MB sul body JSON; teniamo margine sul file binario.
+const MAX_BYTES = 3 * 1024 * 1024;
 
 function sanitizeFilename(name) {
   return String(name || 'immagine')
@@ -26,12 +26,18 @@ function isBlobConfigured() {
   return false;
 }
 
-function getBlobCommandOptions() {
-  return process.env.BLOB_STORE_ID ? { storeId: process.env.BLOB_STORE_ID } : undefined;
-}
+function getBlobPutOptions(contentType) {
+  const options = {
+    access: 'public',
+    contentType,
+    addRandomSuffix: false,
+  };
 
-function isClientUploadRequest(body) {
-  return typeof body?.type === 'string' && body.type.startsWith('blob.');
+  if (process.env.BLOB_STORE_ID) {
+    options.storeId = process.env.BLOB_STORE_ID;
+  }
+
+  return options;
 }
 
 async function saveLocally(buffer, filename, contentType) {
@@ -46,50 +52,16 @@ async function saveLocally(buffer, filename, contentType) {
   };
 }
 
-async function handleClientUpload(req, res) {
-  const isTokenRequest = req.body?.type === 'blob.generate-client-token';
-
-  if (isTokenRequest) {
-    if (!verifySession(req)) {
-      return res.status(401).json({ success: false, message: 'Sessione non valida o scaduta.' });
-    }
-    if (!validateMutationOrigin(req)) {
-      return res.status(403).json({ success: false, message: 'Origine della richiesta non valida.' });
-    }
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      return res.status(503).json({
-        success: false,
-        message: 'Manca BLOB_READ_WRITE_TOKEN. Ricollega lo Blob store al progetto Vercel.',
-      });
-    }
-  }
-
-  const response = await handleUpload({
-    body: req.body,
-    request: req,
-    onBeforeGenerateToken: async (pathname) => {
-      if (!pathname.startsWith('articles/')) {
-        throw new Error('Percorso di upload non consentito.');
-      }
-      return {
-        allowedContentTypes: ALLOWED_TYPES,
-        maximumSizeInBytes: MAX_BYTES,
-        addRandomSuffix: false,
-      };
-    },
-  });
-
-  return res.status(200).json(response);
+async function saveToBlob(buffer, filename, contentType) {
+  const safeName = `articles/${Date.now()}-${sanitizeFilename(filename)}`;
+  const blob = await put(safeName, buffer, getBlobPutOptions(contentType));
+  return { url: blob.url, contentType };
 }
 
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
 
   try {
-    if (req.method === 'POST' && isClientUploadRequest(req.body)) {
-      return handleClientUpload(req, res);
-    }
-
     if (req.method === 'POST') {
       if (!requireAdmin(req, res)) return;
       if (!validateMutationOrigin(req)) {
@@ -97,7 +69,7 @@ module.exports = async (req, res) => {
       }
 
       const { filename, contentType, data } = req.body || {};
-      if (!data || !contentType || !ALLOWED_TYPES.includes(contentType)) {
+      if (!data || !contentType || !ALLOWED_TYPES.has(contentType)) {
         return res.status(400).json({
           success: false,
           message: 'Formato immagine non supportato. Usa JPG, PNG, WebP o GIF.',
@@ -108,11 +80,21 @@ module.exports = async (req, res) => {
       if (!buffer.length || buffer.length > MAX_BYTES) {
         return res.status(400).json({
           success: false,
-          message: 'Immagine troppo grande. Dimensione massima: 5 MB.',
+          message: 'Immagine troppo grande. Dimensione massima: 3 MB.',
         });
       }
 
-      const saved = await saveLocally(buffer, filename, contentType);
+      if (process.env.VERCEL === '1' && !isBlobConfigured()) {
+        return res.status(503).json({
+          success: false,
+          message: 'Caricamento immagini non configurato. Collega un Blob store al progetto (BLOB_STORE_ID).',
+        });
+      }
+
+      const saved = isBlobConfigured()
+        ? await saveToBlob(buffer, filename, contentType)
+        : await saveLocally(buffer, filename, contentType);
+
       return res.status(201).json({ success: true, ...saved });
     }
 
@@ -128,7 +110,7 @@ module.exports = async (req, res) => {
       }
 
       if (isBlobUrl(url) && isBlobConfigured()) {
-        await del(url, getBlobCommandOptions());
+        await del(url, getBlobPutOptions().storeId ? { storeId: process.env.BLOB_STORE_ID } : undefined);
       }
 
       return res.status(200).json({ success: true });
