@@ -67,10 +67,10 @@ const Hero = () => {
     <section className={styles.hero} id="home">
       <div className={styles.copyColumn}>
         <div className={styles.copy}>
-          <p className="eyebrow">Mai Senza · con Mauro Simoncini</p>
+          <p className="eyebrow">Mai Senza · Conoscenza, cura e prodotto giusto</p>
           <h1 className="display-title">Impermeabilizzare.<br />Fallo bene, da solo.</h1>
           <p className={styles.subtitle}>
-            Metodo, cura e il prodotto giusto per proteggere terrazzi, tetti e superfici
+            Metodo, cura e il prodotto giusto per proteggere tutte le superfici
             senza demolire e senza costosi tentativi.
           </p>
           <div className={styles.actions}>
