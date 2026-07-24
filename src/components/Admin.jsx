@@ -12,6 +12,7 @@ import {
   FaTrash,
   FaUpload,
 } from 'react-icons/fa';
+import { upload as uploadToBlob } from '@vercel/blob/client';
 import { formatArticleDate, slugify } from '../utils/articlesApi';
 import styles from './Admin.module.css';
 
@@ -56,25 +57,23 @@ async function adminRequest(url, options = {}) {
 
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 
-function readFileAsBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result).split(',')[1]);
-    reader.onerror = () => reject(new Error('Lettura file non riuscita.'));
-    reader.readAsDataURL(file);
-  });
+function buildUploadPathname(filename) {
+  const safe = String(filename || 'immagine')
+    .normalize('NFKD')
+    .replace(/[^\w.-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 80) || 'immagine';
+  return `articles/${Date.now()}-${safe}`;
 }
 
 async function uploadImage(file) {
-  const data = await readFileAsBase64(file);
-  return adminRequest('/api/admin/upload', {
-    method: 'POST',
-    body: JSON.stringify({
-      filename: file.name,
-      contentType: file.type,
-      data,
-    }),
+  const blob = await uploadToBlob(buildUploadPathname(file.name), file, {
+    access: 'public',
+    handleUploadUrl: '/api/admin/upload',
+    contentType: file.type,
   });
+  return { url: blob.url, contentType: blob.contentType || file.type };
 }
 
 async function deleteUploadedImage(url) {
@@ -117,7 +116,7 @@ function ImageUploadField({ label, value, onChange, onUnauthorized }) {
       if (previous && previous !== data.url) await deleteUploadedImage(previous);
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setUploading(false);
     }
@@ -196,7 +195,7 @@ function GalleryUploadField({ images, onChange, onUnauthorized }) {
       onChange([...images, ...uploaded]);
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setUploading(false);
     }
@@ -343,7 +342,7 @@ function Editor({ article, onCancel, onSaved, onUnauthorized }) {
       onSaved(data.article, isExisting ? 'Articolo aggiornato.' : 'Articolo creato.');
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setSaving(false);
     }
@@ -486,7 +485,7 @@ function Dashboard({ user, onLogout, onUnauthorized }) {
       setArticles(data.articles);
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setLoading(false);
     }
@@ -541,7 +540,7 @@ function Dashboard({ user, onLogout, onUnauthorized }) {
       openEdit(data.article);
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setBusyId(null);
     }
@@ -560,7 +559,7 @@ function Dashboard({ user, onLogout, onUnauthorized }) {
       setNotice('Articolo eliminato.');
     } catch (requestError) {
       if (requestError.status === 401) onUnauthorized();
-      else setError(requestError.message);
+      else setError(requestError.message || 'Caricamento non riuscito.');
     } finally {
       setBusyId(null);
     }
