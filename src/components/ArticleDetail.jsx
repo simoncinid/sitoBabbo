@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { FaCalendar, FaUser, FaClock, FaArrowLeft, FaWhatsapp } from 'react-icons/fa';
 import Navbar from './Navbar';
@@ -47,6 +47,81 @@ function ArticleBody({ content }) {
         </p>
       );
     });
+}
+
+function ArticleGallery({ title, images }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const trackRef = useRef(null);
+  const slides = useMemo(() => images.filter(Boolean), [images]);
+
+  useEffect(() => {
+    setActiveImage(0);
+    trackRef.current?.scrollTo({ left: 0 });
+  }, [slides]);
+
+  if (!slides.length) return null;
+
+  const selectImage = (index) => {
+    const track = trackRef.current;
+    if (!track) return;
+    setActiveImage(index);
+    track.scrollTo({ left: track.clientWidth * index, behavior: 'smooth' });
+  };
+
+  const updateActiveImage = () => {
+    const track = trackRef.current;
+    if (!track?.clientWidth) return;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    setActiveImage(Math.max(0, Math.min(slides.length - 1, index)));
+  };
+
+  return (
+    <div className={styles.gallery}>
+      {slides.length > 1 && (
+        <button
+          type="button"
+          className={`${styles.galleryArrow} ${styles.galleryArrowPrev}`}
+          onClick={() => selectImage(activeImage - 1)}
+          disabled={activeImage === 0}
+          aria-label="Foto precedente"
+        >
+          ‹
+        </button>
+      )}
+      <div className={styles.galleryTrack} ref={trackRef} onScroll={updateActiveImage}>
+        {slides.map((image, index) => (
+          <figure className={styles.gallerySlide} key={`${image}-${index}`}>
+            <img src={image} alt={`${title} - Immagine ${index + 1}`} />
+          </figure>
+        ))}
+      </div>
+      {slides.length > 1 && (
+        <button
+          type="button"
+          className={`${styles.galleryArrow} ${styles.galleryArrowNext}`}
+          onClick={() => selectImage(activeImage + 1)}
+          disabled={activeImage === slides.length - 1}
+          aria-label="Foto successiva"
+        >
+          ›
+        </button>
+      )}
+      {slides.length > 1 && (
+        <div className={styles.galleryDots} aria-label="Galleria immagini">
+          {slides.map((image, index) => (
+            <button
+              type="button"
+              key={`${image}-dot-${index}`}
+              className={activeImage === index ? styles.activeDot : ''}
+              onClick={() => selectImage(index)}
+              aria-label={`Mostra immagine ${index + 1}`}
+              aria-current={activeImage === index}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const ArticleDetail = () => {
@@ -122,23 +197,10 @@ const ArticleDetail = () => {
 
           {(article.image || article.gallery?.length) && (
             <div className={styles.articleImageContainer}>
-              {article.gallery?.length ? (
-                <div className={styles.multipleImages}>
-                  {article.image && <img src={article.image} alt={article.title} className={styles.articleImage} />}
-                  <div className={styles.additionalImagesGrid}>
-                    {article.gallery.map((image, index) => (
-                      <img
-                        key={image}
-                        src={image}
-                        alt={`${article.title} - Immagine ${index + 2}`}
-                        className={styles.additionalImage}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <img src={article.image} alt={article.title} className={styles.articleImage} />
-              )}
+              <ArticleGallery
+                title={article.title}
+                images={[article.image, ...(article.gallery || [])]}
+              />
             </div>
           )}
 

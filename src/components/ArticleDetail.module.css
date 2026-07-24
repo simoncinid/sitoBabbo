@@ -81,14 +81,94 @@
 }
 
 .articleImageContainer {
-  min-height: 480px;
   margin: 64px auto 0;
+}
+
+.gallery {
+  position: relative;
   overflow: hidden;
+  border-radius: var(--radius-card);
   background: var(--parchment);
 }
 
-.articleImageContainer > div:first-child {
-  min-height: 560px;
+.galleryTrack {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.galleryTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.gallerySlide {
+  min-width: 100%;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.gallerySlide img {
+  width: 100%;
+  height: clamp(320px, 52vw, 560px);
+  display: block;
+  object-fit: cover;
+}
+
+.galleryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.galleryArrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.galleryArrowPrev {
+  left: 16px;
+}
+
+.galleryArrowNext {
+  right: 16px;
+}
+
+.galleryDots {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.galleryDots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+
+.galleryDots button.activeDot {
+  width: 24px;
+  background: white;
 }
 
 .articleImage {
@@ -246,13 +326,24 @@
   }
 
   .articleImageContainer {
-    min-height: 320px;
     margin-top: 48px;
   }
 
-  .articleImageContainer > div:first-child,
-  .textHeader {
-    min-height: 300px;
+  .gallerySlide img {
+    height: 280px;
+  }
+
+  .galleryArrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .galleryArrowPrev {
+    left: 10px;
+  }
+
+  .galleryArrowNext {
+    right: 10px;
   }
 
   .articleTitle,
@@ -267,10 +358,6 @@
 
   .articleContent {
     margin-top: 48px;
-  }
-
-  .additionalImagesGrid {
-    grid-template-columns: 1fr;
   }
 }
 
