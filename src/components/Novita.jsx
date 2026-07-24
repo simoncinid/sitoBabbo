@@ -49,6 +49,8 @@ const Novita = () => {
             src="/assets/mauro/heromauro.png"
             alt=""
             aria-hidden="true"
+            draggable="false"
+            decoding="async"
           />
         </header>
 

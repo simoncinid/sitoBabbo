@@ -2,12 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { sendFormEmail } = require('./api/_lib/email');
+const uploadHandler = require('./api/admin/upload');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '8mb' }));
 app.use(express.static('public'));
 
 app.post('/api/send-email', async (req, res) => {
@@ -27,6 +28,9 @@ app.post('/api/send-email', async (req, res) => {
     res.status(500).json({ success: false, message: 'Errore nell\'invio dell\'email' });
   }
 });
+
+app.post('/api/admin/upload', uploadHandler);
+app.delete('/api/admin/upload', uploadHandler);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

@@ -49,6 +49,10 @@
       "destination": "/api/admin/articles.js"
     },
     {
+      "source": "/api/admin/upload",
+      "destination": "/api/admin/upload.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

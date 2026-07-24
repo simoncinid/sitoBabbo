@@ -259,13 +259,26 @@
 }
 
 @media (min-width: 900px) {
+  .hero {
+    min-height: clamp(340px, 36vw, 440px);
+    padding-bottom: 0;
+  }
+
+  .heroContent {
+    padding-bottom: 80px;
+  }
+
   .desktopHeroPortrait {
-    width: clamp(400px, 32vw, 500px);
-    max-width: none;
     display: block;
     position: absolute;
-    right: clamp(-115px, -7vw, -95px);
-    bottom: -1px;
+    right: 0;
+    bottom: 0;
+    width: clamp(380px, 38vw, 560px);
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+    filter: drop-shadow(12px 22px 20px rgba(14, 67, 43, 0.12));
     z-index: 0;
     pointer-events: none;
     user-select: none;
@@ -285,6 +298,12 @@
 
   .hero > div > p:last-child {
     font-size: 16px;
+  }
+
+  .filters {
+    position: static;
+    top: auto;
+    backdrop-filter: none;
   }
 
   .filterInner {

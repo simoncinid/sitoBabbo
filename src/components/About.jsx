@@ -5,9 +5,9 @@ const NAV_HEIGHT = 96;
 const DESKTOP_MIN_WIDTH = 834;
 
 const mauroImages = [
-  { src: '/assets/mauro/mauro1.png', alt: 'Mauro Simoncini controlla una copertura con un tablet' },
   { src: '/assets/mauro/mauro2.png', alt: 'Mauro Simoncini nel magazzino Fibro-gum' },
   { src: '/assets/mauro/newPhoto.jpg', alt: 'Mauro Simoncini con un secchio Fibro-gum' },
+  { src: '/assets/mauro/mauro1.png', alt: 'Mauro Simoncini controlla una copertura con un tablet' },
 ];
 
 const About = () => {

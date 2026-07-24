@@ -10,6 +10,7 @@ import {
   FaSearch,
   FaSignOutAlt,
   FaTrash,
+  FaUpload,
 } from 'react-icons/fa';
 import { formatArticleDate, slugify } from '../utils/articlesApi';
 import styles from './Admin.module.css';
@@ -51,6 +52,203 @@ async function adminRequest(url, options = {}) {
     throw error;
   }
   return data;
+}
+
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(',')[1]);
+    reader.onerror = () => reject(new Error('Lettura file non riuscita.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImage(file) {
+  const data = await readFileAsBase64(file);
+  return adminRequest('/api/admin/upload', {
+    method: 'POST',
+    body: JSON.stringify({
+      filename: file.name,
+      contentType: file.type,
+      data,
+    }),
+  });
+}
+
+async function deleteUploadedImage(url) {
+  if (!url) return;
+  try {
+    await adminRequest('/api/admin/upload', {
+      method: 'DELETE',
+      body: JSON.stringify({ url }),
+    });
+  } catch {
+    // Ignora errori di eliminazione remota: l'immagine resta solo scollegata dall'articolo.
+  }
+}
+
+function ImageUploadField({ label, value, onChange, onUnauthorized }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+  const inputRef = React.useRef(null);
+
+  const handleUpload = async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+
+    if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+      setError('Formato non supportato. Usa JPG, PNG, WebP o GIF.');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Immagine troppo grande. Massimo 5 MB.');
+      return;
+    }
+
+    setUploading(true);
+    setError('');
+    try {
+      const previous = value;
+      const data = await uploadImage(file);
+      onChange(data.url);
+      if (previous && previous !== data.url) await deleteUploadedImage(previous);
+    } catch (requestError) {
+      if (requestError.status === 401) onUnauthorized();
+      else setError(requestError.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = async () => {
+    const previous = value;
+    onChange('');
+    if (previous) await deleteUploadedImage(previous);
+  };
+
+  return (
+    <div className={styles.imageField}>
+      <span className={styles.imageFieldLabel}>{label}</span>
+      {value && (
+        <div className={styles.imagePreview}>
+          <img src={value} alt="Anteprima" />
+        </div>
+      )}
+      <div className={styles.imageFieldActions}>
+        <button
+          type="button"
+          className={styles.secondaryButton}
+          disabled={uploading}
+          onClick={() => inputRef.current?.click()}
+        >
+          <FaUpload /> {uploading ? 'Caricamento…' : value ? 'Sostituisci' : 'Carica dal dispositivo'}
+        </button>
+        {value && (
+          <button type="button" className={styles.deleteImageButton} onClick={removeImage}>
+            <FaTrash /> Elimina
+          </button>
+        )}
+      </div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ACCEPTED_IMAGE_TYPES.join(',')}
+        hidden
+        onChange={handleUpload}
+      />
+      {error && <p className={styles.fieldError}>{error}</p>}
+    </div>
+  );
+}
+
+function GalleryUploadField({ images, onChange, onUnauthorized }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+  const inputRef = React.useRef(null);
+
+  const handleUpload = async (event) => {
+    const files = Array.from(event.target.files || []);
+    event.target.value = '';
+    if (!files.length) return;
+
+    for (const file of files) {
+      if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+        setError('Formato non supportato. Usa JPG, PNG, WebP o GIF.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Immagine troppo grande. Massimo 5 MB.');
+        return;
+      }
+    }
+
+    setUploading(true);
+    setError('');
+    try {
+      const uploaded = [];
+      for (const file of files) {
+        const data = await uploadImage(file);
+        uploaded.push(data.url);
+      }
+      onChange([...images, ...uploaded]);
+    } catch (requestError) {
+      if (requestError.status === 401) onUnauthorized();
+      else setError(requestError.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = async (index) => {
+    const removed = images[index];
+    onChange(images.filter((_, itemIndex) => itemIndex !== index));
+    if (removed) await deleteUploadedImage(removed);
+  };
+
+  return (
+    <div className={styles.imageField}>
+      <span className={styles.imageFieldLabel}>Galleria</span>
+      {images.length > 0 && (
+        <div className={styles.galleryList}>
+          {images.map((image, index) => (
+            <div className={styles.galleryItem} key={`${image}-${index}`}>
+              <img src={image} alt={`Immagine ${index + 1}`} />
+              <button
+                type="button"
+                className={styles.galleryRemove}
+                onClick={() => removeImage(index)}
+                aria-label={`Elimina immagine ${index + 1}`}
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className={styles.imageFieldActions}>
+        <button
+          type="button"
+          className={styles.secondaryButton}
+          disabled={uploading}
+          onClick={() => inputRef.current?.click()}
+        >
+          <FaUpload /> {uploading ? 'Caricamento…' : 'Aggiungi immagini'}
+        </button>
+      </div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ACCEPTED_IMAGE_TYPES.join(',')}
+        multiple
+        hidden
+        onChange={handleUpload}
+      />
+      {error && <p className={styles.fieldError}>{error}</p>}
+    </div>
+  );
 }
 
 function Login({ onAuthenticated }) {
@@ -116,7 +314,6 @@ function Login({ onAuthenticated }) {
 
 function Editor({ article, onCancel, onSaved, onUnauthorized }) {
   const [form, setForm] = useState(article || emptyArticle);
-  const [galleryText, setGalleryText] = useState((article?.gallery || []).join('\n'));
   const [slugEdited, setSlugEdited] = useState(Boolean(article));
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
@@ -137,7 +334,7 @@ function Editor({ article, onCancel, onSaved, onUnauthorized }) {
     try {
       const payload = {
         ...form,
-        gallery: galleryText.split('\n').map((item) => item.trim()).filter(Boolean),
+        gallery: form.gallery || [],
       };
       const data = await adminRequest('/api/admin/articles', {
         method: isExisting ? 'PUT' : 'POST',
@@ -251,24 +448,17 @@ function Editor({ article, onCancel, onSaved, onUnauthorized }) {
 
           <div className={styles.fieldCard}>
             <h3>Immagini</h3>
-            <label>
-              URL immagine principale
-              <input value={form.image} onChange={(event) => update('image', event.target.value)} placeholder="/assets/immagine.jpg" />
-            </label>
-            {form.image && (
-              <div className={styles.imagePreview}>
-                <img src={form.image} alt="Anteprima" />
-              </div>
-            )}
-            <label>
-              Galleria
-              <textarea
-                rows="4"
-                value={galleryText}
-                onChange={(event) => setGalleryText(event.target.value)}
-                placeholder={'Un URL per riga\n/assets/dettaglio-1.jpg'}
-              />
-            </label>
+            <ImageUploadField
+              label="Immagine principale"
+              value={form.image}
+              onChange={(url) => update('image', url)}
+              onUnauthorized={onUnauthorized}
+            />
+            <GalleryUploadField
+              images={form.gallery || []}
+              onChange={(gallery) => update('gallery', gallery)}
+              onUnauthorized={onUnauthorized}
+            />
           </div>
         </aside>
 
