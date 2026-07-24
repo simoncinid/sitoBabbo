@@ -2,11 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEOHead = () => {
-  const siteUrl = 'https://maisenza.it';
+  const siteUrl = 'https://www.maurosimoncini.it';
   const siteName = 'Mai Senza Impermeabilizzazioni';
   const title = 'Mai Senza Impermeabilizzazioni | Mauro Simoncini - Esperti dal 2004';
   const description = 'Mai senza conoscenza, cura e il prodotto giusto. Mauro Simoncini, esperto in impermeabilizzazioni dal 2004. Consulenza gratuita, soluzioni professionali per terrazzi, bagni, cantine e piscine.';
-  const image = `${siteUrl}/assets/hero.png`;
+  const image = `${siteUrl}/assets/og/maisenza-og.jpg`;
   const keywords = 'impermeabilizzazione, terrazzo, bagno, cantina, piscina, infiltrazioni, manutenzione, consulenza, Mauro Simoncini, riparazione, prevenzione';
 
   const structuredData = {
@@ -15,11 +15,13 @@ const SEOHead = () => {
     "name": siteName,
     "description": description,
     "url": siteUrl,
+    "image": image,
     "logo": `${siteUrl}/assets/brand/mai-senza-mark.png`,
-    "telephone": "+39-123-456-7890",
-    "email": "info@maisenza.it",
+    "telephone": "+39-393-8657606",
+    "email": "simonciniliquiplast@gmail.com",
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Pontedera",
       "addressCountry": "IT"
     },
     "founder": {
@@ -79,6 +81,7 @@ const SEOHead = () => {
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Mauro Simoncini - Esperto in impermeabilizzazioni" />
       <meta property="og:locale" content="it_IT" />
       <meta property="og:site_name" content={siteName} />
       
