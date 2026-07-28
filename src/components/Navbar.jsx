@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const homeLinks = [
   { id: 'about', label: 'Mauro' },
@@ -82,6 +83,7 @@ const Navbar = () => {
           >
             Parliamone
           </a>
+          <LanguageSwitcher />
 
           <button
             className={`${styles.menuButton} ${open ? styles.menuOpen : ''}`}
@@ -126,6 +128,7 @@ const Navbar = () => {
         >
           Scrivi a Mauro
         </a>
+        <LanguageSwitcher mobile />
       </div>
     </>
   );

@@ -1,0 +1,7 @@
+.switcher { display: inline-flex; align-items: center; gap: 4px; margin-left: 14px; color: rgba(255, 255, 255, 0.9); }
+.icon { font-size: 14px; line-height: 1; }
+.select { max-width: 106px; border: 0; appearance: auto; background: transparent; color: inherit; font-size: 12px; line-height: 1; cursor: pointer; }
+.select option { color: #1d1d1f; background: #fff; }
+.select:focus-visible { outline-color: white; }
+.mobile { width: 100%; justify-content: center; margin: 24px 0 0; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; }
+.mobile .select { max-width: none; color: white; font-size: 16px; }

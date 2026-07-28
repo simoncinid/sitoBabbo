@@ -41,6 +41,10 @@
       "destination": "/api/articles.js"
     },
     {
+      "source": "/api/visitor-locale",
+      "destination": "/api/visitor-locale.js"
+    },
+    {
       "source": "/api/admin/session",
       "destination": "/api/admin/session.js"
     },

@@ -61,6 +61,7 @@ function AppContent() {
   return (
     <div className="App">
       {!isAdmin && <SEOHead />}
+      {!isAdmin && <div id="google_translate_element" aria-hidden="true" />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/novita" element={<Novita />} />

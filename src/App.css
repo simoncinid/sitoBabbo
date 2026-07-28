@@ -5,6 +5,16 @@
   overflow: clip;
 }
 
+#google_translate_element,
+.goog-te-banner-frame,
+.skiptranslate > iframe {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
