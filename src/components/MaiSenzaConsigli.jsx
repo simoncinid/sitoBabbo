@@ -52,6 +52,8 @@ const MaiSenzaConsigli = () => {
           <p className={styles.headerCopy}>
             Ogni superficie ha le sue regole e ogni prodotto i suoi limiti.
             Qui impari il perché, prima ancora del come.
+            Per stimare quantità e consumi prima dell’acquisto, presto potrai usare questo calcolatore: {' '}
+            <a href="https://www.buildcalclab.com/">construction material calculators</a>.
           </p>
         </header>
 
