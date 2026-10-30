@@ -46,6 +46,7 @@ const Footer = () => (
         <div>
           <h3>Informazioni</h3>
           <Link to="/novita">Articoli</Link>
+          <Link to="/#manuale">Mai Senza Metodo</Link>
           <Link to="/privacy">Privacy Policy</Link>
           <Link to="/termini">Termini di servizio</Link>
           <CookieSettings />

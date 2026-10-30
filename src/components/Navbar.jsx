@@ -9,6 +9,7 @@ const homeLinks = [
   { id: 'mai-senza-consigli', label: 'Conoscenza' },
   { id: 'mai-senza-manutenzione', label: 'Cura' },
   { id: 'mai-senza-esperienza', label: 'Soluzioni' },
+  { id: 'manuale', label: 'Il manuale' },
   { id: 'faq', label: 'FAQ' },
 ];
 

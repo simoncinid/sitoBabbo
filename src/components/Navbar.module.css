@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(18px, 2.5vw, 34px);
+  gap: clamp(10px, 1.7vw, 24px);
 }
 
 .navLink {
@@ -201,6 +201,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 42px 28px 32px;
+    gap: 24px;
+    overflow-y: auto;
     background: var(--black);
     opacity: 0;
     visibility: hidden;
@@ -216,6 +218,7 @@
 
   .mobileLinks {
     display: grid;
+    flex-shrink: 0;
   }
 
   .mobileLink {

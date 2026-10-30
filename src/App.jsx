@@ -8,6 +8,7 @@ import MaiSenzaConsigli from './components/MaiSenzaConsigli';
 import MaiSenzaManutenzione from './components/MaiSenzaManutenzione';
 import MaiSenzaEsperienza from './components/MaiSenzaEsperienza';
 import FAQ from './components/FAQ';
+import MetodoManual from './components/MetodoManual';
 import Consulenza from './components/Consulenza';
 import Footer from './components/Footer';
 import SEOHead from './components/SEOHead';
@@ -46,6 +47,7 @@ function HomePage() {
         <MaiSenzaConsigli />
         <MaiSenzaManutenzione />
         <MaiSenzaEsperienza />
+        <MetodoManual />
         <FAQ />
         <Consulenza />
       </main>
